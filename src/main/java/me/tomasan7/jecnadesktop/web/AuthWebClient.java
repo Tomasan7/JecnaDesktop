@@ -31,6 +31,13 @@ public abstract class AuthWebClient
 	 */
 	public abstract CompletableFuture<Boolean> login ();
 
+	/**
+	 * Returns an HTML from the web on the given path. May vary depending on whether user is logged in or not.
+	 * @param path Relative path from the domain. Must include first slash.
+	 * @return The HTML.
+	 */
+	public abstract CompletableFuture<String> queryHTML (String path);
+
 	protected static String encodeParams (Map<String, String> params)
 	{
 		StringBuilder stringBuilder = new StringBuilder();

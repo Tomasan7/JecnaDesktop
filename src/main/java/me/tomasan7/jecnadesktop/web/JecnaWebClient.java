@@ -23,61 +23,73 @@ public class JecnaWebClient extends AuthWebClient
 	@Override
 	public CompletableFuture<Boolean> login ()
 	{
+		HttpClient httpClient = HttpClient.newHttpClient();
+
+		HttpRequest request = newRequest("/user/login")
+				.POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", username, "pass", password)))
+				.header("Content-Type", "application/x-www-form-urlencoded")
+				.build();
+
+		return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+						 .thenCompose(response ->
+						 {
+							 if (response.statusCode() != 302)
+								 throw new RuntimeException("Login credentials are incorrect.");
+
+							 Optional<String> cookieHeaderOpt = response.headers().firstValue("Set-Cookie");
+
+							 if (cookieHeaderOpt.isEmpty())
+								 throw new RuntimeException("Set-Cookie not found.");
+
+							 session = JecnaSession.fromHeader(cookieHeaderOpt.get());
+
+							 HttpRequest requestMainPage = newRequest("/")
+									 .GET()
+									 .build();
+
+							 return httpClient.sendAsync(requestMainPage, HttpResponse.BodyHandlers.ofString());
+						 })
+						 .handle((response, exception) ->
+						 {
+							 if (exception != null)
+								 return false;
+
+							 Document document = Jsoup.parse(response.body());
+							 String title = document.select("head > title").text();
+
+							 return title.equals("SPŠE Ječná - Novinky");
+						 });
+	}
+
+	@Override
+	public CompletableFuture<String> queryHTML (String path)
+	{
+		return HttpClient.newHttpClient().sendAsync(newRequest(path).GET().build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
+	}
+
+	/**
+	 * Returns a new request to the path relative to {@link #ENDPOINT}. Adds {@link #session} cookie, if it's not null.
+	 *
+	 * @param path The path to query. Must include first slash.
+	 * @return The new request.
+	 */
+	private HttpRequest.Builder newRequest (String path)
+	{
+		String uriStr = ENDPOINT + path;
+
 		try
 		{
-			URI loginURL = new URI(ENDPOINT + "/user/login");
+			HttpRequest.Builder builder = HttpRequest.newBuilder(new URI(uriStr))
+													 .header("User-Agent", "Mozilla/5.0");
 
-			HttpClient httpClient = HttpClient.newHttpClient();
+			if (session != null)
+				builder.header("Cookie", session.toHeader());
 
-			HttpRequest request = HttpRequest.newBuilder(loginURL)
-											 .POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", username, "pass", password)))
-											 .header("User-Agent", "Mozilla/5.0")
-											 .header("Content-Type", "application/x-www-form-urlencoded")
-											 .build();
-
-			return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-							 .thenCompose(response ->
-							 {
-								 try
-								 {
-									 if (response.statusCode() != 302)
-										 throw new RuntimeException("Login credentials are incorrect.");
-
-									 Optional<String> cookieHeaderOpt = response.headers().firstValue("Set-Cookie");
-
-									 if (cookieHeaderOpt.isEmpty())
-										 throw new RuntimeException("Set-Cookie not found.");
-
-									 session = JecnaSession.fromHeader(cookieHeaderOpt.get());
-
-									 HttpRequest requestMainPage = HttpRequest.newBuilder(new URI(ENDPOINT))
-																			  .GET()
-																			  .header("User-Agent", "Mozilla/5.0")
-																			  .header("Cookie", response.headers().firstValue("Set-Cookie").get())
-																			  .build();
-
-									 return httpClient.sendAsync(requestMainPage, HttpResponse.BodyHandlers.ofString());
-								 }
-								 catch (URISyntaxException e)
-								 {
-									 throw new RuntimeException();
-								 }
-							 })
-							 .handle((response, exception) ->
-							 {
-								 if (exception != null)
-									 return false;
-
-								 Document document = Jsoup.parse(response.body());
-								 String title = document.select("head > title").text();
-
-								 return title.equals("SPŠE Ječná - Novinky");
-							 });
+			return builder;
 		}
-		catch (Exception e)
+		catch (URISyntaxException e)
 		{
-			e.printStackTrace();
-			return CompletableFuture.completedFuture(false);
+			throw new InvalidURIException(uriStr);
 		}
 	}
 }
