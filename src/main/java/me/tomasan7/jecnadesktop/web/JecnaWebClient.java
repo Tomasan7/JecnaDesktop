@@ -1,5 +1,6 @@
 package me.tomasan7.jecnadesktop.web;
 
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -15,7 +16,12 @@ public class JecnaWebClient extends AuthWebClient
 {
 	public static final String ENDPOINT = "https://www.spsejecna.cz";
 
-	public JecnaWebClient (String username, String password)
+	public JecnaWebClient (@NotNull Auth auth)
+	{
+		super(auth);
+	}
+
+	public JecnaWebClient (@NotNull String username, @NotNull String password)
 	{
 		super(username, password);
 	}
@@ -26,7 +32,7 @@ public class JecnaWebClient extends AuthWebClient
 		HttpClient httpClient = HttpClient.newHttpClient();
 
 		HttpRequest request = newRequest("/user/login")
-				.POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", username, "pass", password)))
+				.POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", auth.username(), "pass", auth.password())))
 				.header("Content-Type", "application/x-www-form-urlencoded")
 				.build();
 

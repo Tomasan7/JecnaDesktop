@@ -12,16 +12,18 @@ import java.util.concurrent.CompletableFuture;
 public abstract class AuthWebClient
 {
 	@NotNull
-	protected final String username;
-	@NotNull
-	protected final String password;
+	protected final Auth auth;
 	@Nullable
 	protected Session session = null;
 
+	public AuthWebClient (@NotNull Auth auth)
+	{
+		this.auth = auth;
+	}
+
 	public AuthWebClient (@NotNull String username, @NotNull String password)
 	{
-		this.username = username;
-		this.password = password;
+		this.auth = new Auth(username, password);
 	}
 
 	/**
