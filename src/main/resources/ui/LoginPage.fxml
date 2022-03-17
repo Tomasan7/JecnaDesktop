@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.tomasan7.jecnadesktop.ui.LoginPageController">
+
+    <Label fx:id="userLabel" text="Uživatel" />
+    <TextField fx:id="userInput" />
+
+    <Label fx:id="passwordLabel" text="Heslo">
+        <VBox.margin><Insets top="10.0" /></VBox.margin>
+    </Label>
+    <PasswordField fx:id="passwordInput" />
+    <Button fx:id="loginBtn" text="Login" disable="true">
+        <VBox.margin><Insets top="10.0" /></VBox.margin>
+    </Button>
+</VBox>
