@@ -49,9 +49,6 @@ public class LoginPageController implements Initializable
 		passwordInput.textProperty().addListener(changeListener);
 		userInput.textProperty().addListener(changeListener);
 
-		loginBtn.setOnMouseClicked(event ->
-		{
-			jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN);
-		});
+		loginBtn.setOnMouseClicked(event -> jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN));
 	}
 }
