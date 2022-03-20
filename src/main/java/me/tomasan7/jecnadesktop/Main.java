@@ -23,7 +23,7 @@ public class Main extends Application
 		Scene scene = new Scene(root);
 
 		primaryStage.setTitle("Ječná Desktop");
-		primaryStage.getIcons().add(new Image("ui/logo.png"));
+		primaryStage.getIcons().add(new Image("ui/icon/logo.png"));
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
