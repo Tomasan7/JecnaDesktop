@@ -12,6 +12,9 @@ import java.util.Map;
 public class SceneManager
 {
 	private final JecnaDesktop jecnaDesktop;
+	/**
+	 * Cached {@link Scene Scenes} for {@link JDScene JDScenes}.
+	 */
 	private final Map<JDScene, Scene> scenes = new HashMap<>();
 
 	public SceneManager (JecnaDesktop jecnaDesktop)
@@ -24,17 +27,26 @@ public class SceneManager
 		jecnaDesktop.getPrimaryStage().setScene(getScene(jdScene));
 	}
 
+	/**
+	 * Lazily gets {@link Scene} for {@link JDScene}.
+	 * @param jdScene The {@link JDScene} to get {@link Scene} for.
+	 * @return The appropriate {@link Scene}.
+	 * @see #scenes
+	 */
 	private Scene getScene (JDScene jdScene)
 	{
+		/* Check if whether the scene is already instantiated (cached) and serve it if so. */
 		if (scenes.containsKey(jdScene))
 			return scenes.get(jdScene);
 
-		Scene scene = null;
+		/* Instantiate and cache the scene. */
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(jdScene.getLocation()));
-
 		fxmlLoader.setController(jdScene.newController(jecnaDesktop));
+
+		Scene scene = null;
 		Parent root = null;
+
 		try
 		{
 			root = fxmlLoader.load();
@@ -46,7 +58,9 @@ public class SceneManager
 
 		scene = new Scene(root);
 
+		/* Cache the Scene. */
 		scenes.put(jdScene, scene);
+
 		return scene;
 	}
 }
