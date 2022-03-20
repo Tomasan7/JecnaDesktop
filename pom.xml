@@ -30,7 +30,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>me.tomasan7.jecnadesktop.Main</mainClass>
+                    <mainClass>me.tomasan7.jecnadesktop.JecnaDesktop</mainClass>
                 </configuration>
             </plugin>
         </plugins>

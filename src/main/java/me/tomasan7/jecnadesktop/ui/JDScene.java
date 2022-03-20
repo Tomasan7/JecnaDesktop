@@ -1,6 +1,6 @@
 package me.tomasan7.jecnadesktop.ui;
 
-import me.tomasan7.jecnadesktop.Main;
+import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.controller.LoginPageController;
 import me.tomasan7.jecnadesktop.ui.controller.MainPageController;
 
@@ -18,9 +18,9 @@ public enum JDScene
 	/**
 	 * A function to create new instance of the FXML's controller.
 	 */
-	private final Function<Main, Object> newController;
+	private final Function<JecnaDesktop, Object> newController;
 
-	JDScene (String location, Function<Main, Object> newController)
+	JDScene (String location, Function<JecnaDesktop, Object> newController)
 	{
 		this.location = location;
 		this.newController = newController;
@@ -36,11 +36,11 @@ public enum JDScene
 
 	/**
 	 * Returns new instance of this scene's controller.
-	 * @param main The {@link Main} instance.
+	 * @param jecnaDesktop The {@link JecnaDesktop} instance.
 	 * @return The new controller.
 	 */
-	public Object newController (Main main)
+	public Object newController (JecnaDesktop jecnaDesktop)
 	{
-		return newController.apply(main);
+		return newController.apply(jecnaDesktop);
 	}
 }

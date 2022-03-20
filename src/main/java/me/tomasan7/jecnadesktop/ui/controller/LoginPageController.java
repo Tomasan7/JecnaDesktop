@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import me.tomasan7.jecnadesktop.Main;
+import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 
 import java.net.URL;
@@ -26,11 +26,11 @@ public class LoginPageController implements Initializable
 	@FXML
 	public Button loginBtn;
 
-	private final Main main;
+	private final JecnaDesktop jecnaDesktop;
 
-	public LoginPageController (Main main)
+	public LoginPageController (JecnaDesktop jecnaDesktop)
 	{
-		this.main = main;
+		this.jecnaDesktop = jecnaDesktop;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class LoginPageController implements Initializable
 
 		loginBtn.setOnMouseClicked(event ->
 		{
-			main.getSceneManager().switchToScene(JDScene.MAIN);
+			jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN);
 		});
 	}
 }

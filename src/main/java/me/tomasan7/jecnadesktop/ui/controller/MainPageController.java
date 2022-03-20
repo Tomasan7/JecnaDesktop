@@ -1,13 +1,13 @@
 package me.tomasan7.jecnadesktop.ui.controller;
 
-import me.tomasan7.jecnadesktop.Main;
+import me.tomasan7.jecnadesktop.JecnaDesktop;
 
 public class MainPageController
 {
-	private final Main main;
+	private final JecnaDesktop jecnaDesktop;
 
-	public MainPageController (Main main)
+	public MainPageController (JecnaDesktop jecnaDesktop)
 	{
-		this.main = main;
+		this.jecnaDesktop = jecnaDesktop;
 	}
 }

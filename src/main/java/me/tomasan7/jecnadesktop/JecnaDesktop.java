@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
 
-public class Main extends Application
+public class JecnaDesktop extends Application
 {
 	private Stage primaryStage;
 	private final SceneManager sceneManager = new SceneManager(this);
