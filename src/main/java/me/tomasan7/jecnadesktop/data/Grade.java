@@ -25,6 +25,26 @@ public record Grade(byte value,
 	}
 
 	/**
+	 * Accepts value's representing char.
+	 * @param valueChar The value char representation.
+	 * @see #valueChar()
+	 */
+	public Grade (char valueChar,
+				  boolean small,
+				  @Nullable String subject,
+				  @Nullable String teacher,
+				  @Nullable String description,
+				  @Nullable LocalDate receiveDate)
+	{
+		this(valueChar == 'N' ? 0 : Byte.parseByte(String.valueOf(valueChar)),
+				small,
+				subject,
+				teacher,
+				description,
+				receiveDate);
+	}
+
+	/**
 	 * Returns this grade's {@link #value} as char. Returns 'N' for value 0.
 	 */
 	public char valueChar ()
