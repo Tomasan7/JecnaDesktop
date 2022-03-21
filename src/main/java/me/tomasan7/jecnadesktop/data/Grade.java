@@ -34,7 +34,7 @@ public record Grade(byte value,
 		private final byte value;
 		private final boolean small;
 
-		private final String subject = null;
+		private String subject = null;
 		private String teacher = null;
 		private String description = null;
 		private LocalDate receiveDate = null;
@@ -48,6 +48,12 @@ public record Grade(byte value,
 		public Grade build()
 		{
 			return new Grade(value, small, subject, teacher, description, receiveDate);
+		}
+
+		public Builder subject (String subject)
+		{
+			this.subject = subject;
+			return this;
 		}
 
 		public Builder teacher (String teacher)
