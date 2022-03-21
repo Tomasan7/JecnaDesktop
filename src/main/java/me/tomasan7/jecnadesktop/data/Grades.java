@@ -23,6 +23,11 @@ public record Grades(Map<String, List<Grade>> grades)
 	{
 		private final Map<String, List<Grade>> grades = new HashMap<>();
 
+		/**
+		 * Adds {@link Grade}.
+		 * @param subject The subject to add this grade to. <b>Must be the same format is in the grades table rows.</b>
+		 * @param grade The {@link Grade} to add.
+		 */
 		public void addGrade (@NotNull String subject, @NotNull Grade grade)
 		{
 			/* Gets the list for the subject, if none is present, creates a new list and puts it into the map. Then the grade is added to that list. */
