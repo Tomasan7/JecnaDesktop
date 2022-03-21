@@ -36,7 +36,7 @@ public record Grade(byte value,
 				  @Nullable String description,
 				  @Nullable LocalDate receiveDate)
 	{
-		this(valueChar == 'N' ? 0 : Byte.parseByte(String.valueOf(valueChar)),
+		this(valueCharToValue(valueChar),
 				small,
 				subject,
 				teacher,
@@ -55,9 +55,24 @@ public record Grade(byte value,
 			return String.valueOf(value).charAt(0);
 	}
 
+	/**
+	 * Converts value's char representation to the value.
+	 * @param valueChar The value's char representation.
+	 * @return It's value.
+	 */
+	private static byte valueCharToValue (char valueChar)
+	{
+		return valueChar == 'N' ? 0 : Byte.parseByte(String.valueOf(valueChar));
+	}
+
 	public static Builder builder (byte value, boolean small)
 	{
 		return new Builder(value, small);
+	}
+
+	public static Builder builder (char valueChar, boolean small)
+	{
+		return new Builder(valueCharToValue(valueChar), small);
 	}
 
 	public static class Builder
@@ -73,6 +88,12 @@ public record Grade(byte value,
 		public Builder (byte value, boolean small)
 		{
 			this.value = value;
+			this.small = small;
+		}
+
+		public Builder (char valueChar, boolean small)
+		{
+			this.value = valueCharToValue(valueChar);
 			this.small = small;
 		}
 
