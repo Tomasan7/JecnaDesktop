@@ -1,17 +1,39 @@
 package me.tomasan7.jecnadesktop.data;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public record Grades(Map<String, List<Grade>> grades)
+/**
+ * A class representing grades table. Stores 0 or more grades for each subject.
+ */
+public class Grades
 {
-	public Grades ()
+	private final Map<String, List<Grade>> grades;
+
+	private Grades (Map<String, List<Grade>> grades)
 	{
-		this(new HashMap<>());
+		this.grades = grades;
+	}
+
+	/**
+	 * Returns all grades for the passed subject.
+	 * @param subject The subject to get all grades for.
+	 * @return List of all grades for passed subject or {@code null}, if there are no grades for this subject.
+	 */
+	@Nullable
+	public List<Grade> gradesForSubject (String subject)
+	{
+		return grades.get(subject);
+	}
+
+	/**
+	 * Returns all subjects.
+	 */
+	public Set<String> subjects ()
+	{
+		return grades.keySet();
 	}
 
 	public static Builder builder ()
