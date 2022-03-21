@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public record Attendences(Set<Attendance> attendances) implements Iterable<Attendance>
+public record Attendances(Set<Attendance> attendances) implements Iterable<Attendance>
 {
 	/**
 	 * Returns immutable iterator.
