@@ -25,7 +25,7 @@ public class Grades
 	@Nullable
 	public List<Grade> gradesForSubject (String subject)
 	{
-		return grades.get(subject);
+		return new ArrayList<>(grades.get(subject));
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class Grades
 	 */
 	public Set<String> subjects ()
 	{
-		return grades.keySet();
+		return new HashSet<>(grades.keySet());
 	}
 
 	public static Builder builder ()
