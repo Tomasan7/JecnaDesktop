@@ -24,6 +24,17 @@ public record Grade(byte value,
 			throw new IllegalArgumentException("Grade value must be between 0 and 5. (got " + value + ")");
 	}
 
+	/**
+	 * Returns this grade's {@link #value} as char. Returns 'N' for value 0.
+	 */
+	public char valueChar ()
+	{
+		if (value == 0)
+			return 'N';
+		else
+			return String.valueOf(value).charAt(0);
+	}
+
 	public static Builder builder (byte value, boolean small)
 	{
 		return new Builder(value, small);
