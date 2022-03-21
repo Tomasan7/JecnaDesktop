@@ -24,26 +24,25 @@ public record Grade(byte value,
 			throw new IllegalArgumentException("Grade value must be between 0 and 5. (got " + value + ")");
 	}
 
-	public static Builder builder (byte value, boolean small, String subject)
+	public static Builder builder (byte value, boolean small)
 	{
-		return new Builder(value, small, subject);
+		return new Builder(value, small);
 	}
 
 	public static class Builder
 	{
 		private final byte value;
 		private final boolean small;
-		private final String subject;
 
+		private final String subject = null;
 		private String teacher = null;
 		private String description = null;
 		private LocalDate receiveDate = null;
 
-		public Builder (byte value, boolean small, String subject)
+		public Builder (byte value, boolean small)
 		{
 			this.value = value;
 			this.small = small;
-			this.subject = subject;
 		}
 
 		public Grade build()
