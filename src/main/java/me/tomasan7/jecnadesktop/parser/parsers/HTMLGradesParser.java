@@ -3,7 +3,6 @@ package me.tomasan7.jecnadesktop.parser.parsers;
 import me.tomasan7.jecnadesktop.data.Grade;
 import me.tomasan7.jecnadesktop.data.Grades;
 import me.tomasan7.jecnadesktop.parser.ParseException;
-import me.tomasan7.jecnadesktop.parser.Parser;
 import me.tomasan7.jecnadesktop.util.RegexUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,9 +22,10 @@ public class HTMLGradesParser implements GradesParser
 	private static final Pattern DESCRIPTION_REGEX = Pattern.compile("(.*)(?=( \\((?!\\()))"); // (.*)(?=( \((?!\()))
 
 	/* Matches everything between last '(' and first ',' after it. */
-	private static final Pattern DATE_REGEX = Pattern.compile("(?<=(\\((?!.*\\()))(.*(?=(?<!,.*)))"); // (?<=(\((?!.*\()))(.*(?=(?<!,.*)))
+	private static final Pattern DATE_REGEX = Pattern.compile("(?<=(\\((?!.*\\()))(.*(?=(?<!,.*)))"); // (?<=\((?!.*\()).*(?=(?<!\((?!.*\().*,.*)(?<=\((?!.*\().*),)
 
-	/* Next regexes WIP: regexr.com/6i0j4 */
+	/* Matches everything between the first ',' after last '(' and ending ')' */
+	private static final Pattern TEACHER_REGEX = Pattern.compile("(?<=(?<!\\((?!.*\\().*,.*)(?<=\\((?!.*\\().*), ).*(?=\\)$)"); // (?<=(?<!\((?!.*\().*,.*)(?<=\((?!.*\().*), ).*(?=\)$)
 
 	@Override
 	public Grades parse (String source)
@@ -60,6 +60,7 @@ public class HTMLGradesParser implements GradesParser
 					gradeBuilder.subject(subjectEle.text());
 					RegexUtils.findFirst(titleAttr, DESCRIPTION_REGEX).ifPresent(gradeBuilder::description);
 					RegexUtils.findFirst(titleAttr, DATE_REGEX).ifPresent(dateStr -> gradeBuilder.receiveDate(LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
+					RegexUtils.findFirst(titleAttr, TEACHER_REGEX).ifPresent(gradeBuilder::teacher);
 					// TODO: Parse teacher.
 
 					gradesBuilder.addGrade(subjectEle.text(), gradeBuilder.build());
