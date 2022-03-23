@@ -61,7 +61,6 @@ public class HTMLGradesParser implements GradesParser
 					RegexUtils.findFirst(titleAttr, DESCRIPTION_REGEX).ifPresent(gradeBuilder::description);
 					RegexUtils.findFirst(titleAttr, DATE_REGEX).ifPresent(dateStr -> gradeBuilder.receiveDate(LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
 					RegexUtils.findFirst(titleAttr, TEACHER_REGEX).ifPresent(gradeBuilder::teacher);
-					// TODO: Parse teacher.
 
 					gradesBuilder.addGrade(subjectEle.text(), gradeBuilder.build());
 				}
