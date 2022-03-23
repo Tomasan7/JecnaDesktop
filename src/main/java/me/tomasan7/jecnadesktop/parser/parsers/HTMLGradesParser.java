@@ -5,22 +5,19 @@ import me.tomasan7.jecnadesktop.data.Grades;
 import me.tomasan7.jecnadesktop.parser.ParseException;
 import me.tomasan7.jecnadesktop.parser.Parser;
 import me.tomasan7.jecnadesktop.util.RegexUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 /**
  * <b>Beware: The grade's subject is taken from the table's row name, not from the grade's page!</b>
  */
-public class GradesParserHTML implements Parser<Grades>
+public class HTMLGradesParser implements GradesParser
 {
 	/* Matches everything before last '(' preceded by a space. */
 	private static final Pattern DESCRIPTION_REGEX = Pattern.compile("(.*)(?=( \\((?!\\()))"); // (.*)(?=( \((?!\()))
