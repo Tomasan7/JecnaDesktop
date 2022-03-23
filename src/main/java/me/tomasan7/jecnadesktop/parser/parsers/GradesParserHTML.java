@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
+/**
+ * <b>Beware: The grade's subject is taken from the table's row name, not from the grade's page!</b>
+ */
 public class GradesParserHTML implements Parser<Grades>
 {
 	/* Matches everything before last '(' preceded by a space. */
@@ -36,11 +39,14 @@ public class GradesParserHTML implements Parser<Grades>
 
 			Document document = Jsoup.parse(source);
 
+			/* All the rows (tr) in the grades table. */
 			Elements rowEles = document.select(".score > tbody > tr");
 
 			for (Element rowEle : rowEles)
 			{
+				/* The first column in the row, which contains the subject name. */
 				Element subjectEle = rowEle.selectFirst("th");
+				/* All the grade elements in the second column of the row. (not finalGrades) */
 				Elements gradeEles = rowEle.select("td > a.score:not(.scoreFinal)");
 
 				for (Element gradeEle : gradeEles)
@@ -49,10 +55,12 @@ public class GradesParserHTML implements Parser<Grades>
 					char value = valueString.charAt(0);
 					boolean small = gradeEle.classNames().contains("scoreSmall");
 
+					/* The title attribute of the grade element, which contains all the details. (description, date and teacher) */
 					String titleAttr = gradeEle.attr("title");
 
 					Grade.Builder gradeBuilder = Grade.builder(value, small);
 
+					gradeBuilder.subject(subjectEle.text());
 					RegexUtils.findFirst(titleAttr, DESCRIPTION_REGEX).ifPresent(gradeBuilder::description);
 					RegexUtils.findFirst(titleAttr, DATE_REGEX).ifPresent(dateStr -> gradeBuilder.receiveDate(LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
 					// TODO: Parse teacher.
