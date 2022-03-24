@@ -17,7 +17,8 @@ public class Grades
 	 */
 	private Grades (Map<String, List<Grade>> grades)
 	{
-		this.grades = grades;
+		/* Encapsulation. */
+		this.grades = new HashMap<>(grades);
 	}
 
 	/**
@@ -28,6 +29,7 @@ public class Grades
 	@Nullable
 	public List<Grade> gradesForSubject (String subject)
 	{
+		/* Encapsulation. */
 		return new ArrayList<>(grades.get(subject));
 	}
 
@@ -36,6 +38,7 @@ public class Grades
 	 */
 	public Set<String> subjects ()
 	{
+		/* Encapsulation. */
 		return new HashSet<>(grades.keySet());
 	}
 
