@@ -53,7 +53,7 @@ public class Grades
 		public void addGrade (@NotNull String subject, @NotNull Grade grade)
 		{
 			/* Gets the list for the subject, if none is present, creates a new list and puts it into the map. Then the grade is added to that list. */
-			grades.computeIfAbsent(subject, k -> new LinkedList<>()).add(grade);
+			grades.computeIfAbsent(subject, __ -> new LinkedList<>()).add(grade);
 		}
 
 		public Grades build ()
