@@ -12,6 +12,9 @@ public class Grades
 {
 	private final Map<String, List<Grade>> grades;
 
+	/**
+	 * Constructor used by {@link Attendances.Builder}.
+	 */
 	private Grades (Map<String, List<Grade>> grades)
 	{
 		this.grades = grades;
