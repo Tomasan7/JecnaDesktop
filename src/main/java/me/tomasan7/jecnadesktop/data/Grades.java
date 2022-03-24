@@ -12,9 +12,13 @@ public class Grades
 {
 	private final Map<String, List<Grade>> grades;
 
+	/**
+	 * Constructor used by {@link Attendances.Builder}.
+	 */
 	private Grades (Map<String, List<Grade>> grades)
 	{
-		this.grades = grades;
+		/* Encapsulation. */
+		this.grades = new HashMap<>(grades);
 	}
 
 	/**
@@ -25,14 +29,16 @@ public class Grades
 	@Nullable
 	public List<Grade> gradesForSubject (String subject)
 	{
+		/* Encapsulation. */
 		return new ArrayList<>(grades.get(subject));
 	}
 
 	/**
 	 * Returns all subjects.
 	 */
-	public Set<String> subjects ()
+	public Set<String> getSubjects ()
 	{
+		/* Encapsulation. */
 		return new HashSet<>(grades.keySet());
 	}
 
@@ -53,7 +59,7 @@ public class Grades
 		public void addGrade (@NotNull String subject, @NotNull Grade grade)
 		{
 			/* Gets the list for the subject, if none is present, creates a new list and puts it into the map. Then the grade is added to that list. */
-			grades.computeIfAbsent(subject, k -> new LinkedList<>()).add(grade);
+			grades.computeIfAbsent(subject, __ -> new LinkedList<>()).add(grade);
 		}
 
 		public Grades build ()
