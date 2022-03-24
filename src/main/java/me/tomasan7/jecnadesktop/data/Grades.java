@@ -36,7 +36,7 @@ public class Grades
 	/**
 	 * Returns all subjects.
 	 */
-	public Set<String> subjects ()
+	public Set<String> getSubjects ()
 	{
 		/* Encapsulation. */
 		return new HashSet<>(grades.keySet());
