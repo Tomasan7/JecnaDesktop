@@ -1,9 +1,13 @@
 package me.tomasan7.jecnadesktop.ui;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.controller.LoginPageController;
 import me.tomasan7.jecnadesktop.ui.controller.MainPageController;
 
+import java.io.IOException;
 import java.util.function.Function;
 
 public enum JDScene
@@ -42,5 +46,29 @@ public enum JDScene
 	public Object newController (JecnaDesktop jecnaDesktop)
 	{
 		return newController.apply(jecnaDesktop);
+	}
+
+	/**
+	 * Returns new {@link Parent page's root}.
+	 * @param jecnaDesktop The {@link JecnaDesktop} instance.
+	 * @return The new {@link Parent page's root}.
+	 */
+	public Parent loadPageRoot (JecnaDesktop jecnaDesktop)
+	{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(location));
+		fxmlLoader.setController(newController(jecnaDesktop));
+
+		Parent page = null;
+
+		try
+		{
+			page = fxmlLoader.load();
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		}
+
+		return page;
 	}
 }
