@@ -5,11 +5,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
+import me.tomasan7.jecnadesktop.ui.SubPage;
+import me.tomasan7.jecnadesktop.ui.SubPageManager;
 
 public class JecnaDesktop extends Application
 {
 	private Stage primaryStage;
 	private final SceneManager sceneManager = new SceneManager(this);
+	private final SubPageManager subPageManager = new SubPageManager(this, sceneManager.getScene(JDScene.MAIN));
 
 	public static void main (String[] args)
 	{
@@ -24,9 +27,15 @@ public class JecnaDesktop extends Application
 		primaryStage.setTitle("Ječná Desktop");
 		primaryStage.getIcons().add(new Image("ui/icon/logo.png"));
 
-		getSceneManager().switchToScene(JDScene.LOGIN);
+		getSceneManager().switchToScene(JDScene.MAIN);
+		subPageManager.switchToPage(SubPage.ATTENDANCES);
 
 		primaryStage.show();
+	}
+
+	public Stage getPrimaryStage ()
+	{
+		return primaryStage;
 	}
 
 	public SceneManager getSceneManager ()
@@ -34,8 +43,8 @@ public class JecnaDesktop extends Application
 		return sceneManager;
 	}
 
-	public Stage getPrimaryStage ()
+	public SubPageManager getSubPageManager ()
 	{
-		return primaryStage;
+		return subPageManager;
 	}
 }
