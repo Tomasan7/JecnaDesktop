@@ -6,8 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import me.tomasan7.jecnadesktop.ui.SubPage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SideBarElement extends HBox
 {
@@ -15,6 +17,8 @@ public class SideBarElement extends HBox
 	private ImageView icon;
 	@FXML
 	private Label label;
+	@FXML
+	private SubPage subPage;
 
 	public SideBarElement ()
 	{
@@ -50,5 +54,15 @@ public class SideBarElement extends HBox
 	public void setLabel (String label)
 	{
 		this.label.setText(label);
+	}
+
+	public SubPage getSubPage ()
+	{
+		return subPage;
+	}
+
+	public void setSubPage (SubPage subPage)
+	{
+		this.subPage = subPage;
 	}
 }
