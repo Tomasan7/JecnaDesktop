@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class JecnaSession extends Session
 {
-	private static String COOKIE_KEY = "JSESSIONID";
+	private static final String COOKIE_KEY = "JSESSIONID";
 
 	protected JecnaSession (String sessionID)
 	{
