@@ -68,7 +68,7 @@ public class JecnaWebClient extends AuthWebClient
 	}
 
 	@Override
-	public CompletableFuture<String> queryHTML (String path)
+	public CompletableFuture<String> query (String path)
 	{
 		return HttpClient.newHttpClient().sendAsync(newRequest(path).GET().build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
 	}

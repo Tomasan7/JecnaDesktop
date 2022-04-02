@@ -38,7 +38,7 @@ public abstract class AuthWebClient
 	 * @param path Relative path from the domain. Must include first slash.
 	 * @return The HTML.
 	 */
-	public abstract CompletableFuture<String> queryHTML (String path);
+	public abstract CompletableFuture<String> query (String path);
 
 	protected static String encodeParams (Map<String, String> params)
 	{
