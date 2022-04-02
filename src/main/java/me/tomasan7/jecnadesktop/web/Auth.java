@@ -68,7 +68,7 @@ public record Auth(@NotNull String username, @NotNull String password)
 			bytes[i] -= 10;
 
 		String asString = new String(bytes, StandardCharsets.UTF_8);
-		String[] split = asString.split("\n");
+		String[] split = asString.split("\n", 2);
 
 		String username = split[0];
 		String password = split[1];

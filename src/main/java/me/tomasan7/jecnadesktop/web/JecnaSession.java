@@ -20,7 +20,7 @@ public class JecnaSession extends Session
 									 .filter(cookie -> cookie.contains(COOKIE_KEY))
 									 .findAny();
 
-		return new JecnaSession(sessionCookie.get().split("=")[1]);
+		return new JecnaSession(sessionCookie.get().split("=", 2)[1]);
 	}
 
 	@Override
