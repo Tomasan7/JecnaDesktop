@@ -1,0 +1,41 @@
+package me.tomasan7.jecnadesktop.repository;
+
+import me.tomasan7.jecnadesktop.data.Grades;
+import me.tomasan7.jecnadesktop.parser.parsers.HTMLGradesParser;
+import me.tomasan7.jecnadesktop.web.JecnaWebClient;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+public class WebGradesRepository implements GradesRepository
+{
+	private static final String WEB_PATH = "/score/student";
+
+	private final JecnaWebClient webClient;
+	private final HTMLGradesParser gradesParser = new HTMLGradesParser();
+
+	public WebGradesRepository (JecnaWebClient webClient)
+	{
+		this.webClient = webClient;
+	}
+
+	@Override
+	public Grades queryAttendances ()
+	{
+		try
+		{
+			return gradesParser.parse(webClient.query(WEB_PATH).get());
+		}
+		catch (ExecutionException | InterruptedException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public CompletableFuture<Grades> queryAttendancesAsync ()
+	{
+		return webClient.query(WEB_PATH)
+						.thenApply(gradesParser::parse);
+	}
+}
