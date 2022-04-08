@@ -1,0 +1,32 @@
+.text-field > *, .text-field
+{
+    -fx-max-width: 250;
+    -fx-background-color: #3d3d3d;
+    -fx-border-insets: 100;
+}
+
+.context-menu
+{
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-background-color: #525252;
+}
+
+.button
+{
+    -fx-min-width: 100;
+    -fx-background-color: #00acc1;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.button:hover
+{
+    -fx-background-color: #007c91;
+    -fx-cursor: hand;
+}
+
+.button:disabled
+{
+    -fx-cursor: default;
+}
