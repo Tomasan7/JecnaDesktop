@@ -1,14 +1,16 @@
 package me.tomasan7.jecnadesktop.ui.controller;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.JDScene;
+import me.tomasan7.jecnadesktop.web.Auth;
+import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,11 +18,7 @@ import java.util.ResourceBundle;
 public class LoginPageController implements Initializable
 {
 	@FXML
-	public Label userLabel;
-	@FXML
 	public TextField userInput;
-	@FXML
-	public Label passwordLabel;
 	@FXML
 	public PasswordField passwordInput;
 	@FXML
@@ -49,6 +47,27 @@ public class LoginPageController implements Initializable
 		passwordInput.textProperty().addListener(changeListener);
 		userInput.textProperty().addListener(changeListener);
 
-		loginBtn.setOnMouseClicked(event -> jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN));
+		/* Run when you either press the login button or hit enter while the password field is focused. */
+		Runnable onLogin = () ->
+		{
+			JecnaWebClient jecnaWebClient = new JecnaWebClient(new Auth(userInput.getText(), passwordInput.getText()));
+
+			jecnaWebClient.login().thenAccept(successful ->
+			{
+				if (successful)
+				{
+					jecnaDesktop.initDataAccess(jecnaWebClient);
+					Platform.runLater(() -> jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN));
+				}
+				else
+				{
+					userInput.clear();
+					passwordInput.clear();
+				}
+			});
+		};
+
+		passwordInput.setOnAction(event -> onLogin.run());
+		loginBtn.setOnMouseClicked(event -> onLogin.run());
 	}
 }
