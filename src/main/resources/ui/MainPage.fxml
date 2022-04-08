@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import me.tomasan7.jecnadesktop.ui.component.SideBarElement?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Pane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
+    <left>
+        <VBox fx:id="sidebar" BorderPane.alignment="CENTER">
+            <SideBarElement subPage="grades" icon="@icon/grades-icon.png" label="Známky" />
+            <Separator />
+            <SideBarElement subPage="attendances" icon="@icon/attendance-icon.png" label="Příchody a odchody" />
+            <Separator />
+            <SideBarElement subPage="grades" icon="@icon/timetable-icon.png" label="Rozvrh" />
+        </VBox>
+    </left>
+    <center>
+        <Pane id="subPageContainer" />
+    </center>
+</BorderPane>
