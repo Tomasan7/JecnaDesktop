@@ -6,10 +6,10 @@ import java.util.concurrent.CompletableFuture;
 
 public interface GradesRepository
 {
-	Grades queryAttendances ();
+	Grades queryGrades ();
 
-	default CompletableFuture<Grades> queryAttendancesAsync ()
+	default CompletableFuture<Grades> queryGradesAsync ()
 	{
-		return CompletableFuture.supplyAsync(this::queryAttendances);
+		return CompletableFuture.supplyAsync(this::queryGrades);
 	}
 }
