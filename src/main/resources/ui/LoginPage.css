@@ -2,7 +2,15 @@
 {
     -fx-max-width: 250;
     -fx-background-color: #3d3d3d;
-    -fx-border-insets: 100;
+}
+
+.text-field:focused
+{
+    -fx-border-style: solid;
+    -fx-stroke-width: 1;
+    -fx-border-color: gray;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
 
 .context-menu
