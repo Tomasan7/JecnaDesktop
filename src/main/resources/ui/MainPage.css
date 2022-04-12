@@ -1,0 +1,14 @@
+.side-bar-element, .side-bar-element *
+{
+    -fx-background-color: #1f1f1f;
+}
+
+.side-bar-element:hover
+{
+    -fx-cursor: hand;
+}
+
+.side-bar-element:selected, .side-bar-element:selected *
+{
+    -fx-background-color: #121212;
+}
