@@ -22,6 +22,8 @@ public class SideBarElement extends HBox
 
 	public SideBarElement ()
 	{
+		getStyleClass().add("side-bar-element");
+
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/SideBarElement.fxml"));
 
 		try
