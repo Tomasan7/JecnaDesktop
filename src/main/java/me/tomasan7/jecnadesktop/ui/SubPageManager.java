@@ -20,6 +20,9 @@ public class SubPageManager
 	 */
 	private final Map<SubPage, Parent> pages = new HashMap<>();
 
+	/** The currently active (viewed) {@link SubPage subpage} */
+	private SubPage currentPage;
+
 	public SubPageManager (JecnaDesktop jecnaDesktop, Scene mainPage)
 	{
 		this.subPageContainer = (Pane) mainPage.getRoot().getChildrenUnmodifiable().stream().filter(node -> {
@@ -40,6 +43,8 @@ public class SubPageManager
 		AnchorPane.setTopAnchor(subPageParent, 0d);
 		AnchorPane.setRightAnchor(subPageParent, 0d);
 		AnchorPane.setBottomAnchor(subPageParent, 0d);
+
+		currentPage = subPage;
 	}
 
 	/**
@@ -62,5 +67,13 @@ public class SubPageManager
 		pages.put(subPage, subPageRoot);
 
 		return subPageRoot;
+	}
+
+	/**
+	 * @return The currently active (viewed) {@link SubPage subpage}
+	 */
+	public SubPage getCurrentPage ()
+	{
+		return currentPage;
 	}
 }
