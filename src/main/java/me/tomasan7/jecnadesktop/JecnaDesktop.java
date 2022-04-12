@@ -40,9 +40,7 @@ public class JecnaDesktop extends Application
 		primaryStage.setTitle("Ječná Desktop");
 		primaryStage.getIcons().add(new Image("ui/icon/logo.png"));
 
-		getSceneManager().switchToScene(JDScene.LOGIN);
-
-		subPageManager.switchToPage(SubPage.ATTENDANCES);
+		sceneManager.switchToScene(JDScene.LOGIN);
 
 		primaryStage.show();
 	}
@@ -65,6 +63,16 @@ public class JecnaDesktop extends Application
 		this.jecnaWebClient = jecnaWebClient;
 		this.gradesRepository = new WebGradesRepository(jecnaWebClient);
 		this.attendancesRepository = new WebAttendancesRepository(jecnaWebClient);
+	}
+
+	public GradesRepository getGradesRepository ()
+	{
+		return gradesRepository;
+	}
+
+	public AttendancesRepository getAttendancesRepository ()
+	{
+		return attendancesRepository;
 	}
 
 	public SceneManager getSceneManager ()
