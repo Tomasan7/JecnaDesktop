@@ -20,7 +20,7 @@ public class WebGradesRepository implements GradesRepository
 	}
 
 	@Override
-	public Grades queryAttendances ()
+	public Grades queryGrades ()
 	{
 		try
 		{
@@ -33,7 +33,7 @@ public class WebGradesRepository implements GradesRepository
 	}
 
 	@Override
-	public CompletableFuture<Grades> queryAttendancesAsync ()
+	public CompletableFuture<Grades> queryGradesAsync ()
 	{
 		return webClient.query(WEB_PATH)
 						.thenApply(gradesParser::parse);
