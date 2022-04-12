@@ -17,6 +17,6 @@
         </VBox>
     </left>
     <center>
-        <Pane id="subPageContainer" />
+        <AnchorPane id="subPageContainer" />
     </center>
 </BorderPane>

@@ -2,6 +2,7 @@ package me.tomasan7.jecnadesktop.ui;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 
@@ -33,7 +34,12 @@ public class SubPageManager
 	public void switchToPage (SubPage subPage)
 	{
 		subPageContainer.getChildren().clear();
-		subPageContainer.getChildren().add(getSubPage(subPage));
+		Parent subPageParent = getSubPage(subPage);
+		subPageContainer.getChildren().add(subPageParent);
+		AnchorPane.setLeftAnchor(subPageParent, 0d);
+		AnchorPane.setTopAnchor(subPageParent, 0d);
+		AnchorPane.setRightAnchor(subPageParent, 0d);
+		AnchorPane.setBottomAnchor(subPageParent, 0d);
 	}
 
 	/**
