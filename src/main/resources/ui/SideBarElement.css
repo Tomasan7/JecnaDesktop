@@ -8,4 +8,5 @@
 .label
 {
     -fx-font-size: 14;
+    -fx-background-color: transparent;
 }
