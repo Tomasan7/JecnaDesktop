@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import java.net.URL?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
 
-    <Label fx:id="userLabel" text="Uživatel" />
+    <MFXTextField fx:id="userInput" floatMode="BORDER" floatingText="Uživatel" />
 
-    <TextField fx:id="userInput" />
-
-    <Label fx:id="passwordLabel" text="Heslo">
+    <MFXPasswordField fx:id="passwordInput" floatMode="BORDER" floatingText="Heslo" >
         <VBox.margin><Insets top="10.0" /></VBox.margin>
-    </Label>
+    </MFXPasswordField>
 
-    <PasswordField fx:id="passwordInput" />
-
-    <Button fx:id="loginBtn" text="Login" disable="true">
+    <MFXButton fx:id="loginBtn" text="Login" disable="true" buttonType="RAISED">
         <VBox.margin><Insets top="10.0" /></VBox.margin>
-    </Button>
+    </MFXButton>
 
     <stylesheets>
         <URL value="@styles.css" />

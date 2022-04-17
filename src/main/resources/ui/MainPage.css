@@ -1,3 +1,32 @@
+.mfx-table-view
+{
+    -fx-background-color: -dark-color;
+    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+}
+
+.mfx-table-view .mfx-ripple-generator
+{
+    /* Haven't found a different way to disable the ripple. */
+    -mfx-paused: true;
+}
+
+.mfx-table-row:hover
+{
+    -fx-background-color: #1f1f1f;
+}
+
+.mfx-table-row:selected
+{
+    -fx-background-color: #003238;
+}
+
+#sidebar
+{
+    -fx-background-color: -dark-color;
+}
+
 .side-bar-element, .side-bar-element *
 {
     -fx-background-color: #1f1f1f;
@@ -8,7 +37,7 @@
     -fx-cursor: hand;
 }
 
-.side-bar-element:selected, .side-bar-element:selected *
+.side-bar-element:selected
 {
-    -fx-background-color: #121212;
+    -fx-background-color: #003238;
 }

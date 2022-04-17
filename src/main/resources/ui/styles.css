@@ -1,8 +1,17 @@
 *
 {
-    -fx-background-color: #121212;
+    -primary-color: #00acc1;
+    -dark-color: #121212;
+
     -fx-text-fill: white;
     -fx-font-size: 12;
+}
+
+.button:hover,
+.mfx-button:hover,
+.mfx-text-field .mfx-icon-wrapper
+{
+    -fx-cursor: hand;
 }
 
 .separator .line

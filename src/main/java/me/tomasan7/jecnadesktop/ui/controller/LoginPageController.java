@@ -1,12 +1,12 @@
 package me.tomasan7.jecnadesktop.ui.controller;
 
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SubPage;
@@ -21,9 +21,9 @@ import java.util.function.Supplier;
 public class LoginPageController implements Initializable
 {
 	@FXML
-	public TextField userInput;
+	public MFXTextField userInput;
 	@FXML
-	public PasswordField passwordInput;
+	public MFXPasswordField passwordInput;
 	@FXML
 	public Button loginBtn;
 

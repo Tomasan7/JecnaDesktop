@@ -1,40 +1,32 @@
-.text-field > *, .text-field
+.root,
+.mfx-text-field,
+.mfx-text-field .floating-text,
+.mfx-context-menu *
 {
-    -fx-max-width: 250;
-    -fx-background-color: #3d3d3d;
+    -fx-background-color: -dark-color;
 }
 
-.text-field:focused
+/*.mfx-text-field .mfx-font-icon
 {
-    -fx-border-style: solid;
-    -fx-stroke-width: 1;
-    -fx-border-color: gray;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
+    -mfx-color: red;
+}*/
+
+.mfx-text-field
+{
+    -fx-pref-width: 250;
+    -mfx-main: -primary-color;
 }
 
-.context-menu
+/* Normally the floating text has main color by default.
+ * But since we override it by white color on everything, we have to override it back to main color.
+ * Focus within is basically equivalent to focused. */
+.mfx-text-field:floating.mfx-text-field:focus-within .floating-text
 {
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-background-color: #525252;
+    -fx-text-fill: -mfx-main;
 }
 
-.button
+.mfx-button
 {
-    -fx-min-width: 100;
-    -fx-background-color: #00acc1;
-    -fx-font-weight: bold;
+    -fx-background-color: -primary-color;
     -fx-text-fill: black;
-}
-
-.button:hover
-{
-    -fx-background-color: #007c91;
-    -fx-cursor: hand;
-}
-
-.button:disabled
-{
-    -fx-cursor: default;
 }
