@@ -1,6 +1,14 @@
 package me.tomasan7.jecnadesktop.ui;
 
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.filter.IntegerFilter;
+import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,9 +27,7 @@ import me.tomasan7.jecnadesktop.data.Grades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public enum SubPage
 {
@@ -30,34 +36,37 @@ public enum SubPage
 				@Override
 				public Parent create (JecnaDesktop jecnaDesktop)
 				{
-					TableView tableView = new TableView();
+					MFXTableView table = new MFXTableView();
 
-					tableView.setPlaceholder(new Label("Obsah se načítá..."));
+					MFXTableColumn<AttendancesRow> dayColumn = new MFXTableColumn<>("Day", true, Comparator.comparing(AttendancesRow::day));
+					MFXTableColumn<AttendancesRow> attendancesColumn = new MFXTableColumn<>("Attendances", true, Comparator.comparingInt(row -> row.attendances.size()));
+
+					attendancesColumn.setPrefWidth(200);
+
+					dayColumn.setRowCellFactory(day -> new MFXTableRowCell<>(row -> row.day.format(DateTimeFormatter.ofPattern("dd.MM."))));
+					attendancesColumn.setRowCellFactory(person -> new MFXTableRowCell<>(row -> Attendances.attendanceListAsString(row.attendances)));
+
+					table.getTableColumns().setAll(dayColumn, attendancesColumn);
 
 					/* This is wrong, this place shouldn't be responsible for making any data queries.
-					* This method should only compose provided data into JavaFX component.
+					* This method (#create()) should only compose provided data into JavaFX component.
 					* Will be redesigned. */
+
 					jecnaDesktop.getAttendancesRepository().queryAttendancesAsync().thenAccept(attendances ->
 							Platform.runLater(() ->
 							{
-								TableColumn<Map, String> dayColumn = new TableColumn<>("Day");
-								dayColumn.setCellValueFactory(new MapValueFactory<>("day"));
-								TableColumn<Map, String> attendancesColumn = new TableColumn<>("Attendances");
-								attendancesColumn.setCellValueFactory(new MapValueFactory<>("attendances"));
-
-								tableView.getColumns().add(dayColumn);
-								tableView.getColumns().add(attendancesColumn);
+								ObservableList<AttendancesRow> rows = FXCollections.observableArrayList();
 
 								for (LocalDate day : attendances.getDays())
-								{
-									Map<String, Object> item = new HashMap<>();
-									item.put("day", day.format(DateTimeFormatter.ofPattern("dd.MM.")));
-									item.put("attendances" , attendances.getAttendancesForDay(day).toString());
-									tableView.getItems().add(item);
-								}
+									rows.add(new AttendancesRow(day, attendances.getAttendancesForDay(day)));
+
+								table.setItems(rows);
 							}));
 
-					return tableView;
+					/* By default, MFX renders a footer with filter buttons. We don't want that. */
+					table.footerVisibleProperty().setValue(false);
+
+					return table;
 				}
 			},
 	GRADES
@@ -78,4 +87,8 @@ public enum SubPage
 	 * @return The subpage.
 	 */
 	public abstract Parent create (JecnaDesktop jecnaDesktop);
+
+	private record AttendancesRow(LocalDate day, List<Attendance> attendances)
+	{
+	}
 }
