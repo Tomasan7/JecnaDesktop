@@ -14,6 +14,16 @@ public class Attendances
 	}
 
 	/**
+	 * Represents a {@link List<Attendance> Attendance List} as a {@link String}. Does so by joining all {@link Attendance#toString()} with comma.
+	 * @param attendanceList {@link List<Attendance> Attendance List} to represent.
+	 * @return The {@link String} representation.
+	 */
+	public static String attendanceListAsString (List<Attendance> attendanceList)
+	{
+		return String.join(", ", attendanceList.stream().map(Attendance::toString).toList());
+	}
+
+	/**
 	 * Returns all {@link Attendance attendances} for provided day.
 	 * @param day The day to get all {@link Attendance attendances} from.
 	 * @return All the {@link Attendance attendances} for the day.
