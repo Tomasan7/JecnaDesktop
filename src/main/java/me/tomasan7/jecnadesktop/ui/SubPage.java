@@ -38,6 +38,8 @@ public enum SubPage
 				{
 					MFXTableView table = new MFXTableView();
 
+					table.getStylesheets().add("/ui/subpage/Attendances.css");
+
 					MFXTableColumn<AttendancesRow> dayColumn = new MFXTableColumn<>("Day", true, Comparator.comparing(AttendancesRow::day));
 					MFXTableColumn<AttendancesRow> attendancesColumn = new MFXTableColumn<>("Attendances", true, Comparator.comparingInt(row -> row.attendances.size()));
 
