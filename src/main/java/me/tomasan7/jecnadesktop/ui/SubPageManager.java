@@ -7,7 +7,9 @@ import javafx.scene.layout.Pane;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class SubPageManager
 {
@@ -22,6 +24,8 @@ public class SubPageManager
 
 	/** The currently active (viewed) {@link SubPage subpage} */
 	private SubPage currentPage;
+
+	private final Set<SubPageSwitchListener> subPageSwitchListeners = new HashSet<>();
 
 	public SubPageManager (JecnaDesktop jecnaDesktop, Scene mainPage)
 	{
@@ -39,12 +43,17 @@ public class SubPageManager
 		subPageContainer.getChildren().clear();
 		Parent subPageParent = getSubPage(subPage);
 		subPageContainer.getChildren().add(subPageParent);
+
 		AnchorPane.setLeftAnchor(subPageParent, 0d);
 		AnchorPane.setTopAnchor(subPageParent, 0d);
 		AnchorPane.setRightAnchor(subPageParent, 0d);
 		AnchorPane.setBottomAnchor(subPageParent, 0d);
 
+		SubPage oldSubPage = currentPage;
 		currentPage = subPage;
+
+		/* Invoking the listeners. */
+		subPageSwitchListeners.forEach(listener -> listener.onSwitch(oldSubPage, subPage));
 	}
 
 	/**
@@ -67,6 +76,16 @@ public class SubPageManager
 		pages.put(subPage, subPageRoot);
 
 		return subPageRoot;
+	}
+
+	public void registerSubPageSwitchListener (SubPageSwitchListener listener)
+	{
+		subPageSwitchListeners.add(listener);
+	}
+
+	public void unregisterSubPageSwitchListener (SubPageSwitchListener listener)
+	{
+		subPageSwitchListeners.remove(listener);
 	}
 
 	/**
