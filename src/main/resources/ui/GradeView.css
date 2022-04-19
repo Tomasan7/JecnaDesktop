@@ -1,0 +1,42 @@
+.grade-view
+{
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+    -fx-background-radius: 2;
+}
+
+.grade-view:small
+{
+    -fx-max-height: 15;
+    -fx-max-width: 15;
+}
+
+.grade-view:valueN
+{
+    -fx-background-color: gray;
+}
+
+.grade-view:value1
+{
+    -fx-background-color: lime;
+}
+
+.grade-view:value2
+{
+    -fx-background-color: green;
+}
+
+.grade-view:value3
+{
+    -fx-background-color: yellow;
+}
+
+.grade-view:value4
+{
+    -fx-background-color: orange;
+}
+
+.grade-view:value5
+{
+    -fx-background-color: red;
+}
