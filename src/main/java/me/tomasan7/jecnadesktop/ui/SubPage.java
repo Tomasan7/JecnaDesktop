@@ -99,8 +99,8 @@ public enum SubPage
 									grid.add(new Label(row.subject()), 0, i);
 
 									FlowPane flowPane = new FlowPane();
-									flowPane.setVgap(5);
-									flowPane.setHgap(5);
+									flowPane.setVgap(7.5);
+									flowPane.setHgap(7.5);
 
 									for (Grade grade : row.grades())
 										flowPane.getChildren().add(new GradeView(grade));
