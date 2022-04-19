@@ -8,9 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Attendance;
 import me.tomasan7.jecnadesktop.data.Attendances;
@@ -70,13 +68,21 @@ public enum SubPage
 				public Parent create (JecnaDesktop jecnaDesktop)
 				{
 					/* Make this page prettier:
-					 * Create a little padding, since now the grid is right next to the edges.
 					 * Make it more flexible, so when you smaller the width, it shrinks correctly. */
 
+					/* The anchor pane is there to create a padding for the grid. */
+					AnchorPane anchorPane = new AnchorPane();
 					GridPane grid = new GridPane();
+					anchorPane.getChildren().add(grid);
+
+					AnchorPane.setLeftAnchor(grid, 10d);
+					AnchorPane.setTopAnchor(grid, 10d);
+					AnchorPane.setRightAnchor(grid, 10d);
 
 					grid.getStylesheets().add("/ui/subpage/Grades.css");
 					grid.getStyleClass().add("grid-pane");
+					anchorPane.getStylesheets().add("/ui/subpage/Grades.css");
+					anchorPane.getStyleClass().add("anchor-pane");
 
 					ObservableList<GradesRow> rows = FXCollections.observableArrayList();
 
@@ -109,7 +115,7 @@ public enum SubPage
 					grid.getColumnConstraints().add(column1);
 					grid.setVgap(5);
 
-					return grid;
+					return anchorPane;
 				}
 			};
 

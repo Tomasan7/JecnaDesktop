@@ -4,7 +4,7 @@
     -fx-text-fill: black;
 }
 
-.grid-pane
+.grid-pane, .anchor-pane
 {
     -fx-background-color: -dark-color;
 }
