@@ -6,8 +6,8 @@
 <?import javafx.scene.control.Separator?>
 <?import java.net.URL?>
 <?import javafx.scene.layout.AnchorPane?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
     <left>
         <VBox fx:id="sidebar" BorderPane.alignment="CENTER">
             <SideBarElement subPage="grades" icon="@icon/grades-icon.png" label="Známky" />
