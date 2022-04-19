@@ -27,11 +27,6 @@ public class JecnaDesktop extends Application
 	private final SceneManager sceneManager = new SceneManager(this);
 	private final SubPageManager subPageManager = new SubPageManager(this, sceneManager.getScene(JDScene.MAIN));
 
-	public static void main (String[] args)
-	{
-		Application.launch(args);
-	}
-
 	@Override
 	public void start (Stage primaryStage)
 	{
