@@ -116,13 +116,13 @@ public class LoginPageController implements Initializable
 			Platform.runLater(() ->
 			{
 				jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN);
-				jecnaDesktop.getSubPageManager().switchToPage(SubPage.ATTENDANCES);
+				jecnaDesktop.getSubPageManager().switchToPage(SubPage.GRADES);
 			});
 		}
 		else
 		{
 			jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN);
-			jecnaDesktop.getSubPageManager().switchToPage(SubPage.ATTENDANCES);
+			jecnaDesktop.getSubPageManager().switchToPage(SubPage.GRADES);
 		}
 	}
 }
