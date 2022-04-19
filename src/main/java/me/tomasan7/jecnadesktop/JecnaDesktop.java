@@ -2,21 +2,16 @@ package me.tomasan7.jecnadesktop;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import me.tomasan7.jecnadesktop.data.Attendances;
 import me.tomasan7.jecnadesktop.repository.AttendancesRepository;
 import me.tomasan7.jecnadesktop.repository.GradesRepository;
 import me.tomasan7.jecnadesktop.repository.WebAttendancesRepository;
 import me.tomasan7.jecnadesktop.repository.WebGradesRepository;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
-import me.tomasan7.jecnadesktop.ui.SubPage;
 import me.tomasan7.jecnadesktop.ui.SubPageManager;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
-
-import java.util.concurrent.Executors;
 
 public class JecnaDesktop extends Application
 {
@@ -34,6 +29,8 @@ public class JecnaDesktop extends Application
 
 		primaryStage.setTitle("Ječná Desktop");
 		primaryStage.getIcons().add(new Image("ui/icon/logo.png"));
+		/* For some reason the process doesn't exit by itself, so I kill it when the stage is closed. */
+		primaryStage.setOnCloseRequest(__ -> {Platform.exit(); System.exit(0);});
 
 		sceneManager.switchToScene(JDScene.LOGIN);
 
