@@ -40,3 +40,14 @@
 {
     -fx-background-color: red;
 }
+
+.grade-average-view
+{
+    -fx-min-height: 30;
+    -fx-min-width: 30;
+
+    -fx-border-style: solid;
+    -fx-border-width: 1.5;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 2;
+}

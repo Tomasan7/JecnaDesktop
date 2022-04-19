@@ -13,6 +13,7 @@ import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Attendance;
 import me.tomasan7.jecnadesktop.data.Attendances;
 import me.tomasan7.jecnadesktop.data.Grade;
+import me.tomasan7.jecnadesktop.ui.component.GradeAverageView;
 import me.tomasan7.jecnadesktop.ui.component.GradeView;
 
 import java.time.LocalDate;
@@ -41,7 +42,7 @@ public enum SubPage
 
 					table.getTableColumns().setAll(dayColumn, attendancesColumn);
 
-					/* This is wrong, this place shouldn't be responsible for making any data queries.
+					/* TODO: This is wrong, this place shouldn't be responsible for making any data queries.
 					 * This method (#create()) should only compose provided data into JavaFX component.
 					 * Will be redesigned. */
 
@@ -106,6 +107,9 @@ public enum SubPage
 										flowPane.getChildren().add(new GradeView(grade));
 
 									grid.add(flowPane, 1, i);
+									GradeAverageView gradeAvgView = new GradeAverageView(row.grades());
+									GridPane.setHgrow(gradeAvgView, Priority.NEVER);
+									grid.add(gradeAvgView, 2, i);
 								}
 							}));
 
