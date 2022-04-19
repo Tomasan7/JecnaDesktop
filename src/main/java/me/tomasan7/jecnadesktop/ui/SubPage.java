@@ -33,8 +33,8 @@ public enum SubPage
 
 					table.getStylesheets().add("/ui/subpage/Attendances.css");
 
-					MFXTableColumn<AttendancesRow> dayColumn = new MFXTableColumn<>("Day", true, Comparator.comparing(AttendancesRow::day));
-					MFXTableColumn<AttendancesRow> attendancesColumn = new MFXTableColumn<>("Attendances", true, Comparator.comparingInt(row -> row.attendances.size()));
+					MFXTableColumn<AttendancesRow> dayColumn = new MFXTableColumn<>("Den", true, Comparator.comparing(AttendancesRow::day));
+					MFXTableColumn<AttendancesRow> attendancesColumn = new MFXTableColumn<>("Příchody a odchody", true, Comparator.comparingInt(row -> row.attendances.size()));
 
 					attendancesColumn.setPrefWidth(200);
 
