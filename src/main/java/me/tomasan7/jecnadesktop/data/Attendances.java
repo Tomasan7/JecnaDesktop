@@ -7,7 +7,7 @@ public class Attendances
 {
 	private final Map<LocalDate, List<Attendance>> attendances;
 
-	public Attendances (Map<LocalDate, List<Attendance>> attendances)
+	private Attendances (Map<LocalDate, List<Attendance>> attendances)
 	{
 		/* Encapsulation. */
 		this.attendances = new HashMap<>(attendances);
