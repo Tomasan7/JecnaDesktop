@@ -27,7 +27,7 @@ public class Grades
 	 * @return List of all grades for passed subject or {@code null}, if there are no grades for this subject.
 	 */
 	@Nullable
-	public List<Grade> gradesForSubject (String subject)
+	public List<Grade> getGradesForSubject (String subject)
 	{
 		/* Encapsulation. */
 		return new ArrayList<>(grades.get(subject));

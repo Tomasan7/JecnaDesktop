@@ -91,7 +91,7 @@ public enum SubPage
 							Platform.runLater(() ->
 							{
 								for (String subject : grades.getSubjects())
-									rows.add(new GradesRow(subject, grades.gradesForSubject(subject)));
+									rows.add(new GradesRow(subject, grades.getGradesForSubject(subject)));
 
 								for (int i = 0; i < rows.size(); i++)
 								{
