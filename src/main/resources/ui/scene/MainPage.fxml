@@ -10,9 +10,9 @@
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
     <left>
         <VBox fx:id="sidebar" BorderPane.alignment="CENTER">
-            <SideBarElement subPage="grades" icon="@icon/grades-icon.png" label="Známky" />
+            <SideBarElement subPage="grades" icon="@../icon/grades-icon.png" label="Známky" />
             <Separator />
-            <SideBarElement subPage="attendances" icon="@icon/attendance-icon.png" label="Příchody a odchody" />
+            <SideBarElement subPage="attendances" icon="@../icon/attendance-icon.png" label="Příchody a odchody" />
             <!--<Separator />
             <SideBarElement subPage="grades" icon="@icon/timetable-icon.png" label="Rozvrh" />-->
         </VBox>
@@ -22,6 +22,6 @@
     </center>
     <stylesheets>
         <URL value="@MainPage.css" />
-        <URL value="@styles.css" />
+        <URL value="@../styles.css" />
     </stylesheets>
 </BorderPane>

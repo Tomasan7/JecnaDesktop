@@ -20,7 +20,7 @@
     </MFXButton>
 
     <stylesheets>
-        <URL value="@styles.css" />
+        <URL value="@../styles.css" />
         <URL value="@LoginPage.css" />
     </stylesheets>
 </VBox>

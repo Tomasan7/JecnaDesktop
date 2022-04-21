@@ -2,7 +2,6 @@ package me.tomasan7.jecnadesktop.ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.controller.LoginPageController;
 import me.tomasan7.jecnadesktop.ui.controller.MainPageController;
@@ -12,8 +11,8 @@ import java.util.function.Function;
 
 public enum JDScene
 {
-	LOGIN("/ui/LoginPage.fxml", LoginPageController::new),
-	MAIN("/ui/MainPage.fxml", MainPageController::new);
+	LOGIN("/ui/scene/LoginPage.fxml", LoginPageController::new),
+	MAIN("/ui/scene/MainPage.fxml", MainPageController::new);
 
 	/**
 	 * The string location of the FXML file inside resources.
