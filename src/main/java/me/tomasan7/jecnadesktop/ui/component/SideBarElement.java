@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 import me.tomasan7.jecnadesktop.ui.SubPage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class SideBarElement extends HBox
 {
@@ -24,7 +23,7 @@ public class SideBarElement extends HBox
 	{
 		getStyleClass().add("side-bar-element");
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/SideBarElement.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/component/SideBarElement.fxml"));
 
 		try
 		{

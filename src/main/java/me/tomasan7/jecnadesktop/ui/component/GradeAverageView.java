@@ -28,7 +28,7 @@ public class GradeAverageView extends AnchorPane
 		getChildren().add(gradeLabel);
 
 		getStyleClass().add("grade-view");
-		getStylesheets().add("ui/GradeView.css");
+		getStylesheets().add("ui/component/GradeView.css");
 
 		pseudoClassStateChanged(PseudoClass.getPseudoClass("value" + Math.round(value)), true);
 	}
@@ -50,7 +50,7 @@ public class GradeAverageView extends AnchorPane
 		getChildren().add(gradeLabel);
 
 		getStyleClass().addAll("grade-view", "grade-average-view");
-		getStylesheets().add("ui/GradeView.css");
+		getStylesheets().add("ui/component/GradeView.css");
 
 		pseudoClassStateChanged(PseudoClass.getPseudoClass("value" + Math.round(value)), true);
 	}
