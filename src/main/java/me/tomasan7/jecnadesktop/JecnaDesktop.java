@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import me.tomasan7.jecnadesktop.repository.AttendancesRepository;
-import me.tomasan7.jecnadesktop.repository.GradesRepository;
-import me.tomasan7.jecnadesktop.repository.WebAttendancesRepository;
-import me.tomasan7.jecnadesktop.repository.WebGradesRepository;
+import me.tomasan7.jecnadesktop.repository.*;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
 import me.tomasan7.jecnadesktop.ui.SubPageManager;
@@ -19,6 +16,7 @@ public class JecnaDesktop extends Application
 	private JecnaWebClient jecnaWebClient = null;
 	private GradesRepository gradesRepository = null;
 	private AttendancesRepository attendancesRepository = null;
+	private TimetableRepository timetableRepository = null;
 	private final SceneManager sceneManager = new SceneManager(this);
 	private final SubPageManager subPageManager = new SubPageManager(this, sceneManager.getScene(JDScene.MAIN));
 
@@ -55,6 +53,7 @@ public class JecnaDesktop extends Application
 		this.jecnaWebClient = jecnaWebClient;
 		this.gradesRepository = new WebGradesRepository(jecnaWebClient);
 		this.attendancesRepository = new WebAttendancesRepository(jecnaWebClient);
+		this.timetableRepository = new WebTimetableRepository(jecnaWebClient);
 	}
 
 	public GradesRepository getGradesRepository ()
@@ -65,6 +64,11 @@ public class JecnaDesktop extends Application
 	public AttendancesRepository getAttendancesRepository ()
 	{
 		return attendancesRepository;
+	}
+
+	public TimetableRepository getTimetableRepository ()
+	{
+		return timetableRepository;
 	}
 
 	public SceneManager getSceneManager ()
