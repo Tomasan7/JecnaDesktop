@@ -1,0 +1,15 @@
+.lesson-view
+{
+    -fx-min-height: 75;
+    -fx-pref-height: -fx-min-height;
+    -fx-min-width: 75;
+    -fx-pref-width: -fx-min-width;
+    -fx-background-radius: 2;
+    -fx-background-color: #1f1f1f;
+}
+
+.subject-label
+{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
