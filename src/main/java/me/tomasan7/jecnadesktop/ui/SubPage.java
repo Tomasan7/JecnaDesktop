@@ -6,15 +6,17 @@ import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
-import me.tomasan7.jecnadesktop.data.Attendance;
-import me.tomasan7.jecnadesktop.data.Attendances;
-import me.tomasan7.jecnadesktop.data.Grade;
+import me.tomasan7.jecnadesktop.data.*;
 import me.tomasan7.jecnadesktop.ui.component.GradeAverageView;
 import me.tomasan7.jecnadesktop.ui.component.GradeView;
+import me.tomasan7.jecnadesktop.ui.component.LessonHourView;
+import me.tomasan7.jecnadesktop.ui.component.LessonView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -120,6 +122,71 @@ public enum SubPage
 					grid.setVgap(5);
 
 					return anchorPane;
+				}
+			},
+	TIMETABLE
+			{
+				@Override
+				public Parent create (JecnaDesktop jecnaDesktop)
+				{
+					GridPane grid = new GridPane();
+
+					grid.setPadding(new Insets(10, 0, 0, 10));
+
+					grid.setHgap(1);
+					grid.setVgap(1);
+
+					grid.getStyleClass().add("anchor-pane");
+					grid.getStylesheets().add("/ui/subpage/Timetable.css");
+
+					jecnaDesktop.getTimetableRepository().queryTimetableAsync().thenAccept(timetable ->
+							Platform.runLater(() ->
+							{
+								List<LessonHour> lessonHours = timetable.getLessonHours();
+
+								/* Creates the first row with the LessonHours. */
+								for (int i = 0; i < lessonHours.size(); i++)
+								{
+									LessonHour lessonHour = lessonHours.get(i);
+									grid.add(new LessonHourView(i, lessonHour), i + 1, 0);
+								}
+
+								List<String> days = timetable.getDays();
+
+								/* Creates the first column with the days. */
+								for (int dI = 0; dI < days.size(); dI++)
+								{
+									String day = days.get(dI);
+									Label dayLabel = new Label(day);
+									dayLabel.getStyleClass().add("day-label");
+									//GridPane.setMargin(dayLabel, new Insets(0, 5, 0, 0));
+									grid.add(dayLabel, 0, dI + 1);
+
+									List<Lesson> lessons = timetable.getLessonsForDay(day);
+
+									for (int lI = 0; lI < lessons.size(); lI++)
+									{
+										Lesson lesson = lessons.get(lI);
+
+										if (lesson == null)
+											continue;
+
+										LessonView lessonView = new LessonView(lesson);
+										grid.add(lessonView, lI + 1, dI + 1);
+									}
+								}
+							}));
+
+
+					/*grid.getChildren().add(new LessonView(new Lesson(
+							"Elektrotechnika",
+							"Ele",
+							"Filip Kallmünzer",
+							"Kl",
+							"3"
+					)));*/
+
+					return grid;
 				}
 			};
 
