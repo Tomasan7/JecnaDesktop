@@ -7,6 +7,14 @@ import java.time.format.DateTimeFormatter;
 
 public record LessonHour(LocalTime from, LocalTime to)
 {
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
+
+	@Override
+	public String toString ()
+	{
+		return from.format(formatter) + " - " + to.format(formatter);
+	}
+
 	/**
 	 * Parses {@link LessonHour} from {@link String}. <b>The {@link String} must be in a "HH:mm - HH:mm" format.</b>
 	 * @param string The {@link String} to parse from.
@@ -18,7 +26,6 @@ public record LessonHour(LocalTime from, LocalTime to)
 		LocalTime to = null;
 
 		String[] split = string.split(" - ");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
 
 		try
 		{
