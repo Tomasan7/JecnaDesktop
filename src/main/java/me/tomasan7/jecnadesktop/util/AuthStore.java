@@ -39,7 +39,7 @@ public class AuthStore
 
 	/**
 	 * Loads the {@link Auth} from the file.
-	 * @return The loaded {@link Auth}.
+	 * @return The loaded {@link Auth}. Or {@code null}, if the {@link Auth} isn't saved, or is incorrect format.
 	 */
 	public static Auth load ()
 	{
@@ -53,6 +53,11 @@ public class AuthStore
 		catch (IOException e)
 		{
 			e.printStackTrace();
+		}
+		catch (IllegalArgumentException e)
+		{
+			/* Thrown when the saved password is in incorrect format. Should only happen, if the file was manipulated with from outside. */
+			return null;
 		}
 
 		return null;
