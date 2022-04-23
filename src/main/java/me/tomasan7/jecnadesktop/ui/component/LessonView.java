@@ -14,74 +14,71 @@ public class LessonView extends AnchorPane
 
 	private final Lesson lesson;
 
-	private final Label subjectLabel;
-	private final StackPane subjectLabelContainer;
-	private final Label teacherLabel;
-	private final Label classroomLabel;
-	private final Label groupLabel;
-
 	public LessonView (Lesson lesson)
 	{
 		this.lesson = lesson;
-		this.subjectLabel = new Label(lesson.subjectShort());
-		this.subjectLabelContainer = new StackPane();
-		this.teacherLabel = new Label(lesson.teacherShort());
-		this.classroomLabel = new Label(lesson.classroom());
-		this.groupLabel = lesson.group() != 0
-				? new Label(String.valueOf(lesson.group()))
-				: null;
 
-		initSubjectLabel();
-		initTeacherLabel();
-		initClassroomLabel();
-		initGroupLabel();
+		getChildren().addAll(createSubjectLabel(),
+							 createTeacherLabel(),
+							 createClassroomLabel());
 
-		getChildren().addAll(subjectLabelContainer, teacherLabel, classroomLabel);
-		if (groupLabel != null)
-			getChildren().add(groupLabel);
+		if (lesson.group() != 0)
+			getChildren().add(createGroupLabel());
 
 		getStyleClass().add("lesson-view");
 		getStylesheets().add("/ui/component/LessonView.css");
 	}
 
-	private void initSubjectLabel ()
+	private Label createSubjectLabel ()
 	{
+		Label subjectLabel = new Label(lesson.subjectShort());
 		subjectLabel.getStyleClass().add("subject-label");
+
+		StackPane subjectLabelContainer = new StackPane();
 
 		fit(subjectLabelContainer);
 		subjectLabelContainer.getChildren().add(subjectLabel);
 		StackPane.setAlignment(subjectLabel, Pos.CENTER);
+
+		return subjectLabel;
 	}
 
-	private void initTeacherLabel ()
+	private Label createTeacherLabel ()
 	{
+		Label teacherLabel = new Label(lesson.teacherShort());
 		teacherLabel.getStyleClass().add("teacher-label");
 
 		AnchorPane.setLeftAnchor(teacherLabel, CORNER_DISTANCE);
 		AnchorPane.setTopAnchor(teacherLabel, CORNER_DISTANCE);
+
+		return teacherLabel;
 	}
 
-	private void initClassroomLabel ()
+	private Label createClassroomLabel ()
 	{
+		Label classroomLabel = new Label(lesson.classroom());
 		classroomLabel.getStyleClass().add("classroom-label");
 
 		AnchorPane.setRightAnchor(classroomLabel, CORNER_DISTANCE);
 		AnchorPane.setTopAnchor(classroomLabel, CORNER_DISTANCE);
+
+		return classroomLabel;
 	}
 
-	private void initGroupLabel ()
+	private Label createGroupLabel ()
 	{
-		if (groupLabel == null)
-			return;
-
+		Label groupLabel = new Label(String.valueOf(lesson.group()));
 		groupLabel.getStyleClass().add("group-label");
 
 		AnchorPane.setRightAnchor(groupLabel, CORNER_DISTANCE);
 		AnchorPane.setBottomAnchor(groupLabel, CORNER_DISTANCE);
+
+		return groupLabel;
 	}
 
 	/**
 	 * Fits the {@link Node} so it takes 100% of this {@link AnchorPane}.
+	 *
 	 * @param node The {@link Node} to fit.
 	 */
 	private void fit (Node node)
