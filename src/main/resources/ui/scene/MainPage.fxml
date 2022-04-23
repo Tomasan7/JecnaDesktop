@@ -18,7 +18,7 @@
         </VBox>
     </left>
     <center>
-        <AnchorPane id="subPageContainer" />
+        <AnchorPane fx:id="subPageContainer" />
     </center>
     <stylesheets>
         <URL value="@MainPage.css" />

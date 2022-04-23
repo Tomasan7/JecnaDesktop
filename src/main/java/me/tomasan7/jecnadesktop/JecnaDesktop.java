@@ -19,7 +19,6 @@ public class JecnaDesktop extends Application
 	private AttendancesRepository attendancesRepository = null;
 	private TimetableRepository timetableRepository = null;
 	private final SceneManager sceneManager = new SceneManager(this);
-	private final SubPageManager subPageManager = new SubPageManager(this, (Pane) sceneManager.getScene(JDScene.MAIN).lookup("#subPageContainer"));
 
 	@Override
 	public void start (Stage primaryStage)
@@ -75,10 +74,5 @@ public class JecnaDesktop extends Application
 	public SceneManager getSceneManager ()
 	{
 		return sceneManager;
-	}
-
-	public SubPageManager getSubPageManager ()
-	{
-		return subPageManager;
 	}
 }
