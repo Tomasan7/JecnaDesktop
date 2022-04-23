@@ -1,0 +1,24 @@
+.lesson-hour-view
+{
+    -fx-min-height: 35;
+    -fx-pref-height: -fx-min-height;
+    -fx-min-width: 75;
+    -fx-pref-width: -fx-min-width;
+    -fx-background-radius: 2;
+    -fx-background-color: #1f1f1f;
+}
+
+.hour-index-label
+{
+    -fx-text-fill: gray;
+    -fx-alignment: center;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.period-label
+{
+    -fx-text-fill: gray;
+    -fx-alignment: center;
+    -fx-font-size: 10;
+}

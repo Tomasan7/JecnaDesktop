@@ -13,8 +13,8 @@
             <SideBarElement subPage="grades" icon="@../icon/grades-icon.png" label="Známky" />
             <Separator />
             <SideBarElement subPage="attendances" icon="@../icon/attendance-icon.png" label="Příchody a odchody" />
-            <!--<Separator />
-            <SideBarElement subPage="grades" icon="@icon/timetable-icon.png" label="Rozvrh" />-->
+            <Separator />
+            <SideBarElement subPage="timetable" icon="@../icon/timetable-icon.png" label="Rozvrh" />
         </VBox>
     </left>
     <center>

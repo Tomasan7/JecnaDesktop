@@ -1,0 +1,21 @@
+.anchor-pane
+{
+    -fx-background-color: -dark-color;
+}
+
+.day-label
+{
+    -fx-min-width: 35;
+    -fx-pref-height: 75;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-radius: 2;
+    -fx-background-color: #002429;
+}
+
+.lesson-spot-view
+{
+    -fx-pref-height: 75;
+    -fx-pref-width: 75;
+}
