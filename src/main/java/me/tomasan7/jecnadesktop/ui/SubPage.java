@@ -139,8 +139,6 @@ public enum SubPage
 					jecnaDesktop.getTimetableRepository().queryTimetableAsync().thenAccept(timetable ->
 							Platform.runLater(() ->
 							{
-								System.out.println(timetable);
-
 								List<LessonHour> lessonHours = timetable.getLessonHours();
 
 								/* Creates the first row with the LessonHours. */
