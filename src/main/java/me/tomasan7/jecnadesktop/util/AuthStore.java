@@ -65,4 +65,13 @@ public class AuthStore
 	{
 		return FILE.exists();
 	}
+
+	/**
+	 * Deletes the saved {@link Auth}.
+	 * @return {@code true}, if {@link Auth} was successfully deleted.
+	 */
+	public static boolean delete ()
+	{
+		return FILE.delete();
+	}
 }
