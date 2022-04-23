@@ -13,3 +13,9 @@
     -fx-background-radius: 2;
     -fx-background-color: #002429;
 }
+
+.lesson-spot-view
+{
+    -fx-pref-height: 75;
+    -fx-pref-width: 75;
+}

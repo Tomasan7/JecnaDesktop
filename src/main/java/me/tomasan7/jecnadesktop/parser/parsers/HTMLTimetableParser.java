@@ -2,12 +2,16 @@ package me.tomasan7.jecnadesktop.parser.parsers;
 
 import me.tomasan7.jecnadesktop.data.Lesson;
 import me.tomasan7.jecnadesktop.data.LessonHour;
+import me.tomasan7.jecnadesktop.data.LessonSpot;
 import me.tomasan7.jecnadesktop.data.Timetable;
 import me.tomasan7.jecnadesktop.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HTMLTimetableParser implements TimetableParser
 {
@@ -42,30 +46,41 @@ public class HTMLTimetableParser implements TimetableParser
 			{
 				String day = rowEle.selectFirst(".day").text();
 
-				/* All the lessons in this day. */
-				Elements lessonEles = rowEle.select("td");
+				/* All the LessonSpots in this day. */
+				Elements lessonSpotEles = rowEle.select("td");
 
-				for (Element lessonEle : lessonEles)
+				for (Element lessonSpotEle : lessonSpotEles)
 				{
-					/* Skip if the lesson is empty, this leaves the lesson variable to null -> indicating no lesson. */
-					if (lessonEle.hasClass("empty")
-							/* This means that the lesson is split into 2 or more groups and that isn't supported yet. */
-						|| lessonEle.children().size() > 1)
+					/* Skip if the lesson spot is empty, this leaves the lesson variable to null -> indicating no lesson. */
+					if (lessonSpotEle.hasClass("empty"))
 					{
 						timetableBuilder.addLesson(day, null);
 						continue;
 					}
 
-					/* This is the first lesson out of x, but since split lessons aren't supported yet, this will be the only one. */
-					Element lesson1Ele = lessonEle.child(0);
+					/* All the lessons in the lesson spot. */
+					Elements lessonEles = lessonSpotEle.getElementsByTag("div");
 
-					timetableBuilder.addLesson(day, new Lesson(
-							lesson1Ele.selectFirst(".subject").attr("title"),
-							lesson1Ele.selectFirst(".subject").text(),
-							lesson1Ele.selectFirst(".employee").attr("title"),
-							lesson1Ele.selectFirst(".employee").text(),
-							lesson1Ele.selectFirst(".room").text()
-					));
+					List<Lesson> lessons = new ArrayList<>();
+
+					for (Element lessonEle : lessonEles)
+					{
+						int group = 0;
+						Element groupEle = lessonEle.selectFirst(".group");
+						if (groupEle != null)
+							group = Integer.parseInt(groupEle.text().split("/")[0]);
+
+						lessons.add(new Lesson(
+								lessonEle.selectFirst(".subject").attr("title"),
+								lessonEle.selectFirst(".subject").text(),
+								lessonEle.selectFirst(".employee").attr("title"),
+								lessonEle.selectFirst(".employee").text(),
+								lessonEle.selectFirst(".room").text(),
+								group
+						));
+					}
+
+					timetableBuilder.addLessonSpot(day, new LessonSpot(lessons));
 				}
 			}
 

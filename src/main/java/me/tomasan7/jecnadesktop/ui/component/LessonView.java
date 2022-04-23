@@ -18,6 +18,7 @@ public class LessonView extends AnchorPane
 	private final StackPane subjectLabelContainer;
 	private final Label teacherLabel;
 	private final Label classroomLabel;
+	private final Label groupLabel;
 
 	public LessonView (Lesson lesson)
 	{
@@ -26,12 +27,18 @@ public class LessonView extends AnchorPane
 		this.subjectLabelContainer = new StackPane();
 		this.teacherLabel = new Label(lesson.teacherShort());
 		this.classroomLabel = new Label(lesson.classroom());
+		this.groupLabel = lesson.group() != 0
+				? new Label(String.valueOf(lesson.group()))
+				: null;
 
 		initSubjectLabel();
 		initTeacherLabel();
 		initClassroomLabel();
+		initGroupLabel();
 
 		getChildren().addAll(subjectLabelContainer, teacherLabel, classroomLabel);
+		if (groupLabel != null)
+			getChildren().add(groupLabel);
 
 		getStyleClass().add("lesson-view");
 		getStylesheets().add("/ui/component/LessonView.css");
@@ -60,6 +67,17 @@ public class LessonView extends AnchorPane
 
 		AnchorPane.setRightAnchor(classroomLabel, CORNER_DISTANCE);
 		AnchorPane.setTopAnchor(classroomLabel, CORNER_DISTANCE);
+	}
+
+	private void initGroupLabel ()
+	{
+		if (groupLabel == null)
+			return;
+
+		groupLabel.getStyleClass().add("group-label");
+
+		AnchorPane.setRightAnchor(groupLabel, CORNER_DISTANCE);
+		AnchorPane.setBottomAnchor(groupLabel, CORNER_DISTANCE);
 	}
 
 	/**

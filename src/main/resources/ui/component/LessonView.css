@@ -1,9 +1,9 @@
 .lesson-view
 {
-    -fx-min-height: 75;
-    -fx-pref-height: -fx-min-height;
-    -fx-min-width: 75;
-    -fx-pref-width: -fx-min-width;
+    -fx-pref-height: 75;
+    -fx-max-height: -fx-pref-height;
+    -fx-pref-width: 75;
+    max-width: -fx-pref-width;
     -fx-background-radius: 2;
     -fx-background-color: #1f1f1f;
 }
@@ -12,4 +12,15 @@
 {
     -fx-font-size: 20;
     -fx-font-weight: bold;
+}
+
+.group-label
+{
+    -fx-text-fill: gray;
+    -fx-font-size: 10;
+}
+
+.teacher-label
+{
+    -fx-font-style: italic;
 }

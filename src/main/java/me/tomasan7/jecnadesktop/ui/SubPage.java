@@ -13,10 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.*;
-import me.tomasan7.jecnadesktop.ui.component.GradeAverageView;
-import me.tomasan7.jecnadesktop.ui.component.GradeView;
-import me.tomasan7.jecnadesktop.ui.component.LessonHourView;
-import me.tomasan7.jecnadesktop.ui.component.LessonView;
+import me.tomasan7.jecnadesktop.ui.component.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -142,13 +139,15 @@ public enum SubPage
 					jecnaDesktop.getTimetableRepository().queryTimetableAsync().thenAccept(timetable ->
 							Platform.runLater(() ->
 							{
+								System.out.println(timetable);
+
 								List<LessonHour> lessonHours = timetable.getLessonHours();
 
 								/* Creates the first row with the LessonHours. */
 								for (int i = 0; i < lessonHours.size(); i++)
 								{
 									LessonHour lessonHour = lessonHours.get(i);
-									grid.add(new LessonHourView(i, lessonHour), i + 1, 0);
+									grid.add(new LessonHourView(i + 1, lessonHour), i + 1, 0);
 								}
 
 								List<String> days = timetable.getDays();
@@ -159,32 +158,22 @@ public enum SubPage
 									String day = days.get(dI);
 									Label dayLabel = new Label(day);
 									dayLabel.getStyleClass().add("day-label");
-									//GridPane.setMargin(dayLabel, new Insets(0, 5, 0, 0));
 									grid.add(dayLabel, 0, dI + 1);
 
-									List<Lesson> lessons = timetable.getLessonsForDay(day);
+									List<LessonSpot> lessonSpots = timetable.getLessonsForDay(day);
 
-									for (int lI = 0; lI < lessons.size(); lI++)
+									for (int lI = 0; lI < lessonSpots.size(); lI++)
 									{
-										Lesson lesson = lessons.get(lI);
+										LessonSpot lessonSpot = lessonSpots.get(lI);
 
-										if (lesson == null)
+										if (lessonSpot == null)
 											continue;
 
-										LessonView lessonView = new LessonView(lesson);
+										LessonSpotView lessonView = new LessonSpotView(lessonSpot);
 										grid.add(lessonView, lI + 1, dI + 1);
 									}
 								}
 							}));
-
-
-					/*grid.getChildren().add(new LessonView(new Lesson(
-							"Elektrotechnika",
-							"Ele",
-							"Filip Kallmünzer",
-							"Kl",
-							"3"
-					)));*/
 
 					return grid;
 				}

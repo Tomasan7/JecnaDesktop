@@ -7,10 +7,10 @@ import java.util.*;
 
 public class Timetable
 {
-	private final NavigableMap<String, List<Lesson>> timetable;
+	private final NavigableMap<String, List<LessonSpot>> timetable;
 	private final List<LessonHour> lessonHours;
 
-	private Timetable (NavigableMap<String, List<Lesson>> timetable, List<LessonHour> lessonHours)
+	private Timetable (NavigableMap<String, List<LessonSpot>> timetable, List<LessonHour> lessonHours)
 	{
 		this.timetable = timetable;
 		this.lessonHours = lessonHours;
@@ -33,13 +33,13 @@ public class Timetable
 	}
 
 	/**
-	 * All {@link Lesson lessons} for the provided day.
-	 * The {@link Lesson lessons} lessons are order by the hour they are in.
+	 * All {@link LessonSpot lessons} for the provided day.
+	 * The {@link LessonSpot lessons} lessons are order by the hour they are in.
 	 *
 	 * @param day The day to get all {@link Lesson lessons} for.
-	 * @return All {@link Lesson lessons} for the provided day.
+	 * @return All {@link LessonSpot lessons} for the provided day.
 	 */
-	public List<Lesson> getLessonsForDay (String day)
+	public List<LessonSpot> getLessonsForDay (String day)
 	{
 		return timetable.getOrDefault(day, new ArrayList<>());
 	}
@@ -60,7 +60,7 @@ public class Timetable
 
 	public static class Builder
 	{
-		private final NavigableMap<String, List<Lesson>> timetable = new TreeMap<>(new DayComparator());
+		private final NavigableMap<String, List<LessonSpot>> timetable = new TreeMap<>(new DayComparator());
 		private List<LessonHour> lessonHours = new ArrayList<>();
 
 		/**
@@ -101,6 +101,23 @@ public class Timetable
 		}
 
 		/**
+		 * Sets a {@link LessonSpot} to an hour in a day.
+		 * Can be {@code null}, if there is no lesson at that time.
+		 * Overrides any existing {@link LessonSpot lessons}.
+		 *
+		 * @param day    The day to set the {@link LessonSpot} to.
+		 * @param hour   The hour to set the {@link LessonSpot} to.
+		 * @param lessonSpot The {@link LessonSpot} to be set.
+		 * @return This {@link Builder builder's} instance back.
+		 */
+		public Builder setLessonSpot (@NotNull String day, int hour, @Nullable LessonSpot lessonSpot)
+		{
+			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
+			timetable.computeIfAbsent(day, __ -> new LinkedList<>()).set(hour, lessonSpot);
+			return this;
+		}
+
+		/**
 		 * Sets a {@link Lesson} to an hour in a day.
 		 * Can be {@code null}, if there is no lesson at that time.
 		 * Overrides any existing {@link Lesson lessons}.
@@ -113,7 +130,23 @@ public class Timetable
 		public Builder setLesson (@NotNull String day, int hour, @Nullable Lesson lesson)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
-			timetable.computeIfAbsent(day, __ -> new LinkedList<>()).set(hour, lesson);
+			timetable.computeIfAbsent(day, __ -> new LinkedList<>()).set(hour, lesson != null ? new LessonSpot(lesson) : null);
+			return this;
+		}
+
+		/**
+		 * Adds a {@link LessonSpot} to a day.
+		 * Can be {@code null}, if there is no lesson at that time.
+		 * The {@link LessonSpot} gets appended to the end.
+		 *
+		 * @param day    The day to add the {@link LessonSpot} to.
+		 * @param lessonSpot The {@link LessonSpot} to add.
+		 * @return This {@link Builder builder's} instance back.
+		 */
+		public Builder addLessonSpot (@NotNull String day, @Nullable LessonSpot lessonSpot)
+		{
+			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
+			timetable.computeIfAbsent(day, __ -> new LinkedList<>()).add(lessonSpot);
 			return this;
 		}
 
@@ -129,7 +162,7 @@ public class Timetable
 		public Builder addLesson (@NotNull String day, @Nullable Lesson lesson)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
-			timetable.computeIfAbsent(day, __ -> new LinkedList<>()).add(lesson);
+			timetable.computeIfAbsent(day, __ -> new LinkedList<>()).add(lesson != null ? new LessonSpot(lesson) : null);
 			return this;
 		}
 
