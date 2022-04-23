@@ -27,14 +27,9 @@ public class SubPageManager
 
 	private final Set<SubPageSwitchListener> subPageSwitchListeners = new HashSet<>();
 
-	public SubPageManager (JecnaDesktop jecnaDesktop, Scene mainPage)
+	public SubPageManager (JecnaDesktop jecnaDesktop, Pane subPageContainer)
 	{
-		this.subPageContainer = (Pane) mainPage.getRoot().getChildrenUnmodifiable().stream().filter(node -> {
-			String id = node.getId();
-			if (id == null)
-				return false;
-			return node.getId().equals("subPageContainer");
-		}).findAny().get();
+		this.subPageContainer = subPageContainer;
 		this.jecnaDesktop = jecnaDesktop;
 	}
 

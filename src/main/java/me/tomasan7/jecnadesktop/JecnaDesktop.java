@@ -3,6 +3,7 @@ package me.tomasan7.jecnadesktop;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import me.tomasan7.jecnadesktop.repository.*;
 import me.tomasan7.jecnadesktop.ui.JDScene;
@@ -18,7 +19,7 @@ public class JecnaDesktop extends Application
 	private AttendancesRepository attendancesRepository = null;
 	private TimetableRepository timetableRepository = null;
 	private final SceneManager sceneManager = new SceneManager(this);
-	private final SubPageManager subPageManager = new SubPageManager(this, sceneManager.getScene(JDScene.MAIN));
+	private final SubPageManager subPageManager = new SubPageManager(this, (Pane) sceneManager.getScene(JDScene.MAIN).lookup("#subPageContainer"));
 
 	@Override
 	public void start (Stage primaryStage)
