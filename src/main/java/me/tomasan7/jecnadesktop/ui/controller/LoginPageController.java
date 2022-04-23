@@ -44,12 +44,16 @@ public class LoginPageController implements Initializable
 			{
 				JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
 
+				jecnaDesktop.getSceneManager().switchToScene(JDScene.LOADING);
 				jecnaWebClient.login().thenAccept(successful ->
 				{
 					if (successful)
 						continueToMain(jecnaWebClient);
 					else
+					{
 						AuthStore.delete();
+						Platform.runLater(() -> jecnaDesktop.getSceneManager().switchToScene(JDScene.LOGIN));
+					}
 				});
 			}
 			else
@@ -87,6 +91,8 @@ public class LoginPageController implements Initializable
 				return;
 			}
 
+			jecnaDesktop.getSceneManager().switchToScene(JDScene.LOADING);
+
 			JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
 
 			Auth finalAuth = auth;
@@ -100,7 +106,10 @@ public class LoginPageController implements Initializable
 					continueToMain(jecnaWebClient);
 				}
 				else
+				{
+					Platform.runLater(() -> jecnaDesktop.getSceneManager().switchToScene(JDScene.LOGIN));
 					clearFields();
+				}
 			});
 		};
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<?import javafx.scene.layout.StackPane?>
+<?import java.net.URL?>
+<StackPane xmlns="http://javafx.com/javafx"
+           prefHeight="600.0" prefWidth="1000.0">
+
+    <MFXProgressSpinner >
+        <StackPane.alignment>CENTER</StackPane.alignment>
+    </MFXProgressSpinner>
+
+    <stylesheets>
+        <URL value="@LoadingPage.css" />
+        <URL value="@../styles.css" />
+    </stylesheets>
+</StackPane>
