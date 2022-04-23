@@ -10,13 +10,12 @@ import java.text.DecimalFormat;
 
 public class GradeAverageView extends AnchorPane
 {
-	private final Label gradeLabel;
 	private final float value;
 
 	public GradeAverageView (float value)
 	{
 		this.value = value;
-		this.gradeLabel = new Label(new DecimalFormat("0.##").format(value));
+		Label gradeLabel = new Label(new DecimalFormat("0.##").format(value));
 
 		gradeLabel.setAlignment(Pos.CENTER);
 
@@ -38,7 +37,7 @@ public class GradeAverageView extends AnchorPane
 		/* Just copied the value constructor, because I wouldn't been able to call the #weightedAverage() method if I were to use this() constructor call. */
 
 		this.value = weightedAverage(grades);
-		this.gradeLabel = new Label(new DecimalFormat("0.##").format(value));
+		Label gradeLabel = new Label(new DecimalFormat("0.##").format(value));
 
 		gradeLabel.setAlignment(Pos.CENTER);
 
@@ -72,11 +71,6 @@ public class GradeAverageView extends AnchorPane
 		}
 
 		return (float) weightedSum / weightSum;
-	}
-
-	public Label getGradeLabel ()
-	{
-		return gradeLabel;
 	}
 
 	public float getValue ()
