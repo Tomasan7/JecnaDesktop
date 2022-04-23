@@ -8,13 +8,13 @@ import me.tomasan7.jecnadesktop.data.Grade;
 
 public class GradeView extends AnchorPane
 {
-	private final Label gradeLabel;
 	private final Grade grade;
 
 	public GradeView (Grade grade)
 	{
 		this.grade = grade;
-		this.gradeLabel = new Label(String.valueOf(grade.valueChar()));
+
+		Label gradeLabel = new Label(String.valueOf(grade.valueChar()));
 
 		gradeLabel.setAlignment(Pos.CENTER);
 
@@ -32,11 +32,6 @@ public class GradeView extends AnchorPane
 			pseudoClassStateChanged(PseudoClass.getPseudoClass("small"), true);
 
 		pseudoClassStateChanged(PseudoClass.getPseudoClass("value" + grade.valueChar()), true);
-	}
-
-	public Label getGradeLabel ()
-	{
-		return gradeLabel;
 	}
 
 	public Grade getGrade ()
