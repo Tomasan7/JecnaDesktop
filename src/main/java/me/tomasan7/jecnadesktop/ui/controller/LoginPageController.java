@@ -40,13 +40,20 @@ public class LoginPageController implements Initializable
 		if (AuthStore.isSaved())
 		{
 			Auth auth = AuthStore.load();
-			JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
-
-			jecnaWebClient.login().thenAccept(successful ->
+			if (auth != null)
 			{
-				if (successful)
-					continueToMain(jecnaWebClient);
-			});
+				JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
+
+				jecnaWebClient.login().thenAccept(successful ->
+				{
+					if (successful)
+						continueToMain(jecnaWebClient);
+					else
+						AuthStore.delete();
+				});
+			}
+			else
+				AuthStore.delete();
 		}
 
 		/* Whether the user can hit login or not. User can log in, when neither field is blank. */
