@@ -10,41 +10,44 @@ public class LessonHourView extends AnchorPane
 	private static final double EDGE_DISTANCE = 1d;
 
 	private final LessonHour lessonHour;
-
-	private final Label hourIndexLabel;
-	private final Label periodLabel;
+	private final int hourIndex;
 
 	public LessonHourView (int hourIndex, LessonHour lessonHour)
 	{
 		this.lessonHour = lessonHour;
-		this.hourIndexLabel = new Label(String.valueOf(hourIndex));
-		this.periodLabel = new Label(lessonHour.toString());
+		this.hourIndex = hourIndex;
 
-		initHourIndexLabel();
-		initPeriodTable();
+		createHourIndexLabel();
+		createPeriodLabel();
 
-		getChildren().addAll(hourIndexLabel, periodLabel);
+		getChildren().addAll(createHourIndexLabel(), createPeriodLabel());
 
 		getStyleClass().add("lesson-hour-view");
 		getStylesheets().add("/ui/component/LessonHourView.css");
 	}
 
-	private void initHourIndexLabel ()
+	private Label createHourIndexLabel ()
 	{
+		Label hourIndexLabel = new Label(String.valueOf(hourIndex));
 		hourIndexLabel.getStyleClass().add("hour-index-label");
 
 		AnchorPane.setTopAnchor(hourIndexLabel, EDGE_DISTANCE);
 		AnchorPane.setLeftAnchor(hourIndexLabel, 0d);
 		AnchorPane.setRightAnchor(hourIndexLabel, 0d);
+
+		return hourIndexLabel;
 	}
 
-	private void initPeriodTable ()
+	private Label createPeriodLabel ()
 	{
+		Label periodLabel = new Label(lessonHour.toString());
 		periodLabel.getStyleClass().add("period-label");
 
 		AnchorPane.setBottomAnchor(periodLabel, EDGE_DISTANCE);
 		AnchorPane.setLeftAnchor(periodLabel, 0d);
 		AnchorPane.setRightAnchor(periodLabel, 0d);
+
+		return periodLabel;
 	}
 
 	public LessonHour getLessonHour ()
