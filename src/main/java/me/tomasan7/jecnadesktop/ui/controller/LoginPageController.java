@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.JDScene;
-import me.tomasan7.jecnadesktop.ui.SubPage;
 import me.tomasan7.jecnadesktop.util.AuthStore;
 import me.tomasan7.jecnadesktop.web.Auth;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
@@ -21,11 +20,11 @@ import java.util.function.Supplier;
 public class LoginPageController implements Initializable
 {
 	@FXML
-	public MFXTextField userInput;
+	private MFXTextField userInput;
 	@FXML
-	public MFXPasswordField passwordInput;
+	private MFXPasswordField passwordInput;
 	@FXML
-	public Button loginBtn;
+	private Button loginBtn;
 
 	private final JecnaDesktop jecnaDesktop;
 
