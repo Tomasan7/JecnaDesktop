@@ -29,7 +29,7 @@ public class LessonView extends AnchorPane
 		getStylesheets().add("/ui/component/LessonView.css");
 	}
 
-	private Label createSubjectLabel ()
+	private StackPane createSubjectLabel ()
 	{
 		Label subjectLabel = new Label(lesson.subjectShort());
 		subjectLabel.getStyleClass().add("subject-label");
@@ -40,7 +40,7 @@ public class LessonView extends AnchorPane
 		subjectLabelContainer.getChildren().add(subjectLabel);
 		StackPane.setAlignment(subjectLabel, Pos.CENTER);
 
-		return subjectLabel;
+		return subjectLabelContainer;
 	}
 
 	private Label createTeacherLabel ()
