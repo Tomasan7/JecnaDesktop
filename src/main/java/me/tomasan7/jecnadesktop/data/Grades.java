@@ -30,7 +30,7 @@ public class Grades
 	public List<Grade> getGradesForSubject (String subject)
 	{
 		/* Encapsulation. */
-		return new ArrayList<>(grades.get(subject));
+		return new LinkedList<>(grades.get(subject));
 	}
 
 	/**

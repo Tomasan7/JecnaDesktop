@@ -32,10 +32,10 @@ public class Attendances
 	{
 		/* Return empty list when no data for the passed day is present. */
 		if (!attendances.containsKey(day))
-			return new ArrayList<>();
+			return new LinkedList<>();
 
 		/* Encapsulation. */
-		return new ArrayList<>(attendances.get(day));
+		return new LinkedList<>(attendances.get(day));
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Attendances
 		public Builder addAttendance (LocalDate day, Attendance attendance)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the attendance is added to that list. */
-			this.attendances.computeIfAbsent(day, __ -> new ArrayList<>()).add(attendance);
+			this.attendances.computeIfAbsent(day, __ -> new LinkedList<>()).add(attendance);
 			return this;
 		}
 

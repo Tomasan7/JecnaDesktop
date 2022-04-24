@@ -18,6 +18,7 @@ import me.tomasan7.jecnadesktop.ui.component.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 public enum SubPage
@@ -84,7 +85,7 @@ public enum SubPage
 					anchorPane.getStylesheets().add("/ui/subpage/Grades.css");
 					anchorPane.getStyleClass().add("anchor-pane");
 
-					ObservableList<GradesRow> rows = FXCollections.observableArrayList();
+					List<GradesRow> rows = new LinkedList<>();
 
 					jecnaDesktop.getGradesRepository().queryGradesAsync().thenAccept(grades ->
 							Platform.runLater(() ->
