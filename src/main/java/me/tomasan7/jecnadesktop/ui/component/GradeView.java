@@ -5,6 +5,7 @@ import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import me.tomasan7.jecnadesktop.data.Grade;
 
 import java.time.format.DateTimeFormatter;
@@ -25,6 +26,7 @@ public class GradeView extends AnchorPane
 																		? grade.receiveDate().format(DateTimeFormatter.ofPattern("d.M.yyyy"))
 																		: ""));
 		tooltip.getStyleSheets().add("/ui/ToolTip.css");
+		tooltip.setShowDelay(Duration.millis(500));
 		tooltip.install();
 
 		Label gradeLabel = new Label(String.valueOf(grade.valueChar()));
