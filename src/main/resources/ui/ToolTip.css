@@ -1,0 +1,11 @@
+.mfx-tooltip .container
+{
+    -fx-background-color: -dark-color;
+    -fx-border-color: gray;
+}
+
+.mfx-tooltip .label
+{
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+}
