@@ -26,7 +26,7 @@ public class JecnaDesktop extends Application
 		this.primaryStage = primaryStage;
 
 		primaryStage.setTitle("Ječná Desktop");
-		primaryStage.getIcons().add(new Image("ui/icon/logo.png"));
+		primaryStage.getIcons().add(new Image("/ui/icon/logo.png"));
 		/* For some reason the process doesn't exit by itself, so I kill it when the stage is closed. */
 		primaryStage.setOnCloseRequest(__ -> {Platform.exit(); System.exit(0);});
 

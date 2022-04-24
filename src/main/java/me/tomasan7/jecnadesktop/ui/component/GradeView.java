@@ -26,7 +26,7 @@ public class GradeView extends AnchorPane
 		getChildren().add(gradeLabel);
 
 		getStyleClass().add("grade-view");
-		getStylesheets().add("ui/component/GradeView.css");
+		getStylesheets().add("/ui/component/GradeView.css");
 
 		if (grade.small())
 			pseudoClassStateChanged(PseudoClass.getPseudoClass("small"), true);
