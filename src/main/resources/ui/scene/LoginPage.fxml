@@ -6,17 +6,34 @@
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import java.net.URL?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
 
-    <MFXTextField fx:id="userInput" floatMode="BORDER" floatingText="Uživatel" />
+    <Label fx:id="loginLabel" styleClass="login-label" text="PŘIHLÁŠENÍ">
+        <VBox.margin><Insets left="20" /></VBox.margin>
+    </Label>
 
-    <MFXPasswordField fx:id="passwordInput" floatMode="BORDER" floatingText="Heslo" >
-        <VBox.margin><Insets top="10.0" /></VBox.margin>
-    </MFXPasswordField>
+    <HBox alignment="CENTER">
+        <VBox.margin><Insets top="25"/></VBox.margin>
+        <MFXFontIcon styleClass="field-icon" description="mfx-user" />
+        <MFXTextField fx:id="userInput" floatMode="BORDER" floatingText="Uživatel">
+            <HBox.margin><Insets left="10.0" /></HBox.margin>
+        </MFXTextField>
+    </HBox>
 
-    <MFXButton fx:id="loginBtn" text="Login" disable="true" buttonType="RAISED">
+    <HBox alignment="CENTER">
         <VBox.margin><Insets top="10.0" /></VBox.margin>
+        <MFXFontIcon styleClass="field-icon" description="mfx-lock" />
+        <MFXPasswordField fx:id="passwordInput" floatMode="BORDER" floatingText="Heslo" >
+            <HBox.margin><Insets left="10.0" /></HBox.margin>
+        </MFXPasswordField>
+    </HBox>
+
+    <MFXButton fx:id="loginBtn" text="LOGIN" disable="true" buttonType="RAISED">
+        <VBox.margin><Insets top="10.0" left="20" /></VBox.margin>
     </MFXButton>
 
     <stylesheets>

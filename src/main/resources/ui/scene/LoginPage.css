@@ -6,10 +6,16 @@
     -fx-background-color: -dark-color;
 }
 
-/*.mfx-text-field .mfx-font-icon
+.login-label
 {
-    -mfx-color: red;
-}*/
+    -fx-font-size: 30;
+}
+
+.field-icon
+{
+    -mfx-color: white;
+    -fx-font-size: 20;
+}
 
 .mfx-text-field
 {
