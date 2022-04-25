@@ -3,12 +3,10 @@ package me.tomasan7.jecnadesktop;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import me.tomasan7.jecnadesktop.repository.*;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
-import me.tomasan7.jecnadesktop.ui.SubPageManager;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
 public class JecnaDesktop extends Application

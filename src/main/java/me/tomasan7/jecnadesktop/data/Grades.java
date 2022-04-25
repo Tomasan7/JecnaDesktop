@@ -1,7 +1,6 @@
 package me.tomasan7.jecnadesktop.data;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 

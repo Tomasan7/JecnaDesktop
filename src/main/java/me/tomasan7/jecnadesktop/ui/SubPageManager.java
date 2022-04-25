@@ -1,7 +1,6 @@
 package me.tomasan7.jecnadesktop.ui;
 
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
