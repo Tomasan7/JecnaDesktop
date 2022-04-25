@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 /**
- * A class representing grades table. Stores 0 or more grades for each subject.
+ * Representing grades table.
+ * Stores {@code 0} or more grades for each subject.
  */
 public class Grades
 {
@@ -21,9 +22,7 @@ public class Grades
 	}
 
 	/**
-	 * Returns all grades for the passed subject.
-	 * @param subject The subject to get all grades for.
-	 * @return List of all grades for passed subject. Can be empty.
+	 * @return List of all {@link Grade grades} for passed subject. Can be empty, if no grades are present for that subject.
 	 */
 	public List<Grade> getGradesForSubject (String subject)
 	{
@@ -32,7 +31,7 @@ public class Grades
 	}
 
 	/**
-	 * Returns all subjects.
+	 * @return All subjects.
 	 */
 	public Set<String> getSubjects ()
 	{

@@ -26,7 +26,8 @@ public record Grade(byte value,
 
 	/**
 	 * Accepts value's representing char.
-	 * @param valueChar The value char representation.
+	 *
+	 * @param valueChar The value's char representation.
 	 * @see #valueChar()
 	 */
 	public Grade (char valueChar,
@@ -45,7 +46,7 @@ public record Grade(byte value,
 	}
 
 	/**
-	 * Returns this grade's {@link #value} as char. Returns 'N' for value 0.
+	 * @return This grade's {@link #value} as char. Returns {@code 'N'} for value {@code 0}.
 	 */
 	public char valueChar ()
 	{
@@ -57,6 +58,7 @@ public record Grade(byte value,
 
 	/**
 	 * Converts value's char representation to the value.
+	 *
 	 * @param valueChar The value's char representation.
 	 * @return It's value.
 	 */

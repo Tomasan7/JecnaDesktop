@@ -3,6 +3,9 @@ package me.tomasan7.jecnadesktop.data;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Holds all {@link Attendance attendances} for each day.
+ */
 public class Attendances
 {
 	private final Map<LocalDate, List<Attendance>> attendances;
@@ -14,8 +17,10 @@ public class Attendances
 	}
 
 	/**
-	 * Represents a {@link List<Attendance> Attendance List} as a {@link String}. Does so by joining all {@link Attendance#toString()} with comma.
-	 * @param attendanceList {@link List<Attendance> Attendance List} to represent.
+	 * Represents an {@link Attendance} {@link List} as a {@link String}.
+	 * Does so by joining all {@link Attendance#toString()}'s with comma.
+	 *
+	 * @param attendanceList The {@link Attendance} {@link List} to represent.
 	 * @return The {@link String} representation.
 	 */
 	public static String attendanceListAsString (List<Attendance> attendanceList)
@@ -24,13 +29,11 @@ public class Attendances
 	}
 
 	/**
-	 * Returns all {@link Attendance attendances} for provided day.
-	 * @param day The day to get all {@link Attendance attendances} from.
-	 * @return All the {@link Attendance attendances} for the day.
+	 * @return All {@link Attendance attendances} for the provided day.
 	 */
 	public List<Attendance> getAttendancesForDay (LocalDate day)
 	{
-		/* Return empty list when no data for the passed day is present. */
+		/* Return an empty list when no data for the passed day is present. */
 		if (!attendances.containsKey(day))
 			return new LinkedList<>();
 
@@ -39,7 +42,7 @@ public class Attendances
 	}
 
 	/**
-	 * Returns all the days.
+	 * @return All days, this {@link Attendances} has data for.
 	 */
 	public Set<LocalDate> getDays ()
 	{
@@ -58,7 +61,8 @@ public class Attendances
 
 		/**
 		 * Adds {@link Attendance}.
-		 * @param day The day to add this attendance to.
+		 *
+		 * @param day        The day to add this attendance to.
 		 * @param attendance The {@link Attendance} to add.
 		 */
 		public Builder addAttendance (LocalDate day, Attendance attendance)

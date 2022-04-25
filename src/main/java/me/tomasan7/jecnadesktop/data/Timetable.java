@@ -5,6 +5,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Whole timetable containing {@link LessonSpot lesson spots} for each day and their {@link LessonPeriod LessonHour's}.
+ */
 public class Timetable
 {
 	private final NavigableMap<String, List<LessonSpot>> timetable;
@@ -33,7 +36,7 @@ public class Timetable
 	}
 
 	/**
-	 * All {@link LessonSpot lessons} for the provided day.
+	 * Returns all {@link LessonSpot lessons} for the provided day.
 	 * The {@link LessonSpot lessons} lessons are order by the hour they are in.
 	 *
 	 * @param day The day to get all {@link Lesson lessons} for.
@@ -101,9 +104,9 @@ public class Timetable
 		}
 
 		/**
-		 * Sets a {@link LessonSpot} to an hour in a day.
+		 * Sets a {@link LessonSpot} to an hour in the provided day.
 		 * Can be {@code null}, if there is no lesson at that time.
-		 * Overrides any existing {@link LessonSpot lessons}.
+		 * Overrides any existing {@link LessonSpot LessonSpots}.
 		 *
 		 * @param day    The day to set the {@link LessonSpot} to.
 		 * @param hour   The hour to set the {@link LessonSpot} to.
@@ -118,14 +121,9 @@ public class Timetable
 		}
 
 		/**
-		 * Sets a {@link Lesson} to an hour in a day.
-		 * Can be {@code null}, if there is no lesson at that time.
-		 * Overrides any existing {@link Lesson lessons}.
-		 *
-		 * @param day    The day to set the {@link Lesson} to.
-		 * @param hour   The hour to set the {@link Lesson} to.
-		 * @param lesson The {@link Lesson} to be set.
-		 * @return This {@link Builder builder's} instance back.
+		 * Shorthand for {@code setLessonSpot(day, hour, new LessonSpot(lesson))}.
+		 * @see #setLessonSpot(String, int, LessonSpot)
+		 * @see LessonSpot#LessonSpot(Lesson)
 		 */
 		public Builder setLesson (@NotNull String day, int hour, @Nullable Lesson lesson)
 		{
@@ -151,13 +149,9 @@ public class Timetable
 		}
 
 		/**
-		 * Adds a {@link Lesson} to a day.
-		 * Can be {@code null}, if there is no lesson at that time.
-		 * The {@link Lesson} gets appended to the end.
-		 *
-		 * @param day    The day to add the {@link Lesson} to.
-		 * @param lesson The {@link Lesson} to add.
-		 * @return This {@link Builder builder's} instance back.
+		 * Shorthand for {@code addLessonSpot(day, hour, new LessonSpot(lesson))}.
+		 * @see #setLessonSpot(String, int, LessonSpot)
+		 * @see LessonSpot#LessonSpot(Lesson)
 		 */
 		public Builder addLesson (@NotNull String day, @Nullable Lesson lesson)
 		{
@@ -168,14 +162,14 @@ public class Timetable
 
 		public Timetable build ()
 		{
-			/* TODO: Maybe check if there is equal or more lessonHours than lessons in any day?
-			 * Because that would mean there is a lesson without specified LessonPeriod. (period) */
+			/* TODO: Maybe check if there is equal or more lessonPeriods than lessons in any day?
+			 * Because that would mean there is a lesson without specified LessonPeriod. */
 			return new Timetable(timetable, lessonPeriods);
 		}
 	}
 
 	/**
-	 * This comparator compares two days based on their position in a week. Meaning tuesday < friday.
+	 * Compares two days based on their position in a week. Meaning tuesday < friday.
 	 * The <b>days must follow this format</b>: Po/Út/St/Čt/Pa/So/Ne.
 	 * <b>Note the "Pa", it is not "Pá".</b>
 	 */

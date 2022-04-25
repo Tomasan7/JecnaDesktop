@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 /**
- * This class represents a spot for {@link Lesson lessons} in a timetable.
+ * Represents a spot for {@link Lesson lessons} in a timetable.
  * That spot can contain multiple {@link Lesson lessons}.
  * For example some lessons are split into more groups.
  * This class indicates the one whole lesson and contains the lessons for each group.
@@ -52,6 +52,9 @@ public class LessonSpot implements Iterable<Lesson>
 		return false;
 	}
 
+	/**
+	 * @return A {@link Lesson} with the specified group.
+	 */
 	public Lesson getLessonByGroup (int group)
 	{
 		return lessons.get(group);

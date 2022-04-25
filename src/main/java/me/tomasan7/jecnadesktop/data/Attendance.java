@@ -6,8 +6,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @param exit Whether the person exited or entered. False for enter, true for exit.
- * @param time When the person entered/exited.
+ * Represents single pass by the school entrance.
+ * It can be either enter, or exit.
+ *
+ * @param exit Whether the person exited or entered. {@code false} for enter, {@code true} for exit.
+ * @param time The time, the person entered/exited.
  */
 public record Attendance(boolean exit, @NotNull LocalTime time)
 {
