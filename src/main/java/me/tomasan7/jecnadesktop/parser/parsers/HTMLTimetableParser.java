@@ -1,7 +1,7 @@
 package me.tomasan7.jecnadesktop.parser.parsers;
 
 import me.tomasan7.jecnadesktop.data.Lesson;
-import me.tomasan7.jecnadesktop.data.LessonHour;
+import me.tomasan7.jecnadesktop.data.LessonPeriod;
 import me.tomasan7.jecnadesktop.data.LessonSpot;
 import me.tomasan7.jecnadesktop.data.Timetable;
 import me.tomasan7.jecnadesktop.parser.ParseException;
@@ -27,19 +27,19 @@ public class HTMLTimetableParser implements TimetableParser
 			/* All the rows (tr) in the grades table. */
 			Elements rowEles = document.select("table.timetable > tbody > tr");
 
-			/* The row (tr) containing all the LessonHours details.
-			 * Each LessonHour is a 'th' with class 'period'. */
-			Element lessonHoursEle = rowEles.get(0);
+			/* The row (tr) containing all the LessonPeriods details.
+			 * Each LessonPeriod is a 'th' with class 'period'. */
+			Element lessonPeriodsEle = rowEles.get(0);
 
-			/* All the LessonHour elements.
+			/* All the LessonPeriod elements.
 			 * Each element has an inner text with the index of the hour
 			 * and a span (with class 'time') containing the time period. */
-			Elements lessonHourEles = lessonHoursEle.select("th.period");
+			Elements lessonPeriodEles = lessonPeriodsEle.select("th.period");
 
-			/* Add all the LessonHours to the timetable. */
-			lessonHourEles.forEach(lessonHourEle -> timetableBuilder.addLessonHour(LessonHour.fromString(lessonHourEle.selectFirst(".time").text())));
+			/* Add all the LessonPeriods to the timetable. */
+			lessonPeriodEles.forEach(lessonHourEle -> timetableBuilder.addLessonPeriod(LessonPeriod.fromString(lessonHourEle.selectFirst(".time").text())));
 
-			/* Removes the row with the LessonHours, so it leaves all the subjects. */
+			/* Removes the row with the LessonPeriods, so it leaves all the subjects. */
 			rowEles.remove(0);
 
 			for (Element rowEle : rowEles)

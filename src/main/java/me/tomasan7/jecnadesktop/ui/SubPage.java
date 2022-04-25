@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -140,13 +139,13 @@ public enum SubPage
 					jecnaDesktop.getTimetableRepository().queryTimetableAsync().thenAccept(timetable ->
 							Platform.runLater(() ->
 							{
-								List<LessonHour> lessonHours = timetable.getLessonHours();
+								List<LessonPeriod> lessonPeriods = timetable.getLessonPeriods();
 
-								/* Creates the first row with the LessonHours. */
-								for (int i = 0; i < lessonHours.size(); i++)
+								/* Creates the first row with the LessonPeriods. */
+								for (int i = 0; i < lessonPeriods.size(); i++)
 								{
-									LessonHour lessonHour = lessonHours.get(i);
-									grid.add(new LessonHourView(i + 1, lessonHour), i + 1, 0);
+									LessonPeriod lessonPeriod = lessonPeriods.get(i);
+									grid.add(new LessonPeriodView(i + 1, lessonPeriod), i + 1, 0);
 								}
 
 								List<String> days = timetable.getDays();

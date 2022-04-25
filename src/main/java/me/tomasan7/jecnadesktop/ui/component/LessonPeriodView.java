@@ -2,19 +2,19 @@ package me.tomasan7.jecnadesktop.ui.component;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import me.tomasan7.jecnadesktop.data.LessonHour;
+import me.tomasan7.jecnadesktop.data.LessonPeriod;
 
-public class LessonHourView extends AnchorPane
+public class LessonPeriodView extends AnchorPane
 {
 	/** The distance of the corner {@link Label labels} from the sides. */
 	private static final double EDGE_DISTANCE = 1d;
 
-	private final LessonHour lessonHour;
+	private final LessonPeriod lessonPeriod;
 	private final int hourIndex;
 
-	public LessonHourView (int hourIndex, LessonHour lessonHour)
+	public LessonPeriodView (int hourIndex, LessonPeriod lessonPeriod)
 	{
-		this.lessonHour = lessonHour;
+		this.lessonPeriod = lessonPeriod;
 		this.hourIndex = hourIndex;
 
 		createHourIndexLabel();
@@ -22,8 +22,8 @@ public class LessonHourView extends AnchorPane
 
 		getChildren().addAll(createHourIndexLabel(), createPeriodLabel());
 
-		getStyleClass().add("lesson-hour-view");
-		getStylesheets().add("/ui/component/LessonHourView.css");
+		getStyleClass().add("lesson-period-view");
+		getStylesheets().add("/ui/component/LessonPeriodView.css");
 	}
 
 	private Label createHourIndexLabel ()
@@ -40,7 +40,7 @@ public class LessonHourView extends AnchorPane
 
 	private Label createPeriodLabel ()
 	{
-		Label periodLabel = new Label(lessonHour.toString());
+		Label periodLabel = new Label(lessonPeriod.toString());
 		periodLabel.getStyleClass().add("period-label");
 
 		AnchorPane.setBottomAnchor(periodLabel, EDGE_DISTANCE);
@@ -50,8 +50,8 @@ public class LessonHourView extends AnchorPane
 		return periodLabel;
 	}
 
-	public LessonHour getLessonHour ()
+	public LessonPeriod getLessonPeriod ()
 	{
-		return lessonHour;
+		return lessonPeriod;
 	}
 }

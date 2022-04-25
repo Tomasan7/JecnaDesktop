@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public record LessonHour(LocalTime from, LocalTime to)
+public record LessonPeriod(LocalTime from, LocalTime to)
 {
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
 
@@ -16,11 +16,11 @@ public record LessonHour(LocalTime from, LocalTime to)
 	}
 
 	/**
-	 * Parses {@link LessonHour} from {@link String}. <b>The {@link String} must be in a "HH:mm - HH:mm" format.</b>
+	 * Parses {@link LessonPeriod} from {@link String}. <b>The {@link String} must be in a "HH:mm - HH:mm" format.</b>
 	 * @param string The {@link String} to parse from.
-	 * @return The {@link LessonHour}.
+	 * @return The {@link LessonPeriod}.
 	 */
-	public static LessonHour fromString (@NotNull String string)
+	public static LessonPeriod fromString (@NotNull String string)
 	{
 		LocalTime from = null;
 		LocalTime to = null;
@@ -37,6 +37,6 @@ public record LessonHour(LocalTime from, LocalTime to)
 			throw new IllegalArgumentException("Provided string wasn't in correct format. Expected format \"HH:mm - HH:mm\", got \"" + string + "\".");
 		}
 
-		return new LessonHour(from, to);
+		return new LessonPeriod(from, to);
 	}
 }

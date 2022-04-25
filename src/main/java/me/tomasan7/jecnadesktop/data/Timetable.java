@@ -8,12 +8,12 @@ import java.util.*;
 public class Timetable
 {
 	private final NavigableMap<String, List<LessonSpot>> timetable;
-	private final List<LessonHour> lessonHours;
+	private final List<LessonPeriod> lessonPeriods;
 
-	private Timetable (NavigableMap<String, List<LessonSpot>> timetable, List<LessonHour> lessonHours)
+	private Timetable (NavigableMap<String, List<LessonSpot>> timetable, List<LessonPeriod> lessonPeriods)
 	{
 		this.timetable = timetable;
-		this.lessonHours = lessonHours;
+		this.lessonPeriods = lessonPeriods;
 	}
 
 	/**
@@ -25,11 +25,11 @@ public class Timetable
 	}
 
 	/**
-	 * @return All {@link LessonHour LessonHours} in the {@link Timetable}.
+	 * @return All {@link LessonPeriod LessonPeriods} in the {@link Timetable}.
 	 */
-	public List<LessonHour> getLessonHours ()
+	public List<LessonPeriod> getLessonPeriods ()
 	{
-		return new ArrayList<>(lessonHours);
+		return new ArrayList<>(lessonPeriods);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Timetable
 	{
 		return "Timetable{" +
 			   "timetable=" + timetable +
-			   ", lessonHours=" + lessonHours +
+			   ", lessonHours=" + lessonPeriods +
 			   '}';
 	}
 
@@ -61,42 +61,42 @@ public class Timetable
 	public static class Builder
 	{
 		private final NavigableMap<String, List<LessonSpot>> timetable = new TreeMap<>(new DayComparator());
-		private List<LessonHour> lessonHours = new ArrayList<>();
+		private List<LessonPeriod> lessonPeriods = new ArrayList<>();
 
 		/**
-		 * Sets all the {@link LessonHour LessonHours}.
+		 * Sets all the {@link LessonPeriod LessonPeriods}.
 		 *
-		 * @param lessonHours The {@link LessonHour LessonHours} to use.
+		 * @param lessonPeriods The {@link LessonPeriod LessonPeriods} to use.
 		 * @return This {@link Builder builder's} instance back.
 		 */
-		public Builder lessonHours (@NotNull List<LessonHour> lessonHours)
+		public Builder lessonHours (@NotNull List<LessonPeriod> lessonPeriods)
 		{
-			this.lessonHours = lessonHours;
+			this.lessonPeriods = lessonPeriods;
 			return this;
 		}
 
 		/**
-		 * Sets a {@link LessonHour} to a specified hour index.
+		 * Sets a {@link LessonPeriod} to a specified hour index.
 		 *
-		 * @param hour       The hour index to set the {@link LessonHour} to.
-		 * @param lessonHour The {@link LessonHour} to set.
+		 * @param hour       The hour index to set the {@link LessonPeriod} to.
+		 * @param lessonPeriod The {@link LessonPeriod} to set.
 		 * @return This {@link Builder builder's} instance back.
 		 */
-		public Builder setLessonHour (int hour, @NotNull LessonHour lessonHour)
+		public Builder setLessonPeriod (int hour, @NotNull LessonPeriod lessonPeriod)
 		{
-			lessonHours.set(hour, lessonHour);
+			lessonPeriods.set(hour, lessonPeriod);
 			return this;
 		}
 
 		/**
-		 * Adds a {@link LessonHour} to the {@link Timetable}.
+		 * Adds a {@link LessonPeriod} to the {@link Timetable}.
 		 *
-		 * @param lessonHour The {@link LessonHour} to add.
+		 * @param lessonPeriod The {@link LessonPeriod} to add.
 		 * @return This {@link Builder builder's} instance back.
 		 */
-		public Builder addLessonHour (@NotNull LessonHour lessonHour)
+		public Builder addLessonPeriod (@NotNull LessonPeriod lessonPeriod)
 		{
-			lessonHours.add(lessonHour);
+			lessonPeriods.add(lessonPeriod);
 			return this;
 		}
 
@@ -169,8 +169,8 @@ public class Timetable
 		public Timetable build ()
 		{
 			/* TODO: Maybe check if there is equal or more lessonHours than lessons in any day?
-			 * Because that would mean there is a lesson without specified LessonHour. (period) */
-			return new Timetable(timetable, lessonHours);
+			 * Because that would mean there is a lesson without specified LessonPeriod. (period) */
+			return new Timetable(timetable, lessonPeriods);
 		}
 	}
 
