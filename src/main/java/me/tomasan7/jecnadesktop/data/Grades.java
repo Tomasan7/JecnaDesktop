@@ -24,9 +24,8 @@ public class Grades
 	/**
 	 * Returns all grades for the passed subject.
 	 * @param subject The subject to get all grades for.
-	 * @return List of all grades for passed subject or {@code null}, if there are no grades for this subject.
+	 * @return List of all grades for passed subject. Can be empty.
 	 */
-	@Nullable
 	public List<Grade> getGradesForSubject (String subject)
 	{
 		/* Encapsulation. */
