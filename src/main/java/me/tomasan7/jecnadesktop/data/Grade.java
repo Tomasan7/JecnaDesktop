@@ -72,7 +72,7 @@ public record Grade(byte value,
 
 	public static Builder builder (char valueChar, boolean small)
 	{
-		return new Builder(valueCharToValue(valueChar), small);
+		return new Builder(valueChar, small);
 	}
 
 	public static class Builder
