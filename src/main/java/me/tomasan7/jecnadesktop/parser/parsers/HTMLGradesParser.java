@@ -19,13 +19,13 @@ import java.util.regex.Pattern;
 public class HTMLGradesParser implements GradesParser
 {
 	/* Matches everything before last '(' preceded by a space. */
-	private static final Pattern DESCRIPTION_REGEX = Pattern.compile("(.*)(?=( \\((?!\\()))");
+	private static final Pattern DESCRIPTION_REGEX = Pattern.compile(".*(?= \\((?!.*\\())", Pattern.DOTALL);
 
 	/* Matches everything between last '(' and first ',' after it. */
 	private static final Pattern DATE_REGEX = Pattern.compile("(?<=\\((?!.*\\())[^,]*(?=,)", Pattern.DOTALL);
 
-	/* Matches everything between the first ',' after last '(' and ending ')' */
-	private static final Pattern TEACHER_REGEX = Pattern.compile("(?<=(?<!\\((?!.*\\().*,.*)(?<=\\((?!.*\\().*), ).*(?=\\)$)");
+	/* Matches everything between the first ',' followed by a space after last '(' and ending ')' */
+	private static final Pattern TEACHER_REGEX = Pattern.compile("(?<=(?<=\\((?!.*\\()[^,]*), ).*(?=\\)$)", Pattern.DOTALL);
 
 	@Override
 	public Grades parse (String source)
