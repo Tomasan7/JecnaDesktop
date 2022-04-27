@@ -31,6 +31,7 @@ public class JecnaWebClient extends AuthWebClient
 	{
 		HttpClient httpClient = HttpClient.newHttpClient();
 
+		/* The user login request. */
 		HttpRequest request = newRequest("/user/login")
 				.POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", auth.username(), "pass", auth.password())))
 				.header("Content-Type", "application/x-www-form-urlencoded")
@@ -39,16 +40,20 @@ public class JecnaWebClient extends AuthWebClient
 		return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
 						 .thenCompose(response ->
 						 {
+							 /* If the login was successful, web responds with a redirect status code. */
 							 if (response.statusCode() != 302)
 								 throw new RuntimeException("Login credentials are incorrect.");
 
+							 /* The response contains a Set-Cookie header. */
 							 Optional<String> cookieHeaderOpt = response.headers().firstValue("Set-Cookie");
 
 							 if (cookieHeaderOpt.isEmpty())
 								 throw new RuntimeException("Set-Cookie not found.");
 
+							 /* The Set-Cookie header contains the session id for this login. */
 							 session = JecnaSession.fromHeader(cookieHeaderOpt.get());
 
+							 /* This is what the redirect redirects to. */
 							 HttpRequest requestMainPage = newRequest("/")
 									 .GET()
 									 .build();
@@ -59,6 +64,9 @@ public class JecnaWebClient extends AuthWebClient
 						 {
 							 if (exception != null)
 								 return false;
+
+							 /* Checks if the page title is equal to "SPŠE Ječná - Novinky".
+							  * If so, login phase was successful. */
 
 							 Document document = Jsoup.parse(response.body());
 							 String title = document.select("head > title").text();
@@ -85,6 +93,8 @@ public class JecnaWebClient extends AuthWebClient
 
 		try
 		{
+			/* The web requires a User-Agent header, otherwise it responds to the login request with
+			 * 403 - "The page you were looking for is not availible." (yes, it contains the grammar mistake) */
 			HttpRequest.Builder builder = HttpRequest.newBuilder(new URI(uriStr))
 													 .header("User-Agent", "Mozilla/5.0");
 
