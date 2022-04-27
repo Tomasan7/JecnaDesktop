@@ -4,6 +4,7 @@ import me.tomasan7.jecnadesktop.data.Attendance;
 import me.tomasan7.jecnadesktop.data.Attendances;
 import me.tomasan7.jecnadesktop.parser.ParseException;
 import me.tomasan7.jecnadesktop.util.RegexUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -31,6 +32,7 @@ public class HTMLAttendancesParser implements AttendancesParser
 	private static final Pattern TIME_REGEX = Pattern.compile("([0-1]?[0-9]|2[0-3]):[0-5][0-9]");
 
 	@Override
+	@NotNull
 	public Attendances parse (String source)
 	{
 		try

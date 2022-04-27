@@ -1,6 +1,7 @@
 package me.tomasan7.jecnadesktop.data;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -39,7 +40,7 @@ public class LessonSpot implements Iterable<Lesson>
 	/**
 	 * @return Whether there are any duplicate groups in provided {@link Lesson lessons}.
 	 */
-	private boolean findDuplicateGroups (List<Lesson> lessons)
+	private boolean findDuplicateGroups (@NotNull List<Lesson> lessons)
 	{
 		Set<Integer> groups = new HashSet<>();
 
@@ -53,11 +54,20 @@ public class LessonSpot implements Iterable<Lesson>
 	}
 
 	/**
-	 * @return A {@link Lesson} with the specified group.
+	 * @return A {@link Lesson} with the specified group. Or {@code null}, if there's no {@link Lesson} with that group.
 	 */
+	@Nullable
 	public Lesson getLessonByGroup (int group)
 	{
-		return lessons.get(group);
+		Lesson lesson = null;
+
+		try
+		{
+			lesson = lessons.get(group);
+		}
+		catch (ArrayIndexOutOfBoundsException ignored) {}
+
+		return lesson;
 	}
 
 	/**

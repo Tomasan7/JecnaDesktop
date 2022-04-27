@@ -5,6 +5,7 @@ import me.tomasan7.jecnadesktop.data.LessonPeriod;
 import me.tomasan7.jecnadesktop.data.LessonSpot;
 import me.tomasan7.jecnadesktop.data.Timetable;
 import me.tomasan7.jecnadesktop.parser.ParseException;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,6 +20,7 @@ import java.util.List;
 public class HTMLTimetableParser implements TimetableParser
 {
 	@Override
+	@NotNull
 	public Timetable parse (String source)
 	{
 		try

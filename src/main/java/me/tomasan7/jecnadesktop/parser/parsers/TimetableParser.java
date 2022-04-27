@@ -7,5 +7,8 @@ import me.tomasan7.jecnadesktop.data.Timetable;
  */
 public interface TimetableParser
 {
+	/**
+	 * @throws me.tomasan7.jecnadesktop.parser.ParseException When the source isn't in correct format.
+	 */
 	Timetable parse (String source);
 }

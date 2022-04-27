@@ -15,7 +15,7 @@ public class Grades
 	/**
 	 * Constructor used by {@link Attendances.Builder}.
 	 */
-	private Grades (Map<String, List<Grade>> grades)
+	private Grades (@NotNull Map<String, List<Grade>> grades)
 	{
 		/* Encapsulation. */
 		this.grades = new HashMap<>(grades);
@@ -24,6 +24,7 @@ public class Grades
 	/**
 	 * @return List of all {@link Grade grades} for passed subject. Can be empty, if no grades are present for that subject.
 	 */
+	@NotNull
 	public List<Grade> getGradesForSubject (String subject)
 	{
 		/* Encapsulation. */
@@ -33,6 +34,7 @@ public class Grades
 	/**
 	 * @return All subjects.
 	 */
+	@NotNull
 	public Set<String> getSubjects ()
 	{
 		/* Encapsulation. */
@@ -59,6 +61,7 @@ public class Grades
 			grades.computeIfAbsent(subject, __ -> new LinkedList<>()).add(grade);
 		}
 
+		@NotNull
 		public Grades build ()
 		{
 			return new Grades(grades);

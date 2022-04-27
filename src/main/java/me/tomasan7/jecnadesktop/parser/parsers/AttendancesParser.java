@@ -7,5 +7,8 @@ import me.tomasan7.jecnadesktop.data.Attendances;
  */
 public interface AttendancesParser
 {
+	/**
+	 * @throws me.tomasan7.jecnadesktop.parser.ParseException When the source isn't in correct format.
+	 */
 	Attendances parse (String source);
 }

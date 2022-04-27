@@ -4,6 +4,7 @@ import me.tomasan7.jecnadesktop.data.Grade;
 import me.tomasan7.jecnadesktop.data.Grades;
 import me.tomasan7.jecnadesktop.parser.ParseException;
 import me.tomasan7.jecnadesktop.util.RegexUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,6 +30,7 @@ public class HTMLGradesParser implements GradesParser
 	private static final Pattern TEACHER_REGEX = Pattern.compile("(?<=(?<=\\((?!.*\\()[^,]*), ).*(?=\\)$)", Pattern.DOTALL);
 
 	@Override
+	@NotNull
 	public Grades parse (String source)
 	{
 		try

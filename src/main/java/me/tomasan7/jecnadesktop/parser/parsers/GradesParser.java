@@ -7,5 +7,8 @@ import me.tomasan7.jecnadesktop.data.Grades;
  */
 public interface GradesParser
 {
+	/**
+	 * @throws me.tomasan7.jecnadesktop.parser.ParseException When the source isn't in correct format.
+	 */
 	Grades parse (String source);
 }

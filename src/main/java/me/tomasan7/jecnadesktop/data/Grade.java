@@ -1,5 +1,6 @@
 package me.tomasan7.jecnadesktop.data;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDate;
@@ -104,25 +105,29 @@ public record Grade(byte value,
 			return new Grade(value, small, subject, teacher, description, receiveDate);
 		}
 
-		public Builder subject (String subject)
+		@NotNull
+		public Builder subject (@Nullable String subject)
 		{
 			this.subject = subject;
 			return this;
 		}
 
-		public Builder teacher (String teacher)
+		@NotNull
+		public Builder teacher (@Nullable String teacher)
 		{
 			this.teacher = teacher;
 			return this;
 		}
 
-		public Builder description (String description)
+		@NotNull
+		public Builder description (@Nullable String description)
 		{
 			this.description = description;
 			return this;
 		}
 
-		public Builder receiveDate (LocalDate receiveDate)
+		@NotNull
+		public Builder receiveDate (@Nullable LocalDate receiveDate)
 		{
 			this.receiveDate = receiveDate;
 			return this;

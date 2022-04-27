@@ -13,7 +13,7 @@ public class Timetable
 	private final NavigableMap<String, List<LessonSpot>> timetable;
 	private final List<LessonPeriod> lessonPeriods;
 
-	private Timetable (NavigableMap<String, List<LessonSpot>> timetable, List<LessonPeriod> lessonPeriods)
+	private Timetable (@NotNull NavigableMap<String, List<LessonSpot>> timetable, @NotNull List<LessonPeriod> lessonPeriods)
 	{
 		this.timetable = timetable;
 		this.lessonPeriods = lessonPeriods;
@@ -22,6 +22,7 @@ public class Timetable
 	/**
 	 * @return All the days this timetable has {@link Lesson lessons} in.
 	 */
+	@NotNull
 	public List<String> getDays ()
 	{
 		return timetable.navigableKeySet().stream().toList();
@@ -30,6 +31,7 @@ public class Timetable
 	/**
 	 * @return All {@link LessonPeriod LessonPeriods} in the {@link Timetable}.
 	 */
+	@NotNull
 	public List<LessonPeriod> getLessonPeriods ()
 	{
 		return new ArrayList<>(lessonPeriods);
@@ -42,6 +44,7 @@ public class Timetable
 	 * @param day The day to get all {@link Lesson lessons} for.
 	 * @return All {@link LessonSpot lessons} for the provided day.
 	 */
+	@NotNull
 	public List<LessonSpot> getLessonsForDay (String day)
 	{
 		return timetable.getOrDefault(day, new ArrayList<>());
@@ -72,6 +75,7 @@ public class Timetable
 		 * @param lessonPeriods The {@link LessonPeriod LessonPeriods} to use.
 		 * @return This {@link Builder builder's} instance back.
 		 */
+		@NotNull
 		public Builder lessonHours (@NotNull List<LessonPeriod> lessonPeriods)
 		{
 			this.lessonPeriods = lessonPeriods;
@@ -85,6 +89,7 @@ public class Timetable
 		 * @param lessonPeriod The {@link LessonPeriod} to set.
 		 * @return This {@link Builder builder's} instance back.
 		 */
+		@NotNull
 		public Builder setLessonPeriod (int hour, @NotNull LessonPeriod lessonPeriod)
 		{
 			lessonPeriods.set(hour, lessonPeriod);
@@ -97,6 +102,7 @@ public class Timetable
 		 * @param lessonPeriod The {@link LessonPeriod} to add.
 		 * @return This {@link Builder builder's} instance back.
 		 */
+		@NotNull
 		public Builder addLessonPeriod (@NotNull LessonPeriod lessonPeriod)
 		{
 			lessonPeriods.add(lessonPeriod);
@@ -113,6 +119,7 @@ public class Timetable
 		 * @param lessonSpot The {@link LessonSpot} to be set.
 		 * @return This {@link Builder builder's} instance back.
 		 */
+		@NotNull
 		public Builder setLessonSpot (@NotNull String day, int hour, @Nullable LessonSpot lessonSpot)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
@@ -125,6 +132,7 @@ public class Timetable
 		 * @see #setLessonSpot(String, int, LessonSpot)
 		 * @see LessonSpot#LessonSpot(Lesson)
 		 */
+		@NotNull
 		public Builder setLesson (@NotNull String day, int hour, @Nullable Lesson lesson)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
@@ -141,6 +149,7 @@ public class Timetable
 		 * @param lessonSpot The {@link LessonSpot} to add.
 		 * @return This {@link Builder builder's} instance back.
 		 */
+		@NotNull
 		public Builder addLessonSpot (@NotNull String day, @Nullable LessonSpot lessonSpot)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
@@ -153,6 +162,7 @@ public class Timetable
 		 * @see #setLessonSpot(String, int, LessonSpot)
 		 * @see LessonSpot#LessonSpot(Lesson)
 		 */
+		@NotNull
 		public Builder addLesson (@NotNull String day, @Nullable Lesson lesson)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the lesson is added to that list. */
@@ -160,6 +170,7 @@ public class Timetable
 			return this;
 		}
 
+		@NotNull
 		public Timetable build ()
 		{
 			/* TODO: Maybe check if there is equal or more lessonPeriods than lessons in any day?

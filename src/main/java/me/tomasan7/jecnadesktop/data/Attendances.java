@@ -1,5 +1,7 @@
 package me.tomasan7.jecnadesktop.data;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -10,7 +12,7 @@ public class Attendances
 {
 	private final Map<LocalDate, List<Attendance>> attendances;
 
-	private Attendances (Map<LocalDate, List<Attendance>> attendances)
+	private Attendances (@NotNull Map<LocalDate, @NotNull List<Attendance>> attendances)
 	{
 		/* Encapsulation. */
 		this.attendances = new HashMap<>(attendances);
@@ -23,7 +25,8 @@ public class Attendances
 	 * @param attendanceList The {@link Attendance} {@link List} to represent.
 	 * @return The {@link String} representation.
 	 */
-	public static String attendanceListAsString (List<Attendance> attendanceList)
+	@NotNull
+	public static String attendanceListAsString (@NotNull List<Attendance> attendanceList)
 	{
 		return String.join(", ", attendanceList.stream().map(Attendance::toString).toList());
 	}
@@ -31,7 +34,8 @@ public class Attendances
 	/**
 	 * @return All {@link Attendance attendances} for the provided day.
 	 */
-	public List<Attendance> getAttendancesForDay (LocalDate day)
+	@NotNull
+	public List<Attendance> getAttendancesForDay (@NotNull LocalDate day)
 	{
 		/* Return an empty list when no data for the passed day is present. */
 		if (!attendances.containsKey(day))
@@ -44,6 +48,7 @@ public class Attendances
 	/**
 	 * @return All days, this {@link Attendances} has data for.
 	 */
+	@NotNull
 	public Set<LocalDate> getDays ()
 	{
 		/* Encapsulation */
@@ -65,13 +70,15 @@ public class Attendances
 		 * @param day        The day to add this attendance to.
 		 * @param attendance The {@link Attendance} to add.
 		 */
-		public Builder addAttendance (LocalDate day, Attendance attendance)
+		@NotNull
+		public Builder addAttendance (@NotNull LocalDate day, @NotNull Attendance attendance)
 		{
 			/* Gets the list for the day, if none is present, creates a new list and puts it into the map. Then the attendance is added to that list. */
 			this.attendances.computeIfAbsent(day, __ -> new LinkedList<>()).add(attendance);
 			return this;
 		}
 
+		@NotNull
 		public Attendances build ()
 		{
 			return new Attendances(attendances);
