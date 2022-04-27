@@ -7,6 +7,9 @@ import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Retrieves {@link Attendances} from the Ječná web.
+ */
 public class WebAttendancesRepository implements AttendancesRepository
 {
 	private static final String WEB_PATH = "/absence/passing-student";

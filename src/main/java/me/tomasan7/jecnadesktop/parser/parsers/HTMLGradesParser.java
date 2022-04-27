@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 /**
+ * Parses correct HTML to {@link Grades} instance.
  * <b>Beware: The grade's subject is taken from the table's row name, not from the grade's page!</b>
  */
 public class HTMLGradesParser implements GradesParser

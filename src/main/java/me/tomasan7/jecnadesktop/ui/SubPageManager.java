@@ -1,6 +1,7 @@
 package me.tomasan7.jecnadesktop.ui;
 
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
@@ -10,6 +11,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Is responsible for swapping {@link SubPage SubPages} in a sub-page container ({@link Pane}).
+ * Lazily loads the {@link SubPage SubPages}.
+ * Caches all loaded {@link SubPage SubPages}, so when you switch to that sub-page again, it keeps it's state, since it's the same instance.
+ */
 public class SubPageManager
 {
 	/** The MainPage SubPage pane. */

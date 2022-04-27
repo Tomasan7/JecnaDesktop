@@ -20,6 +20,10 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Contains all sub-pages and their content.
+ * Each {@link SubPage} implements {@link #create(JecnaDesktop)} method, which builds the page.
+ */
 public enum SubPage
 {
 	ATTENDANCES

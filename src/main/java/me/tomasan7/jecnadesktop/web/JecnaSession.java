@@ -3,6 +3,9 @@ package me.tomasan7.jecnadesktop.web;
 import java.util.Arrays;
 import java.util.Optional;
 
+/**
+ * Holds the Ječná's web session key.
+ */
 public class JecnaSession extends Session
 {
 	private static final String COOKIE_KEY = "JSESSIONID";

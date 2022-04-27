@@ -16,6 +16,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.regex.Pattern;
 
+/**
+ * Parses correct HTML to {@link Attendances} instance.
+ */
 public class HTMLAttendancesParser implements AttendancesParser
 {
 	/* Matches a date in 'dd.MM.' format. (for speed and simplicity, it also matches non-existing dates) */

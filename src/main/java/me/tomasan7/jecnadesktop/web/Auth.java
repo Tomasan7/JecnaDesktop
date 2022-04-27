@@ -4,6 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Simply holds a username and password pair.
+ * Defines {@link #encrypt()} and {@link #decrypt(byte[])} methods.
+ */
 public record Auth(@NotNull String username, @NotNull String password)
 {
 	/**

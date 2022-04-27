@@ -13,6 +13,9 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses correct HTML to {@link Timetable} instance.
+ */
 public class HTMLTimetableParser implements TimetableParser
 {
 	@Override

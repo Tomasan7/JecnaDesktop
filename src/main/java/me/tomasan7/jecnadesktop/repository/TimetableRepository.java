@@ -4,6 +4,9 @@ import me.tomasan7.jecnadesktop.data.Timetable;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Retrieves {@link Timetable} from any kind of data source.
+ */
 public interface TimetableRepository
 {
 	Timetable queryTimetable ();

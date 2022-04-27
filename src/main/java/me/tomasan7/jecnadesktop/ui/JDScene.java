@@ -10,6 +10,9 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.util.function.Function;
 
+/**
+ * Contains location to fxml page and controller for all scenes (pages) in the program.
+ */
 public enum JDScene
 {
 	LOGIN("/ui/scene/LoginPage.fxml", LoginPageController::new),

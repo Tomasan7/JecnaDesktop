@@ -9,6 +9,9 @@ import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
+/**
+ * Main class of the application.
+ */
 public class JecnaDesktop extends Application
 {
 	private Stage primaryStage;

@@ -7,6 +7,11 @@ import me.tomasan7.jecnadesktop.JecnaDesktop;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Is responsible for swapping {@link JDScene scenes} in a {@link javafx.stage.Stage}.
+ * Lazily loads the {@link Scene scenes}.
+ * Caches all loaded {@link Scene scenes}, so when you switch to that scene again, it keeps it's state, since it's the same instance.
+ */
 public class SceneManager
 {
 	private final JecnaDesktop jecnaDesktop;

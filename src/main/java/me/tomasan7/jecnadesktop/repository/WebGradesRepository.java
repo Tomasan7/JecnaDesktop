@@ -7,6 +7,9 @@ import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Retrieves {@link Grades} from the Ječná web.
+ */
 public class WebGradesRepository implements GradesRepository
 {
 	private static final String WEB_PATH = "/score/student";

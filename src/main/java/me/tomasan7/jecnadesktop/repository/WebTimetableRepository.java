@@ -7,6 +7,9 @@ import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Retrieves {@link Timetable} from the Ječná web.
+ */
 public class WebTimetableRepository implements TimetableRepository
 {
 	private static final String WEB_PATH = "/timetable/class";
