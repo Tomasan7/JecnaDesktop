@@ -14,7 +14,7 @@ import me.tomasan7.jecnadesktop.web.JecnaWebClient;
  */
 public class JecnaDesktop extends Application
 {
-	private Stage primaryStage;
+	private Stage primaryStage = null;
 	private JecnaWebClient jecnaWebClient = null;
 	private GradesRepository gradesRepository = null;
 	private AttendancesRepository attendancesRepository = null;
