@@ -15,7 +15,6 @@ import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Supplier;
 
 public class LoginPageController implements Initializable
 {
@@ -39,6 +38,7 @@ public class LoginPageController implements Initializable
 		if (AuthStore.isSaved())
 		{
 			Auth auth = AuthStore.load();
+
 			if (auth != null)
 			{
 				JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
@@ -59,61 +59,65 @@ public class LoginPageController implements Initializable
 				AuthStore.delete();
 		}
 
-		/* Whether the user can hit login or not. User can log in, when neither field is blank. */
-		Supplier<Boolean> canlogin = () ->
-		{
-			/* If neither is blank. */
-			if (!passwordInput.textProperty().get().isBlank() && !userInput.textProperty().get().isBlank())
-				return true;
-			else /* Both are blank. */
-				return false;
-		};
-
 		/* Disables/enables the login button based on whether both the fields are filled or not.  */
-		ChangeListener<String> changeListener = (__, ___, ____) -> loginBtn.setDisable(!canlogin.get());
+		ChangeListener<String> changeListener = (__, ___, ____) -> loginBtn.setDisable(!canLogin());
 
 		passwordInput.textProperty().addListener(changeListener);
 		userInput.textProperty().addListener(changeListener);
 
-		/* Run when you either press the login button or hit enter while the password field is focused. */
-		Runnable onLogin = () ->
+		passwordInput.setOnAction(event -> {if (canLogin()) onLogin();});
+		loginBtn.setOnMouseClicked(event -> {if (canLogin()) onLogin();});
+	}
+
+	/**
+	 * @return Whether the user can hit login or not. User can log in, when neither field is blank.
+	 */
+	private boolean canLogin ()
+	{
+		/* If neither is blank. */
+		if (!passwordInput.getText().isBlank() && !userInput.getText().isBlank())
+			return true;
+		else /* Both are blank. */
+			return false;
+	}
+
+	/**
+	 * Run when you either press the login button or hit enter while the password field is focused.
+	 */
+	private void onLogin ()
+	{
+		Auth auth = null;
+
+		try
 		{
-			Auth auth = null;
+			auth = new Auth(userInput.getText(), passwordInput.getText());
+		}
+		catch (IllegalArgumentException e)
+		{
+			clearFields();
+			return;
+		}
 
-			try
-			{
-				auth = new Auth(userInput.getText(), passwordInput.getText());
-			}
-			catch (IllegalArgumentException e)
-			{
-				clearFields();
-				return;
-			}
+		jecnaDesktop.getSceneManager().switchToScene(JDScene.LOADING);
 
-			jecnaDesktop.getSceneManager().switchToScene(JDScene.LOADING);
+		JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
 
-			JecnaWebClient jecnaWebClient = new JecnaWebClient(auth);
+		Auth finalAuth = auth;
+		jecnaWebClient.login().thenAccept(successful ->
+		{
+			  if (successful)
+			  {
+				  if (!AuthStore.isSaved())
+					  AuthStore.save(finalAuth);
 
-			Auth finalAuth = auth;
-			jecnaWebClient.login().thenAccept(successful ->
-			{
-				if (successful)
-				{
-					if (!AuthStore.isSaved())
-						AuthStore.save(finalAuth);
-
-					continueToMain(jecnaWebClient);
-				}
-				else
-				{
-					Platform.runLater(() -> jecnaDesktop.getSceneManager().switchToScene(JDScene.LOGIN));
-					clearFields();
-				}
-			});
-		};
-
-		passwordInput.setOnAction(event -> {if (canlogin.get()) onLogin.run();});
-		loginBtn.setOnMouseClicked(event -> {if (canlogin.get()) onLogin.run();});
+				  continueToMain(jecnaWebClient);
+			  }
+			  else
+			  {
+				  Platform.runLater(() -> jecnaDesktop.getSceneManager().switchToScene(JDScene.LOGIN));
+				  clearFields();
+			  }
+		});
 	}
 
 	private void clearFields ()
@@ -127,15 +131,8 @@ public class LoginPageController implements Initializable
 		jecnaDesktop.initDataAccess(jecnaWebClient);
 
 		if (!Platform.isFxApplicationThread())
-		{
-			Platform.runLater(() ->
-			{
-				jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN);
-			});
-		}
+			Platform.runLater(() -> jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN));
 		else
-		{
 			jecnaDesktop.getSceneManager().switchToScene(JDScene.MAIN);
-		}
 	}
 }
