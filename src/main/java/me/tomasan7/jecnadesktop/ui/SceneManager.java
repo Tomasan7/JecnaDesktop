@@ -1,6 +1,5 @@
 package me.tomasan7.jecnadesktop.ui;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 
@@ -15,10 +14,7 @@ import java.util.Map;
 public class SceneManager
 {
 	private final JecnaDesktop jecnaDesktop;
-	/**
-	 * Cached {@link Scene Scenes} for {@link JDScene JDScenes}.
-	 */
-	private final Map<JDScene, Scene> scenes = new HashMap<>();
+	private final Map<JDScene, Page> pages = new HashMap<>();
 
 	public SceneManager (JecnaDesktop jecnaDesktop)
 	{
@@ -27,29 +23,16 @@ public class SceneManager
 
 	public void switchToScene (JDScene jdScene)
 	{
-		jecnaDesktop.getPrimaryStage().setScene(getScene(jdScene));
+		jecnaDesktop.getPrimaryStage().setScene(new Scene(pages.get(jdScene).getContent()));
 	}
 
-	/**
-	 * Lazily gets {@link Scene} for {@link JDScene}.
-	 * @param jdScene The {@link JDScene} to get {@link Scene} for.
-	 * @return The appropriate {@link Scene}.
-	 * @see #scenes
-	 */
-	public Scene getScene (JDScene jdScene)
+	public void addScene (JDScene jdScene, Page page)
 	{
-		/* Check if whether the scene is already instantiated (cached) and serve it if so. */
-		if (scenes.containsKey(jdScene))
-			return scenes.get(jdScene);
+		pages.put(jdScene, page);
+	}
 
-		/* Instantiate and cache the scene. */
-
-		Parent pageRoot = jdScene.loadPageRoot(jecnaDesktop);
-		Scene scene = new Scene(pageRoot);
-
-		/* Cache the Scene. */
-		scenes.put(jdScene, scene);
-
-		return scene;
+	public void removeScene (JDScene jdScene)
+	{
+		pages.remove(jdScene);
 	}
 }

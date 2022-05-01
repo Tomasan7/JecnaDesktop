@@ -9,6 +9,9 @@ import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.SubPage;
 import me.tomasan7.jecnadesktop.ui.SubPageManager;
 import me.tomasan7.jecnadesktop.ui.component.SideBarElement;
+import me.tomasan7.jecnadesktop.ui.subpage.AttendancesSubPage;
+import me.tomasan7.jecnadesktop.ui.subpage.GradesSubPage;
+import me.tomasan7.jecnadesktop.ui.subpage.TimetableSubPage;
 
 import java.net.URL;
 import java.util.List;
@@ -36,6 +39,11 @@ public class MainPageController implements Initializable
 	public void initialize (URL location, ResourceBundle resources)
 	{
 		subPageManager = new SubPageManager(jecnaDesktop, subPageContainer);
+
+		subPageManager.addSubPage(SubPage.GRADES, new GradesSubPage(jecnaDesktop));
+		subPageManager.addSubPage(SubPage.ATTENDANCES, new AttendancesSubPage(jecnaDesktop));
+		subPageManager.addSubPage(SubPage.TIMETABLE, new TimetableSubPage(jecnaDesktop));
+
 		initSideBarElements();
 	}
 
