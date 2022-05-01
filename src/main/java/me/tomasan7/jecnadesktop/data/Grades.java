@@ -41,6 +41,17 @@ public class Grades
 		return new HashSet<>(grades.keySet());
 	}
 
+	/**
+	 * @return This {@link Grades} as a {@link Map}.
+	 * Key = subject, value = list of {@link Grade grades}.
+	 */
+	@NotNull
+	public Map<String, List<Grade>> asMap ()
+	{
+		/* Encapsulation. */
+		return new HashMap<>(grades);
+	}
+
 	public static Builder builder ()
 	{
 		return new Builder();
