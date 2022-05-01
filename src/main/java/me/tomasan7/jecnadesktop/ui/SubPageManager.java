@@ -1,7 +1,6 @@
 package me.tomasan7.jecnadesktop.ui;
 
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
@@ -12,9 +11,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Is responsible for swapping {@link SubPage SubPages} in a sub-page container ({@link Pane}).
- * Lazily loads the {@link SubPage SubPages}.
- * Caches all loaded {@link SubPage SubPages}, so when you switch to that sub-page again, it keeps it's state, since it's the same instance.
+ * Is responsible for swapping {@link Page SubPages} in a sub-page container ({@link Pane}).
+ * Eagerly loads all {@link CachedPage ChachedPages}.
  */
 public class SubPageManager
 {
@@ -23,11 +21,11 @@ public class SubPageManager
 
 	private final JecnaDesktop jecnaDesktop;
 	/**
-	 * Cached {@link Parent Parents} for {@link SubPage subpages}.
+	 * Cached {@link Parent Parents} for {@link Page subpages}.
 	 */
-	private final Map<SubPage, Parent> pages = new HashMap<>();
+	private final Map<SubPage, Page> pages = new HashMap<>();
 
-	/** The currently active (viewed) {@link SubPage subpage} */
+	/** The currently active (viewed) {@link Page subpage} */
 	private SubPage currentPage;
 
 	private final Set<SubPageSwitchListener> subPageSwitchListeners = new HashSet<>();
@@ -41,7 +39,7 @@ public class SubPageManager
 	public void switchToPage (SubPage subPage)
 	{
 		subPageContainer.getChildren().clear();
-		Parent subPageParent = getSubPage(subPage);
+		Parent subPageParent = pages.get(subPage).getContent();
 		subPageContainer.getChildren().add(subPageParent);
 
 		AnchorPane.setLeftAnchor(subPageParent, 0d);
@@ -57,25 +55,26 @@ public class SubPageManager
 	}
 
 	/**
-	 * Lazily gets {@link Parent subpage parent} for {@link SubPage}.
-	 * @param subPage The {@link SubPage} to get {@link Parent} for.
-	 * @return The appropriate {@link Parent}.
-	 * @see #pages
+	 * Adds a {@link Page} to be handled by the {@link SubPageManager}.
+	 * @param subPage The {@link SubPage} enum value.
+	 * @param page The {@link Page} to be viewed.
 	 */
-	private Parent getSubPage (SubPage subPage)
+	public void addSubPage (SubPage subPage, Page page)
 	{
-		/* Check if whether the scene is already instantiated (cached) and serve it if so. */
-		if (pages.containsKey(subPage))
-			return pages.get(subPage);
+		/* This is to eagerly load and cache all cached pages. */
+		if (page instanceof CachedPage cachedPage)
+			cachedPage.getContent();
 
-		/* Instantiate and cache the parent. */
+		pages.put(subPage, page);
+	}
 
-		Parent subPageRoot = subPage.create(jecnaDesktop);
-
-		/* Cache the Parent. */
-		pages.put(subPage, subPageRoot);
-
-		return subPageRoot;
+	/**
+	 * Removes a {@link Page} to be handled by the {@link SubPageManager}.
+	 * @param subPage The {@link SubPage} enum value.
+	 */
+	public void removeSubPage (SubPage subPage)
+	{
+		pages.remove(subPage);
 	}
 
 	public void registerSubPageSwitchListener (SubPageSwitchListener listener)
@@ -89,7 +88,7 @@ public class SubPageManager
 	}
 
 	/**
-	 * @return The currently active (viewed) {@link SubPage subpage}
+	 * @return The currently active (viewed) {@link Page subpage}.
 	 */
 	public SubPage getCurrentPage ()
 	{
