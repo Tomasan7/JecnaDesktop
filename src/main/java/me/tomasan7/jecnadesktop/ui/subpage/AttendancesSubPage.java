@@ -29,11 +29,12 @@ public class AttendancesSubPage extends CachedPage
 	@Override
 	protected Parent createContent ()
 	{
-		MFXTableView table = new MFXTableView();
+		MFXTableView<AttendancesRow> table = new MFXTableView<>();
 
 		table.getStylesheets().add("/ui/subpage/Attendances.css");
 
 		MFXTableColumn<AttendancesRow> dayColumn = new MFXTableColumn<>("Den", true, Comparator.comparing(AttendancesRow::day));
+		/* TODO: Change the sorting to not be based on amount of passes, but on something more useful. */
 		MFXTableColumn<AttendancesRow> attendancesColumn = new MFXTableColumn<>("Příchody a odchody", true, Comparator.comparingInt(row -> row.attendances.size()));
 
 		attendancesColumn.setPrefWidth(200);
@@ -43,25 +44,23 @@ public class AttendancesSubPage extends CachedPage
 
 		table.getTableColumns().setAll(dayColumn, attendancesColumn);
 
-		/* TODO: This is wrong, this place shouldn't be responsible for making any data queries.
-		 * This method (#create()) should only compose provided data into JavaFX component.
-		 * Will be redesigned. */
-
 		jecnaDesktop.getAttendancesRepository().queryAttendancesAsync().thenAccept(attendances ->
-				Platform.runLater(() ->
-				{
-					ObservableList<AttendancesRow> rows = FXCollections.observableArrayList();
-
-					for (LocalDate day : attendances.getDays())
-						rows.add(new AttendancesRow(day, attendances.getAttendancesForDay(day)));
-
-					table.setItems(rows);
-				}));
+				Platform.runLater(() -> table.setItems(toRowList(attendances))));
 
 		/* By default, MFX renders a footer with filter buttons. We don't want that. */
 		table.footerVisibleProperty().setValue(false);
 
 		return table;
+	}
+
+	private ObservableList<AttendancesRow> toRowList (Attendances attendances)
+	{
+		ObservableList<AttendancesRow> rows = FXCollections.observableArrayList();
+
+		for (LocalDate day : attendances.getDays())
+			rows.add(new AttendancesRow(day, attendances.getAttendancesForDay(day)));
+
+		return rows;
 	}
 
 	private record AttendancesRow(LocalDate day, List<Attendance> attendances) {}
