@@ -24,6 +24,14 @@ public abstract class CachedPage implements Page
 	}
 
 	/**
+	 * Replaces the cached page with the new one returned from {@link #createContent()}.
+	 */
+	public void refresh ()
+	{
+		parent = createContent();
+	}
+
+	/**
 	 * Gets called everytime {@link #getContent()} gets called.
 	 * Indicates, that someone received the first or the cached content.
 	 * Made to be overridden.
