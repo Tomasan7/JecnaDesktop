@@ -73,7 +73,7 @@ public class HTMLAttendancesParser implements AttendancesParser
 		}
 		catch (Exception e)
 		{
-			throw new ParseException();
+			throw new ParseException(e);
 		}
 	}
 
