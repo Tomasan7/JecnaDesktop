@@ -73,7 +73,7 @@ public class HTMLGradesParser implements GradesParser
 		}
 		catch (Exception e)
 		{
-			throw new ParseException();
+			throw new ParseException(e);
 		}
 	}
 }
