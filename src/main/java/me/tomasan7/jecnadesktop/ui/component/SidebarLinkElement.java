@@ -2,8 +2,6 @@ package me.tomasan7.jecnadesktop.ui.component;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.awt.*;
@@ -19,7 +17,7 @@ public class SidebarLinkElement extends SidebarElement
 
 	public SidebarLinkElement ()
 	{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/component/SideBarLinkElement.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/component/SidebarLinkElement.fxml"));
 
 		try
 		{
