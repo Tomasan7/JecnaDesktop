@@ -8,7 +8,8 @@ import javafx.scene.layout.VBox;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.ui.SubPage;
 import me.tomasan7.jecnadesktop.ui.SubPageManager;
-import me.tomasan7.jecnadesktop.ui.component.SideBarElement;
+import me.tomasan7.jecnadesktop.ui.component.SidebarElement;
+import me.tomasan7.jecnadesktop.ui.component.SidebarPageElement;
 import me.tomasan7.jecnadesktop.ui.subpage.AttendancesSubPage;
 import me.tomasan7.jecnadesktop.ui.subpage.GradesSubPage;
 import me.tomasan7.jecnadesktop.ui.subpage.TimetableSubPage;
@@ -50,22 +51,22 @@ public class MainPageController implements Initializable
 	private void initSideBarElements ()
 	{
 		/* Get the SideBarElements from the sidebar. */
-		List<SideBarElement> sideBarElements = sidebar.getChildrenUnmodifiable().stream()
-													  .filter(child -> child instanceof SideBarElement)
-													  .map(child -> (SideBarElement) child)
+		List<SidebarPageElement> sidebarElements = sidebar.getChildrenUnmodifiable().stream()
+													  .filter(child -> child instanceof SidebarPageElement)
+													  .map(child -> (SidebarPageElement) child)
 													  .toList();
 
-		sideBarElements.forEach(sideBarElement ->
-				sideBarElement.setOnMouseClicked(__ ->
+		sidebarElements.forEach(sidebarPageElement ->
+				sidebarPageElement.setOnMouseClicked(__ ->
 				{
 					/* Switch to SideBarElement's subpage. */
-					subPageManager.switchToPage(sideBarElement.getSubPage());
+					subPageManager.switchToPage(sidebarPageElement.getSubPage());
 				}));
 
 		subPageManager.registerSubPageSwitchListener(((oldSubPage, newSubPage) ->
 		{
 			/* Edit the modified value of each SideBarElement based on whether it's subpage is the current active one or not. */
-			sideBarElements.forEach(sbe ->
+			sidebarElements.forEach(sbe ->
 					sbe.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"),
 							sbe.getSubPage() == newSubPage));
 		}));
