@@ -6,6 +6,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import me.tomasan7.jecnadesktop.ui.component.SidebarPageElement?>
+<?import me.tomasan7.jecnadesktop.ui.component.SidebarLinkElement?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
     <left>
@@ -15,6 +16,10 @@
             <SidebarPageElement subPage="attendances" icon="@../icon/attendance-icon.png" label="Příchody a odchody" />
             <Separator />
             <SidebarPageElement subPage="timetable" icon="@../icon/timetable-icon.png" label="Rozvrh" />
+            <Separator />
+            <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@../icon/timetable-icon.png" label="Mimořádný rozvrh" />
+            <Separator />
+            <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@../icon/canteen-icon.png" label="Jídelna" />
         </VBox>
     </left>
     <center>
