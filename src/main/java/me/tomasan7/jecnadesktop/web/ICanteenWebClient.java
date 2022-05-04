@@ -19,6 +19,11 @@ public class ICanteenWebClient extends AuthWebClient
 		super(auth);
 	}
 
+	public ICanteenWebClient (@NotNull String username, @NotNull String password)
+	{
+		super(username, password);
+	}
+
 	@Override
 	@NotNull
 	public CompletableFuture<Boolean> login ()
