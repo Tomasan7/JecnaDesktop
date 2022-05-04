@@ -50,7 +50,7 @@ public class MainPageController implements Initializable
 
 	private void initSideBarElements ()
 	{
-		/* Get the SideBarElements from the sidebar. */
+		/* Get the SidebarElements from the sidebar. */
 		List<SidebarPageElement> sidebarElements = sidebar.getChildrenUnmodifiable().stream()
 													  .filter(child -> child instanceof SidebarPageElement)
 													  .map(child -> (SidebarPageElement) child)
@@ -59,13 +59,13 @@ public class MainPageController implements Initializable
 		sidebarElements.forEach(sidebarPageElement ->
 				sidebarPageElement.setOnMouseClicked(__ ->
 				{
-					/* Switch to SideBarElement's subpage. */
+					/* Switch to SidebarElement's subpage. */
 					subPageManager.switchToPage(sidebarPageElement.getSubPage());
 				}));
 
 		subPageManager.registerSubPageSwitchListener(((oldSubPage, newSubPage) ->
 		{
-			/* Edit the modified value of each SideBarElement based on whether it's subpage is the current active one or not. */
+			/* Edit the modified value of each SidebarElement based on whether it's subpage is the current active one or not. */
 			sidebarElements.forEach(sbe ->
 					sbe.pseudoClassStateChanged(PseudoClass.getPseudoClass("selected"),
 							sbe.getSubPage() == newSubPage));
