@@ -2,7 +2,7 @@ package me.tomasan7.jecnadesktop.ui;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import me.tomasan7.jecnadesktop.JecnaDesktop;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,13 +14,13 @@ import java.util.Map;
  */
 public class SceneManager
 {
-	private final JecnaDesktop jecnaDesktop;
+	private final Stage stage;
 	private final Map<JDScene, Page> pages = new HashMap<>();
 	private final Map<JDScene, Scene> scenes = new HashMap<>();
 
-	public SceneManager (JecnaDesktop jecnaDesktop)
+	public SceneManager (Stage stage)
 	{
-		this.jecnaDesktop = jecnaDesktop;
+		this.stage = stage;
 	}
 
 	public void switchToScene (JDScene jdScene)
@@ -37,7 +37,7 @@ public class SceneManager
 		else
 			scene.setRoot(content);
 
-		jecnaDesktop.getPrimaryStage().setScene(scene);
+		stage.setScene(scene);
 	}
 
 	public void addScene (JDScene jdScene, Page page)

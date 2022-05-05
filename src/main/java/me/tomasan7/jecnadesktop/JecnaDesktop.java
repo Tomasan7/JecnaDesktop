@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import me.tomasan7.jecnadesktop.repository.*;
-import me.tomasan7.jecnadesktop.ui.FXMLPage;
 import me.tomasan7.jecnadesktop.ui.JDScene;
 import me.tomasan7.jecnadesktop.ui.SceneManager;
 import me.tomasan7.jecnadesktop.ui.scene.LoadingScene;
@@ -23,13 +22,7 @@ public class JecnaDesktop extends Application
 	private GradesRepository gradesRepository = null;
 	private AttendancesRepository attendancesRepository = null;
 	private TimetableRepository timetableRepository = null;
-	private final SceneManager sceneManager = new SceneManager(this);
-
-	{
-		sceneManager.addScene(JDScene.LOGIN, new LoginScene(this));
-		sceneManager.addScene(JDScene.LOADING, new LoadingScene(this));
-		sceneManager.addScene(JDScene.MAIN, new MainScene(this));
-	}
+	private SceneManager sceneManager = null;
 
 	@Override
 	public void start (Stage primaryStage)
@@ -41,9 +34,18 @@ public class JecnaDesktop extends Application
 		/* For some reason the process doesn't exit by itself, so I kill it when the stage is closed. */
 		primaryStage.setOnCloseRequest(__ -> {Platform.exit(); System.exit(0);});
 
+		sceneManager = new SceneManager(primaryStage);
+		registerPages();
 		sceneManager.switchToScene(JDScene.LOGIN);
 
 		primaryStage.show();
+	}
+
+	private void registerPages ()
+	{
+		sceneManager.addScene(JDScene.LOGIN, new LoginScene(this));
+		sceneManager.addScene(JDScene.LOADING, new LoadingScene(this));
+		sceneManager.addScene(JDScene.MAIN, new MainScene(this));
 	}
 
 	public Stage getPrimaryStage ()
