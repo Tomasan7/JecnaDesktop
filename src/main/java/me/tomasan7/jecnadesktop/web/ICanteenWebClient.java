@@ -67,7 +67,7 @@ public class ICanteenWebClient extends AuthWebClient
 	@NotNull
 	public CompletableFuture<String> query (String path)
 	{
-		return HttpClient.newHttpClient().sendAsync(newRequest(path).GET().build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
+		return httpClient.sendAsync(newRequest(path).GET().build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
 	}
 
 
