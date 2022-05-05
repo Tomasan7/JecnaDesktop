@@ -9,6 +9,7 @@ import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.LessonPeriod;
 import me.tomasan7.jecnadesktop.data.LessonSpot;
 import me.tomasan7.jecnadesktop.data.Timetable;
+import me.tomasan7.jecnadesktop.repository.TimetableRepository;
 import me.tomasan7.jecnadesktop.ui.CachedPage;
 import me.tomasan7.jecnadesktop.ui.component.LessonPeriodView;
 import me.tomasan7.jecnadesktop.ui.component.LessonSpotView;
@@ -17,11 +18,11 @@ import java.util.List;
 
 public class TimetableSubPage extends CachedPage
 {
-	private final JecnaDesktop jecnaDesktop;
+	private final TimetableRepository timetableRepository;
 
-	public TimetableSubPage (JecnaDesktop jecnaDesktop)
+	public TimetableSubPage (TimetableRepository timetableRepository)
 	{
-		this.jecnaDesktop = jecnaDesktop;
+		this.timetableRepository = timetableRepository;
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class TimetableSubPage extends CachedPage
 	{
 		GridPane grid = createGrid();
 
-		jecnaDesktop.getTimetableRepository().queryTimetableAsync().thenAccept(timetable -> Platform.runLater(() -> populateData(timetable, grid)));
+		timetableRepository.queryTimetableAsync().thenAccept(timetable -> Platform.runLater(() -> populateData(timetable, grid)));
 
 		return grid;
 	}

@@ -41,9 +41,9 @@ public class MainPageController implements Initializable
 	{
 		subPageManager = new SubPageManager(jecnaDesktop, subPageContainer);
 
-		subPageManager.addSubPage(SubPage.GRADES, new GradesSubPage(jecnaDesktop));
-		subPageManager.addSubPage(SubPage.ATTENDANCES, new AttendancesSubPage(jecnaDesktop));
-		subPageManager.addSubPage(SubPage.TIMETABLE, new TimetableSubPage(jecnaDesktop));
+		subPageManager.addSubPage(SubPage.GRADES, new GradesSubPage(jecnaDesktop.getGradesRepository()));
+		subPageManager.addSubPage(SubPage.ATTENDANCES, new AttendancesSubPage(jecnaDesktop.getAttendancesRepository()));
+		subPageManager.addSubPage(SubPage.TIMETABLE, new TimetableSubPage(jecnaDesktop.getTimetableRepository()));
 
 		initSideBarElements();
 	}
