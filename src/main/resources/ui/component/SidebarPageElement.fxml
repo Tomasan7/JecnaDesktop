@@ -11,7 +11,7 @@
 
     <ImageView fx:id="icon" fitHeight="35.0" fitWidth="35.0">
         <!-- Used as a placeholder -->
-        <Image url="@../icon/grades-icon.png" />
+        <Image url="@/ui/icon/grades-icon.png" />
     </ImageView>
 
     <Label fx:id="label">
@@ -23,6 +23,6 @@
     </padding>
 
     <stylesheets>
-        <URL value="@../styles.css" />
+        <URL value="@/ui/styles.css" />
     </stylesheets>
 </fx:root>

@@ -12,24 +12,24 @@
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
     <left>
         <VBox fx:id="sidebar" BorderPane.alignment="CENTER">
-            <SidebarPageElement subPage="grades" icon="@../icon/grades-icon.png" label="Známky" />
+            <SidebarPageElement subPage="grades" icon="@/ui/icon/grades-icon.png" label="Známky" />
             <Separator />
-            <SidebarPageElement subPage="attendances" icon="@../icon/attendance-icon.png" label="Příchody a odchody" />
+            <SidebarPageElement subPage="attendances" icon="@/ui/icon/attendance-icon.png" label="Příchody a odchody" />
             <Separator />
-            <SidebarPageElement subPage="timetable" icon="@../icon/timetable-icon.png" label="Rozvrh" />
+            <SidebarPageElement subPage="timetable" icon="@/ui/icon/timetable-icon.png" label="Rozvrh" />
             <Separator>
                 <VBox.margin><Insets top="20" /></VBox.margin>
             </Separator>
-            <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@../icon/timetable-icon.png" label="Mimořádný rozvrh" />
+            <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@/ui/icon/timetable-icon.png" label="Mimořádný rozvrh" />
             <Separator />
-            <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@../icon/canteen-icon.png" label="Jídelna" />
+            <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@/ui/icon/canteen-icon.png" label="Jídelna" />
         </VBox>
     </left>
     <center>
         <AnchorPane fx:id="subPageContainer" />
     </center>
     <stylesheets>
-        <URL value="@MainPage.css" />
-        <URL value="@../styles.css" />
+        <URL value="@/ui/scene/MainPage.css" />
+        <URL value="@/ui/styles.css" />
     </stylesheets>
 </BorderPane>

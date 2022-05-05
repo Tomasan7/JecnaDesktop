@@ -11,7 +11,7 @@
 
     <ImageView fx:id="icon" fitHeight="35.0" fitWidth="35.0">
         <!-- Used as a placeholder -->
-        <Image url="@../icon/grades-icon.png" />
+        <Image url="@/ui/icon/grades-icon.png" />
     </ImageView>
 
     <Label fx:id="label">
@@ -19,7 +19,7 @@
     </Label>
 
     <ImageView fx:id="linkIcon" fitHeight="20.0" fitWidth="20.0">
-        <Image url="@../icon/external-link-icon.png" />
+        <Image url="@/ui/icon/external-link-icon.png" />
         <HBox.margin><Insets left="10.0" /></HBox.margin>
     </ImageView>
 
@@ -28,6 +28,6 @@
     </padding>
 
     <stylesheets>
-        <URL value="@../styles.css" />
+        <URL value="@/ui/styles.css" />
     </stylesheets>
 </fx:root>

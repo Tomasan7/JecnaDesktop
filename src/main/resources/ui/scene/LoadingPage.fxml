@@ -11,7 +11,7 @@
     </MFXProgressSpinner>
 
     <stylesheets>
-        <URL value="@LoadingPage.css" />
-        <URL value="@../styles.css" />
+        <URL value="@/ui/scene/LoadingPage.css" />
+        <URL value="@/ui/styles.css" />
     </stylesheets>
 </StackPane>
