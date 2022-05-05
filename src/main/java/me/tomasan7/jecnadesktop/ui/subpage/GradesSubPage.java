@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Grade;
 import me.tomasan7.jecnadesktop.data.Grades;
+import me.tomasan7.jecnadesktop.repository.GradesRepository;
 import me.tomasan7.jecnadesktop.ui.CachedPage;
 import me.tomasan7.jecnadesktop.ui.component.GradeAverageView;
 import me.tomasan7.jecnadesktop.ui.component.GradeView;
@@ -16,12 +17,12 @@ import java.util.Map;
 
 public class GradesSubPage extends CachedPage
 {
-	private final JecnaDesktop jecnaDesktop;
+	private final GradesRepository gradesRepository;
 	private GridPane grid;
 
-	public GradesSubPage (JecnaDesktop jecnaDesktop)
+	public GradesSubPage (GradesRepository gradesRepository)
 	{
-		this.jecnaDesktop = jecnaDesktop;
+		this.gradesRepository = gradesRepository;
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class GradesSubPage extends CachedPage
 	{
 		Parent container = createContainer();
 
-		jecnaDesktop.getGradesRepository().queryGradesAsync().thenAccept(grades -> Platform.runLater(() -> populateData(grades)));
+		gradesRepository.queryGradesAsync().thenAccept(grades -> Platform.runLater(() -> populateData(grades)));
 
 		return container;
 	}

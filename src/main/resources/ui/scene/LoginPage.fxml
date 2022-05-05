@@ -37,7 +37,7 @@
     </MFXButton>
 
     <stylesheets>
-        <URL value="@../styles.css" />
-        <URL value="@LoginPage.css" />
+        <URL value="@/ui/styles.css" />
+        <URL value="@/ui/scene/LoginPage.css" />
     </stylesheets>
 </VBox>

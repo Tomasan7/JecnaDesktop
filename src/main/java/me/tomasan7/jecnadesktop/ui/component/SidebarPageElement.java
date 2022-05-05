@@ -1,29 +1,18 @@
 package me.tomasan7.jecnadesktop.ui.component;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import me.tomasan7.jecnadesktop.ui.SubPage;
 
 import java.io.IOException;
 
-public class SideBarElement extends HBox
+public class SidebarPageElement extends SidebarElement
 {
-	@FXML
-	private ImageView icon;
-	@FXML
-	private Label label;
-	@FXML
 	private SubPage subPage;
 
-	public SideBarElement ()
+	public SidebarPageElement ()
 	{
-		getStyleClass().add("side-bar-element");
-
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/component/SideBarElement.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/component/SidebarPageElement.fxml"));
 
 		try
 		{

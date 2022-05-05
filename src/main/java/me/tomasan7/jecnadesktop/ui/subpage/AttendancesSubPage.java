@@ -7,9 +7,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
-import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Attendance;
 import me.tomasan7.jecnadesktop.data.Attendances;
+import me.tomasan7.jecnadesktop.repository.AttendancesRepository;
 import me.tomasan7.jecnadesktop.ui.CachedPage;
 
 import java.time.LocalDate;
@@ -19,11 +19,11 @@ import java.util.List;
 
 public class AttendancesSubPage extends CachedPage
 {
-	private final JecnaDesktop jecnaDesktop;
+	private final AttendancesRepository attendancesRepository;
 
-	public AttendancesSubPage (JecnaDesktop jecnaDesktop)
+	public AttendancesSubPage (AttendancesRepository attendancesRepository)
 	{
-		this.jecnaDesktop = jecnaDesktop;
+		this.attendancesRepository = attendancesRepository;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class AttendancesSubPage extends CachedPage
 
 		table.getTableColumns().setAll(dayColumn, attendancesColumn);
 
-		jecnaDesktop.getAttendancesRepository().queryAttendancesAsync().thenAccept(attendances ->
-				Platform.runLater(() -> table.setItems(toRowList(attendances))));
+		attendancesRepository.queryAttendancesAsync().thenAccept(attendances ->
+			Platform.runLater(() -> table.setItems(toRowList(attendances))));
 
 		/* By default, MFX renders a footer with filter buttons. We don't want that. */
 		table.footerVisibleProperty().setValue(false);

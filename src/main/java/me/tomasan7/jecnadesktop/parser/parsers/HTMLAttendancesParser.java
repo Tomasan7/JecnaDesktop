@@ -29,7 +29,7 @@ public class HTMLAttendancesParser implements AttendancesParser
 	private static final Pattern LEAVE_REGEX = Pattern.compile(".*Odchod.*", Pattern.DOTALL);
 
 	/* Matches time in hh:mm format. */
-	private static final Pattern TIME_REGEX = Pattern.compile("([0-1]?[0-9]|2[0-3]):[0-5][0-9]");
+	private static final Pattern TIME_REGEX = Pattern.compile("(?:[0-1]?[0-9]|2[0-3]):[0-5][0-9]");
 
 	@Override
 	@NotNull
