@@ -2,26 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import java.net.URL?>
+<?import me.tomasan7.jecnadesktop.ui.component.IconView?>
 <fx:root alignment="CENTER_LEFT" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
 
-    <ImageView fx:id="icon" fitHeight="35.0" fitWidth="35.0">
-        <!-- Used as a placeholder -->
-        <Image url="@/ui/icon/grades-icon.png" />
-    </ImageView>
+    <IconView fx:id="icon" url="@/ui/icon/grades-icon.png" fitHeight="35.0" fitWidth="35.0" />
 
     <Label fx:id="label">
         <HBox.margin><Insets left="10.0" /></HBox.margin>
     </Label>
 
-    <ImageView fx:id="linkIcon" fitHeight="20.0" fitWidth="20.0">
-        <Image url="@/ui/icon/external-link-icon.png" />
+    <IconView fx:id="linkIcon" url="@/ui/icon/external-link-icon.png" fitHeight="20.0" fitWidth="20.0">
         <HBox.margin><Insets left="10.0" /></HBox.margin>
-    </ImageView>
+    </IconView>
 
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

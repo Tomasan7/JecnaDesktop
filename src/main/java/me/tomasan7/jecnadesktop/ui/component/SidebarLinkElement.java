@@ -11,7 +11,7 @@ import java.net.URI;
 public class SidebarLinkElement extends SidebarElement
 {
 	@FXML
-	private ImageView linkIcon;
+	private IconView linkIcon;
 	@FXML
 	private String link;
 
@@ -48,12 +48,12 @@ public class SidebarLinkElement extends SidebarElement
 						  });
 	}
 
-	public ImageView getLinkIcon ()
+	public IconView getLinkIcon ()
 	{
 		return linkIcon;
 	}
 
-	public void setLinkIcon (ImageView linkIcon)
+	public void setLinkIcon (IconView linkIcon)
 	{
 		this.linkIcon = linkIcon;
 	}
