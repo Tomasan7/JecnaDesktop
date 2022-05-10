@@ -3,6 +3,7 @@ package me.tomasan7.jecnadesktop.ui.subpage;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Grade;
@@ -37,27 +38,31 @@ public class GradesSubPage extends CachedPage
 
 	private Parent createContainer ()
 	{
-		AnchorPane anchorPane = new AnchorPane();
+		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.fitToWidthProperty().setValue(true);
+		scrollPane.fitToHeightProperty().setValue(true);
+
+		scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
+
 		grid = new GridPane();
-		anchorPane.getChildren().add(grid);
+		scrollPane.setContent(grid);
 
 		AnchorPane.setLeftAnchor(grid, 10d);
 		AnchorPane.setTopAnchor(grid, 10d);
 		AnchorPane.setRightAnchor(grid, 10d);
 
-		grid.getStylesheets().add("/ui/subpage/Grades.css");
+		scrollPane.getStylesheets().add("/ui/subpage/Grades.css");
 		grid.getStyleClass().add("grid-pane");
-		anchorPane.getStylesheets().add("/ui/subpage/Grades.css");
-		anchorPane.getStyleClass().add("anchor-pane");
-
+		scrollPane.getStyleClass().add("scroll-pane");
 
 		ColumnConstraints column1 = new ColumnConstraints();
 		column1.setMinWidth(230);
 
 		grid.getColumnConstraints().add(column1);
 		grid.setVgap(5);
+		grid.setHgap(5);
 
-		return anchorPane;
+		return scrollPane;
 	}
 
 	private void populateData (Grades grades)
@@ -81,7 +86,6 @@ public class GradesSubPage extends CachedPage
 
 			grid.add(flowPane, 1, i);
 			GradeAverageView gradeAvgView = new GradeAverageView(subjectGrades);
-			GridPane.setHgrow(gradeAvgView, Priority.NEVER);
 			grid.add(gradeAvgView, 2, i);
 
 			i++;
