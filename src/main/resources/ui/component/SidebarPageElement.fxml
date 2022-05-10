@@ -8,8 +8,7 @@
 <fx:root alignment="CENTER_LEFT" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
 
-    <!-- grades-icon.png is used as a placeholder, when none specifies the icon with icon property. -->
-    <IconView url="@/ui/icon/grades-icon.png" fx:id="icon" fitHeight="35.0" fitWidth="35.0" />
+    <IconView url="@/ui/icon/placeholder-icon.png" fx:id="icon" fitHeight="35.0" fitWidth="35.0" />
 
     <Label fx:id="label">
         <HBox.margin><Insets left="10.0" /></HBox.margin>

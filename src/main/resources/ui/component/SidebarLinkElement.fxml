@@ -8,7 +8,7 @@
 <fx:root alignment="CENTER_LEFT" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
 
-    <IconView fx:id="icon" url="@/ui/icon/grades-icon.png" fitHeight="35.0" fitWidth="35.0" />
+    <IconView fx:id="icon" url="@/ui/icon/placeholder-icon.png" fitHeight="35.0" fitWidth="35.0" />
 
     <Label fx:id="label">
         <HBox.margin><Insets left="10.0" /></HBox.margin>
