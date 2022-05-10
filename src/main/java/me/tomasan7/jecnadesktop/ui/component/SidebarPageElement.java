@@ -1,5 +1,6 @@
 package me.tomasan7.jecnadesktop.ui.component;
 
+import javafx.beans.NamedArg;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import me.tomasan7.jecnadesktop.ui.SubPage;
@@ -8,10 +9,12 @@ import java.io.IOException;
 
 public class SidebarPageElement extends SidebarElement
 {
-	private SubPage subPage;
+	private final SubPage subPage;
 
-	public SidebarPageElement ()
+	public SidebarPageElement (@NamedArg("subPage") SubPage subPage)
 	{
+		this.subPage = subPage;
+
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/component/SidebarPageElement.fxml"));
 
 		try
