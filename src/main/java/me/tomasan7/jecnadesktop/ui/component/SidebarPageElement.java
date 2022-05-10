@@ -26,33 +26,8 @@ public class SidebarPageElement extends SidebarElement
 		}
 	}
 
-	public String getIcon ()
-	{
-		return icon.getImage().getUrl();
-	}
-
-	public void setIcon (String url)
-	{
-		icon.setImage(new Image(url));
-	}
-
-	public String getLabel ()
-	{
-		return label.getText();
-	}
-
-	public void setLabel (String label)
-	{
-		this.label.setText(label);
-	}
-
 	public SubPage getSubPage ()
 	{
 		return subPage;
-	}
-
-	public void setSubPage (SubPage subPage)
-	{
-		this.subPage = subPage;
 	}
 }
