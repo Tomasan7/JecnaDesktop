@@ -42,13 +42,13 @@ public class IconView extends ImageView
 	private final boolean doCache;
 
 	/**
-	 * @param url the string representing the URL from which to load the image.
+	 * @param image The icon's image.
 	 * @param doCache Whether to cache {@link Image} for each {@link Color} that is ever used.
 	 *                   Caching faster but uses more memory, choose depending on the amount of different used colors and icon's size.
 	 */
-	public IconView (@NamedArg("url") String url, @NamedArg(value = "doCache", defaultValue = "true") boolean doCache)
+	public IconView (Image image, boolean doCache)
 	{
-		super(url);
+		super(image);
 		this.doCache = doCache;
 
 		getStyleClass().add("icon-view");
@@ -58,6 +58,26 @@ public class IconView extends ImageView
 		/* Colorizing with the initial color. */
 		colorize(colorPropertyProperty().getValue());
 	}
+
+	/**
+	 * @param url the string representing the URL from which to load the image.
+	 * @param doCache Whether to cache {@link Image} for each {@link Color} that is ever used.
+	 *                   Caching faster but uses more memory, choose depending on the amount of different used colors and icon's size.
+	 */
+	public IconView (@NamedArg("url") String url, @NamedArg(value = "doCache", defaultValue = "true") boolean doCache)
+	{
+		this(new Image(url), doCache);
+	}
+
+	/**
+	 * Same as {@link #IconView(Image, boolean)}, but with {@code doCache = false} as default.
+	 * Shorthand for {@code new IconView(image, false)}.
+	 */
+	public IconView (Image image)
+	{
+		this(image, true);
+	}
+
 
 	/**
 	 * Same as {@link #IconView(String, boolean)}, but with {@code doCache = false} as default.
