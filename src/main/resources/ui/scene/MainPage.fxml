@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Separator?>
 <?import java.net.URL?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import me.tomasan7.jecnadesktop.ui.component.SidebarPageElement?>
@@ -10,15 +9,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
 
-    <VBox fx:id="sidebar" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+    <VBox fx:id="sidebar" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" spacing="3">
         <SidebarPageElement subPage="grades" icon="@/ui/icon/grades-icon.png" label="Známky" />
-        <Separator />
         <SidebarPageElement subPage="attendances" icon="@/ui/icon/attendance-icon.png" label="Příchody a odchody" />
-        <Separator />
         <SidebarPageElement subPage="timetable" icon="@/ui/icon/timetable-icon.png" label="Rozvrh" />
-        <Separator><VBox.margin><Insets top="20" /></VBox.margin></Separator>
-        <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@/ui/icon/timetable-icon.png" label="Mimořádný rozvrh" />
-        <Separator />
+        <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@/ui/icon/timetable-icon.png" label="Mimořádný rozvrh">
+            <VBox.margin><Insets top="20" /></VBox.margin>
+        </SidebarLinkElement>
         <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@/ui/icon/canteen-icon.png" label="Jídelna" />
     </VBox>
     <!-- Left anchor of this container will be modified at runtime to be the same as the sidebar's width. -->
