@@ -39,8 +39,6 @@ public class TimetableSubPage extends CachedPage
 	{
 		GridPane grid = new GridPane();
 
-		grid.setPadding(new Insets(10, 0, 0, 10));
-
 		grid.setHgap(1);
 		grid.setVgap(1);
 
