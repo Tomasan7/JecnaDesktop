@@ -22,7 +22,7 @@
         <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@/ui/icon/canteen-icon.png" label="Jídelna" />
     </VBox>
     <!-- Left anchor of this container will be modified at runtime to be the same as the sidebar's width. -->
-    <AnchorPane fx:id="subPageContainer" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" />
+    <AnchorPane fx:id="subPageContainer" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" />
     <stylesheets>
         <URL value="@/ui/scene/MainPage.css" />
         <URL value="@/ui/styles.css" />
