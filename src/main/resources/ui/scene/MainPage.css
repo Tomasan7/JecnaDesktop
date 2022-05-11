@@ -26,6 +26,7 @@
 .side-bar-element:hover
 {
     -fx-cursor: hand;
+    -fx-background-color: #252525;
 }
 
 .side-bar-element:selected .image-view
