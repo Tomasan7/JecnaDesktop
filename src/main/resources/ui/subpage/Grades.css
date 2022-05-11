@@ -17,3 +17,13 @@
 {
     -fx-background-color: #292929;
 }
+
+.separator
+{
+    -fx-valignment: center;
+}
+
+.separator .line
+{
+    -fx-border-color: #ffffff10;
+}

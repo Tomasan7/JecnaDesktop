@@ -1,11 +1,15 @@
 package me.tomasan7.jecnadesktop.ui.subpage;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
-import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Grade;
 import me.tomasan7.jecnadesktop.data.Grades;
 import me.tomasan7.jecnadesktop.repository.GradesRepository;
@@ -53,10 +57,13 @@ public class GradesSubPage extends CachedPage
 
 		ColumnConstraints column1 = new ColumnConstraints();
 		column1.setMinWidth(230);
+		ColumnConstraints column2 = new ColumnConstraints();
+		column2.setHgrow(Priority.ALWAYS);
 
-		grid.getColumnConstraints().add(column1);
+		grid.getColumnConstraints().addAll(column1, column2);
 		grid.setVgap(5);
 		grid.setHgap(5);
+		grid.setPadding(new Insets(0d, 10d, 0d, 0d));
 
 		return scrollPane;
 	}
@@ -76,6 +83,7 @@ public class GradesSubPage extends CachedPage
 			FlowPane flowPane = new FlowPane();
 			flowPane.setVgap(7.5);
 			flowPane.setHgap(7.5);
+			flowPane.setAlignment(Pos.CENTER_LEFT);
 
 			for (Grade grade : subjectGrades)
 				flowPane.getChildren().add(new GradeView(grade));
@@ -84,7 +92,9 @@ public class GradesSubPage extends CachedPage
 			GradeAverageView gradeAvgView = new GradeAverageView(subjectGrades);
 			grid.add(gradeAvgView, 2, i);
 
-			i++;
+			grid.add(new Separator(Orientation.HORIZONTAL), 0, i + 1, grid.getColumnCount(), 1);
+
+			i += 2;
 		}
 	}
 }
