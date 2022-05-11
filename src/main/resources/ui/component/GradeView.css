@@ -47,7 +47,7 @@
     -fx-min-width: 30;
 
     -fx-border-style: solid;
-    -fx-border-width: 1.5;
-    -fx-border-color: lightgray;
+    -fx-border-width: 1;
+    -fx-border-color: white;
     -fx-border-radius: 2;
 }
