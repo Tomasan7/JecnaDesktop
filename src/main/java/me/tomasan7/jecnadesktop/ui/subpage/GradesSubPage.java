@@ -47,10 +47,6 @@ public class GradesSubPage extends CachedPage
 		grid = new GridPane();
 		scrollPane.setContent(grid);
 
-		AnchorPane.setLeftAnchor(grid, 10d);
-		AnchorPane.setTopAnchor(grid, 10d);
-		AnchorPane.setRightAnchor(grid, 10d);
-
 		scrollPane.getStylesheets().add("/ui/subpage/Grades.css");
 		grid.getStyleClass().add("grid-pane");
 		scrollPane.getStyleClass().add("scroll-pane");
@@ -91,6 +87,4 @@ public class GradesSubPage extends CachedPage
 			i++;
 		}
 	}
-
-	private record GradesRow(String subject, List<Grade> grades) {}
 }
