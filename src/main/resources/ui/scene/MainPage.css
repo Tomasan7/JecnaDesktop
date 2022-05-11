@@ -1,3 +1,8 @@
+.root
+{
+    -fx-background-color: -dark-color;
+}
+
 #sidebar
 {
     -fx-background-color: -dark-color;
@@ -16,6 +21,8 @@
 .side-bar-element
 {
     -fx-background-color: #191919;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
 }
 
 .side-bar-element .icon-view
