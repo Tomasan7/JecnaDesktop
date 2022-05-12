@@ -56,11 +56,13 @@ public class GradesSubPage extends CachedPage
 		scrollPane.getStyleClass().add("scroll-pane");
 
 		ColumnConstraints column1 = new ColumnConstraints();
-		column1.setMinWidth(230);
-		ColumnConstraints column2 = new ColumnConstraints();
-		column2.setHgrow(Priority.ALWAYS);
 
-		grid.getColumnConstraints().addAll(column1, column2);
+		ColumnConstraints column2 = new ColumnConstraints();
+
+		ColumnConstraints column3 = new ColumnConstraints();
+		column3.setHgrow(Priority.ALWAYS);
+
+		grid.getColumnConstraints().addAll(column1, column2, column3);
 		grid.setVgap(5);
 		grid.setHgap(5);
 		grid.setPadding(new Insets(0d, 10d, 0d, 0d));
@@ -88,13 +90,15 @@ public class GradesSubPage extends CachedPage
 			for (Grade grade : subjectGrades)
 				flowPane.getChildren().add(new GradeView(grade));
 
-			grid.add(flowPane, 1, i);
+			grid.add(flowPane, 2, i);
 			GradeAverageView gradeAvgView = new GradeAverageView(subjectGrades);
-			grid.add(gradeAvgView, 2, i);
+			grid.add(gradeAvgView, 3, i);
 
 			grid.add(new Separator(Orientation.HORIZONTAL), 0, i + 1, grid.getColumnCount(), 1);
 
 			i += 2;
 		}
+
+		grid.add(new Separator(Orientation.VERTICAL), 1, 0, 1, grid.getRowCount());
 	}
 }
