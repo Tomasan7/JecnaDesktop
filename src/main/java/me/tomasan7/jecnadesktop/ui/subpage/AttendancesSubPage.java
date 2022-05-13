@@ -37,7 +37,7 @@ public class AttendancesSubPage extends CachedPage
 		/* TODO: Change the sorting to not be based on amount of passes, but on something more useful. */
 		MFXTableColumn<AttendancesRow> attendancesColumn = new MFXTableColumn<>("Příchody a odchody", true, Comparator.comparingInt(row -> row.attendances.size()));
 
-		attendancesColumn.setPrefWidth(200);
+		attendancesColumn.setPrefWidth(400);
 
 		dayColumn.setRowCellFactory(day -> new MFXTableRowCell<>(row -> row.day.format(DateTimeFormatter.ofPattern("dd.MM."))));
 		attendancesColumn.setRowCellFactory(person -> new MFXTableRowCell<>(row -> Attendances.attendanceListAsString(row.attendances)));
