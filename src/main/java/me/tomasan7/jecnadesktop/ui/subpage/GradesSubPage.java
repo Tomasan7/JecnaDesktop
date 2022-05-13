@@ -56,6 +56,10 @@ public class GradesSubPage extends CachedPage
 		scrollPane.getStyleClass().add("scroll-pane");
 
 		ColumnConstraints column1 = new ColumnConstraints();
+		/* Doesn't work. */
+		column1.setHgrow(Priority.NEVER);
+		/* Fix to the previous line not working. */
+		column1.setMinWidth(225);
 
 		ColumnConstraints column2 = new ColumnConstraints();
 
