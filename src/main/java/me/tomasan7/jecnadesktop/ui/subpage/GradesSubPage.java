@@ -43,10 +43,6 @@ public class GradesSubPage extends CachedPage
 	private Parent createContainer ()
 	{
 		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.fitToWidthProperty().setValue(true);
-		scrollPane.fitToHeightProperty().setValue(true);
-
-		scrollPane.hbarPolicyProperty().setValue(ScrollPane.ScrollBarPolicy.NEVER);
 
 		grid = new GridPane();
 		scrollPane.setContent(grid);
@@ -87,9 +83,7 @@ public class GradesSubPage extends CachedPage
 			grid.add(new Label(subject), 0, i);
 
 			FlowPane flowPane = new FlowPane();
-			flowPane.setVgap(7.5);
-			flowPane.setHgap(7.5);
-			flowPane.setAlignment(Pos.CENTER_LEFT);
+			flowPane.getStyleClass().add("flow-pane");
 
 			for (Grade grade : subjectGrades)
 				flowPane.getChildren().add(new GradeView(grade));

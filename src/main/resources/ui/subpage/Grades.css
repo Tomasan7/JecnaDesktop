@@ -1,14 +1,28 @@
+.grid-pane,
+.scroll-pane,
+.scroll-bar
+{
+    -fx-background-color: -dark-color;
+}
+
+.scroll-pane
+{
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+    -fx-hbar-policy: never;
+}
+
 .grade-view .label
 {
     -fx-font-weight: bold;
     -fx-text-fill: black;
 }
 
-.grid-pane,
-.scroll-pane,
-.scroll-bar
+.flow-pane
 {
-    -fx-background-color: -dark-color;
+    -fx-vgap: 7.5;
+    -fx-hgap: 7.5;
+    -fx-alignment: center-left;
 }
 
 .scroll-bar .thumb,
