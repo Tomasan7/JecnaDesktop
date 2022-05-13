@@ -51,18 +51,18 @@ public class GradesSubPage extends CachedPage
 		grid.getStyleClass().add("grid-pane");
 		scrollPane.getStyleClass().add("scroll-pane");
 
-		ColumnConstraints column1 = new ColumnConstraints();
+		ColumnConstraints labelsColumn = new ColumnConstraints();
 		/* Doesn't work. */
-		column1.setHgrow(Priority.NEVER);
+		labelsColumn.setHgrow(Priority.NEVER);
 		/* Fix to the previous line not working. */
-		column1.setMinWidth(225);
+		labelsColumn.setMinWidth(225);
 
-		ColumnConstraints column2 = new ColumnConstraints();
+		ColumnConstraints none = new ColumnConstraints();
 
-		ColumnConstraints column3 = new ColumnConstraints();
-		column3.setHgrow(Priority.ALWAYS);
+		ColumnConstraints gradesColumn = new ColumnConstraints();
+		gradesColumn.setHgrow(Priority.ALWAYS);
 
-		grid.getColumnConstraints().addAll(column1, column2, column3);
+		grid.getColumnConstraints().addAll(labelsColumn, none, gradesColumn, none, none);
 		grid.setVgap(5);
 		grid.setHgap(5);
 		grid.setPadding(new Insets(0d, 10d, 0d, 0d));
@@ -90,13 +90,16 @@ public class GradesSubPage extends CachedPage
 
 			grid.add(flowPane, 2, i);
 			GradeAverageView gradeAvgView = new GradeAverageView(subjectGrades);
-			grid.add(gradeAvgView, 3, i);
+			grid.add(gradeAvgView, 4, i);
 
 			grid.add(new Separator(Orientation.HORIZONTAL), 0, i + 1, grid.getColumnCount(), 1);
 
 			i += 2;
 		}
 
+		/* Vertical line between labels and grades column. */
 		grid.add(new Separator(Orientation.VERTICAL), 1, 0, 1, grid.getRowCount());
+		/* Vertical line between grades and grades average column. */
+		grid.add(new Separator(Orientation.VERTICAL), 3, 0, 1, grid.getRowCount());
 	}
 }
