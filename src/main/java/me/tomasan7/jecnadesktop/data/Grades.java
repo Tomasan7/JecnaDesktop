@@ -27,8 +27,10 @@ public class Grades
 	@NotNull
 	public List<Grade> getGradesForSubject (String subject)
 	{
+		List<Grade> subjectGrades = grades.get(subject);
+		/* Return empty list if no grades are present for provided subject. */
 		/* Encapsulation. */
-		return new LinkedList<>(grades.get(subject));
+		return subjectGrades != null ? new LinkedList<>(subjectGrades) : new LinkedList<>();
 	}
 
 	/**
