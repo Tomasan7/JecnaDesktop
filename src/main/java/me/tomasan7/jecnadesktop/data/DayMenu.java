@@ -13,6 +13,9 @@ public class DayMenu implements Iterable<MenuItem>
 	private final LocalDate day;
 	private final List<MenuItem> items;
 
+	/**
+	 * Constructor used by {@link Builder}.
+	 */
 	private DayMenu (@NotNull LocalDate day, @NotNull List<MenuItem> items)
 	{
 		this.day = day;
@@ -20,24 +23,38 @@ public class DayMenu implements Iterable<MenuItem>
 		this.items = new ArrayList<>(items);
 	}
 
+	/**
+	 * @return The day this menu is for.
+	 */
 	@NotNull
 	public LocalDate getDay ()
 	{
 		return day;
 	}
 
+	/**
+	 * @return {@link MenuItem} by it's number (index).
+	 */
 	@NotNull
-	public MenuItem getMenuItem (int index)
+	public MenuItem getMenuItem (int number)
 	{
-		return items.get(index);
+		return items.get(number);
 	}
 
+	/**
+	 * Creates a new {@link Builder}.
+	 * @param day The day the new menu will be for.
+	 * @return The new {@link Builder}.
+	 */
 	public static Builder builder (LocalDate day)
 	{
 		return new Builder(day);
 	}
 
-	public int size ()
+	/**
+	 * @return The number of {@link MenuItem MenuItems} in this {@link DayMenu}.
+	 */
+	public int itemsCount ()
 	{
 		return items.size();
 	}
