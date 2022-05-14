@@ -67,11 +67,15 @@ public class Grades
 		 * Adds {@link Grade}.
 		 * @param subject The subject to add this grade to. <b>Must be the same format is in the grades table rows.</b>
 		 * @param grade The {@link Grade} to add.
+		 * @return This {@link Builder builder's} instance back.
 		 */
-		public void addGrade (@NotNull String subject, @NotNull Grade grade)
+		@NotNull
+		public Builder addGrade (@NotNull String subject, @NotNull Grade grade)
 		{
 			/* Gets the list for the subject, if none is present, creates a new list and puts it into the map. Then the grade is added to that list. */
 			grades.computeIfAbsent(subject, __ -> new LinkedList<>()).add(grade);
+
+			return this;
 		}
 
 		@NotNull
