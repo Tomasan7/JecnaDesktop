@@ -32,6 +32,11 @@ public class DayMenu implements Iterable<MenuItem>
 		return items.get(index);
 	}
 
+	public static Builder builder (LocalDate day)
+	{
+		return new Builder(day);
+	}
+
 	public int size ()
 	{
 		return items.size();
@@ -43,5 +48,34 @@ public class DayMenu implements Iterable<MenuItem>
 	{
 		/* Encapsulation. */
 		return new LinkedList<>(items).iterator();
+	}
+
+	public static class Builder
+	{
+		private final LocalDate day;
+		private final List<MenuItem> items = new LinkedList<>();
+
+		public Builder (@NotNull  LocalDate day)
+		{
+			this.day = day;
+		}
+
+		/**
+		 * Adds {@link MenuItem}.
+		 * @param item The {@link MenuItem} to add.
+		 * @return This {@link Builder builder's} instance back.
+		 */
+		@NotNull
+		public Builder addItem (@NotNull MenuItem item)
+		{
+			items.add(item);
+			return this;
+		}
+
+		@NotNull
+		public DayMenu build ()
+		{
+			return new DayMenu(day, items);
+		}
 	}
 }
