@@ -1,14 +1,14 @@
 # JečnáDesktop
 
-JečnáDesktop je program, který vám usnadní studijum na škole SPŠE Ječná. Můžete si pomocí něj rychle a pohodlně zobrazovat známky a průměr známek u každého předmětu, příchody a odchody a rozvrh hodin.
+JečnáDesktop je program, který vám usnadní studium na škole SPŠE Ječná. Můžete si pomocí něj rychle a pohodlně zobrazovat známky a průměr známek u každého předmětu, příchody a odchody a rozvrh hodin.
 
 ## Funkce
 
 - Ukladování přihlašovacích údajů
-  - Díky ukládání přihlašovacích údajů, vám k zobrazení sznámek stačí pouze otevření programu.
+  - Díky ukládání přihlašovacích údajů, vám k zobrazení známek stačí pouze otevření programu.
 - Zobrazování všech známek u všech předmětů
 - Zobrazování průměrů známek u všech předmětů
-- Zobrazování příchodů a odchodů do školy
+- Zobrazování příchodů a odchodů do školy a ze školy
 - Zobrazování rozvrhu hodin
 - Rychlý odkaz na jídelnu a mimořádný rozvrh
 
