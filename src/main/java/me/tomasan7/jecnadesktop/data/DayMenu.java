@@ -13,12 +13,14 @@ public class DayMenu implements Iterable<MenuItem>
 	private final LocalDate day;
 	private final List<MenuItem> items;
 
-	private DayMenu (LocalDate day, List<MenuItem> items)
+	private DayMenu (@NotNull LocalDate day, @NotNull List<MenuItem> items)
 	{
 		this.day = day;
+		/* Encapsulation. */
 		this.items = new ArrayList<>(items);
 	}
 
+	@NotNull
 	public LocalDate getDay ()
 	{
 		return day;
