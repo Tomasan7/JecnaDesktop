@@ -18,27 +18,27 @@
 
 .grade-view:value1
 {
-    -fx-background-color: lime;
+    -fx-background-color: #27c42d;
 }
 
 .grade-view:value2
 {
-    -fx-background-color: green;
+    -fx-background-color: #16780b;
 }
 
 .grade-view:value3
 {
-    -fx-background-color: yellow;
+    -fx-background-color: #d1cc30;
 }
 
 .grade-view:value4
 {
-    -fx-background-color: orange;
+    -fx-background-color: #c55a00;
 }
 
 .grade-view:value5
 {
-    -fx-background-color: red;
+    -fx-background-color: #cc1f00;
 }
 
 .grade-average-view
@@ -47,7 +47,7 @@
     -fx-min-width: 30;
 
     -fx-border-style: solid;
-    -fx-border-width: 1.5;
-    -fx-border-color: lightgray;
+    -fx-border-width: 1;
+    -fx-border-color: white;
     -fx-border-radius: 2;
 }

@@ -16,7 +16,16 @@
 .separator .line
 {
     -fx-border-style: solid;
+}
+
+.separator:horizontal .line
+{
     /* Makes the separator just 1px wide. */
     -fx-border-width: 0 0 1 0;
-    -fx-border-color: #181818;
+}
+
+.separator:vertical .line
+{
+    /* Makes the separator just 1px wide. */
+    -fx-border-width: 0 0 0 1;
 }

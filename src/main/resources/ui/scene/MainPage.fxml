@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Separator?>
 <?import java.net.URL?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import me.tomasan7.jecnadesktop.ui.component.SidebarPageElement?>
 <?import me.tomasan7.jecnadesktop.ui.component.SidebarLinkElement?>
 <?import javafx.geometry.Insets?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml">
-    <left>
-        <VBox fx:id="sidebar" BorderPane.alignment="CENTER">
-            <SidebarPageElement subPage="grades" icon="@/ui/icon/grades-icon.png" label="Známky" />
-            <Separator />
-            <SidebarPageElement subPage="attendances" icon="@/ui/icon/attendance-icon.png" label="Příchody a odchody" />
-            <Separator />
-            <SidebarPageElement subPage="timetable" icon="@/ui/icon/timetable-icon.png" label="Rozvrh" />
-            <Separator>
-                <VBox.margin><Insets top="20" /></VBox.margin>
-            </Separator>
-            <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@/ui/icon/timetable-icon.png" label="Mimořádný rozvrh" />
-            <Separator />
-            <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@/ui/icon/canteen-icon.png" label="Jídelna" />
-        </VBox>
-    </left>
-    <center>
-        <AnchorPane fx:id="subPageContainer" />
-    </center>
+
+    <VBox fx:id="sidebar" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" spacing="3">
+        <SidebarPageElement subPage="grades" icon="@/ui/icon/grades-icon.png" label="Známky" />
+        <SidebarPageElement subPage="attendances" icon="@/ui/icon/attendance-icon.png" label="Příchody a odchody" />
+        <SidebarPageElement subPage="timetable" icon="@/ui/icon/timetable-icon.png" label="Rozvrh" />
+        <SidebarLinkElement link="https://www.spsejecna.cz/suplovani" icon="@/ui/icon/timetable-icon.png" label="Mimořádný rozvrh">
+            <VBox.margin><Insets top="20" /></VBox.margin>
+        </SidebarLinkElement>
+        <SidebarLinkElement link="https://objednavky.jidelnasokolska.cz/" icon="@/ui/icon/canteen-icon.png" label="Jídelna" />
+    </VBox>
+    <!-- Left anchor of this container will be modified at runtime to be the same as the sidebar's width. -->
+    <AnchorPane fx:id="subPageContainer" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" />
     <stylesheets>
         <URL value="@/ui/scene/MainPage.css" />
         <URL value="@/ui/styles.css" />
     </stylesheets>
-</BorderPane>
+</AnchorPane>

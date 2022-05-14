@@ -1,10 +1,13 @@
 package me.tomasan7.jecnadesktop.ui.subpage;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
-import me.tomasan7.jecnadesktop.JecnaDesktop;
 import me.tomasan7.jecnadesktop.data.Grade;
 import me.tomasan7.jecnadesktop.data.Grades;
 import me.tomasan7.jecnadesktop.repository.GradesRepository;
@@ -37,27 +40,32 @@ public class GradesSubPage extends CachedPage
 
 	private Parent createContainer ()
 	{
-		AnchorPane anchorPane = new AnchorPane();
+		ScrollPane scrollPane = new ScrollPane();
+
 		grid = new GridPane();
-		anchorPane.getChildren().add(grid);
+		scrollPane.setContent(grid);
 
-		AnchorPane.setLeftAnchor(grid, 10d);
-		AnchorPane.setTopAnchor(grid, 10d);
-		AnchorPane.setRightAnchor(grid, 10d);
-
-		grid.getStylesheets().add("/ui/subpage/Grades.css");
+		scrollPane.getStylesheets().add("/ui/subpage/Grades.css");
 		grid.getStyleClass().add("grid-pane");
-		anchorPane.getStylesheets().add("/ui/subpage/Grades.css");
-		anchorPane.getStyleClass().add("anchor-pane");
+		scrollPane.getStyleClass().add("scroll-pane");
 
+		ColumnConstraints labelsColumn = new ColumnConstraints();
+		/* Doesn't work. */
+		labelsColumn.setHgrow(Priority.NEVER);
+		/* Fix to the previous line not working. */
+		labelsColumn.setMinWidth(225);
 
-		ColumnConstraints column1 = new ColumnConstraints();
-		column1.setMinWidth(230);
+		ColumnConstraints none = new ColumnConstraints();
 
-		grid.getColumnConstraints().add(column1);
+		ColumnConstraints gradesColumn = new ColumnConstraints();
+		gradesColumn.setHgrow(Priority.ALWAYS);
+
+		grid.getColumnConstraints().addAll(labelsColumn, none, gradesColumn, none, none);
 		grid.setVgap(5);
+		grid.setHgap(5);
+		grid.setPadding(new Insets(0d, 10d, 0d, 0d));
 
-		return anchorPane;
+		return scrollPane;
 	}
 
 	private void populateData (Grades grades)
@@ -73,20 +81,23 @@ public class GradesSubPage extends CachedPage
 			grid.add(new Label(subject), 0, i);
 
 			FlowPane flowPane = new FlowPane();
-			flowPane.setVgap(7.5);
-			flowPane.setHgap(7.5);
+			flowPane.getStyleClass().add("flow-pane");
 
 			for (Grade grade : subjectGrades)
 				flowPane.getChildren().add(new GradeView(grade));
 
-			grid.add(flowPane, 1, i);
+			grid.add(flowPane, 2, i);
 			GradeAverageView gradeAvgView = new GradeAverageView(subjectGrades);
-			GridPane.setHgrow(gradeAvgView, Priority.NEVER);
-			grid.add(gradeAvgView, 2, i);
+			grid.add(gradeAvgView, 4, i);
 
-			i++;
+			grid.add(new Separator(Orientation.HORIZONTAL), 0, i + 1, grid.getColumnCount(), 1);
+
+			i += 2;
 		}
-	}
 
-	private record GradesRow(String subject, List<Grade> grades) {}
+		/* Vertical line between labels and grades column. */
+		grid.add(new Separator(Orientation.VERTICAL), 1, 0, 1, grid.getRowCount());
+		/* Vertical line between grades and grades average column. */
+		grid.add(new Separator(Orientation.VERTICAL), 3, 0, 1, grid.getRowCount());
+	}
 }

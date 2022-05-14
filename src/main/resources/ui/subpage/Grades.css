@@ -1,10 +1,43 @@
+.grid-pane,
+.scroll-pane,
+.scroll-bar
+{
+    -fx-background-color: -dark-color;
+}
+
+.scroll-pane
+{
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+    -fx-hbar-policy: never;
+}
+
 .grade-view .label
 {
     -fx-font-weight: bold;
     -fx-text-fill: black;
 }
 
-.grid-pane, .anchor-pane
+.flow-pane
 {
-    -fx-background-color: -dark-color;
+    -fx-vgap: 7.5;
+    -fx-hgap: 7.5;
+    -fx-alignment: center-left;
+}
+
+.scroll-bar .thumb,
+.scroll-bar .decrement-button:hover,
+.scroll-bar .increment-button:hover
+{
+    -fx-background-color: #292929;
+}
+
+.separator
+{
+    -fx-valignment: center;
+}
+
+.separator .line
+{
+    -fx-border-color: #ffffff10;
 }

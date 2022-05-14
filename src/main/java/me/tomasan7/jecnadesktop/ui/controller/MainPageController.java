@@ -41,6 +41,9 @@ public class MainPageController implements Initializable
 	{
 		subPageManager = new SubPageManager(jecnaDesktop, subPageContainer);
 
+		/* Making the container's left anchor equal (+ a little space) to the sidebar's width all the time. */
+		sidebar.widthProperty().addListener((__, ___, newValue) -> AnchorPane.setLeftAnchor(subPageContainer, (Double) newValue + 10));
+
 		subPageManager.addSubPage(SubPage.GRADES, new GradesSubPage(jecnaDesktop.getGradesRepository()));
 		subPageManager.addSubPage(SubPage.ATTENDANCES, new AttendancesSubPage(jecnaDesktop.getAttendancesRepository()));
 		subPageManager.addSubPage(SubPage.TIMETABLE, new TimetableSubPage(jecnaDesktop.getTimetableRepository()));

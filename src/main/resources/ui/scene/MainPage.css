@@ -1,19 +1,52 @@
+.root
+{
+    -fx-background-color: -dark-color;
+}
+
 #sidebar
 {
     -fx-background-color: -dark-color;
 }
 
-.side-bar-element, .side-bar-element *
+/*
+  The border's color is set to transparent, because it makes the border "render", but transparent, so it is not actually seen.
+  This is because the border changes the element's size and moves everything slightly.
+  This everything slightly moved always, so it is not noticeable.
+ */
+.side-bar-element
 {
-    -fx-background-color: #1f1f1f;
+    -fx-border-color: transparent;
+}
+
+.side-bar-element
+{
+    -fx-background-color: #191919;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+}
+
+.side-bar-element .icon-view
+{
+    -jd-icon-color: white;
 }
 
 .side-bar-element:hover
 {
     -fx-cursor: hand;
+    -fx-background-color: #252525;
+}
+
+.side-bar-element:selected .image-view
+{
+    -jd-icon-color: -primary-color;
 }
 
 .side-bar-element:selected
 {
-    -fx-background-color: #003238;
+    -fx-border-color: -primary-color;
+}
+
+.side-bar-element:selected .label
+{
+    -fx-text-fill: -primary-color;
 }
