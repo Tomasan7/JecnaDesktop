@@ -15,3 +15,8 @@ JečnáDesktop je program, který vám usnadní studium na škole SPŠE Ječná.
 ## Instalace
 
 Nejnovější verze programu je ke stažení na [github releases](https://github.com/Tomasan7/JecnaDesktop/releases). Program vyžaduje mít nainstalovanou [Javu 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows). Po stažení programu ho pouze stačí spustit jako jakýkoliv jiný Java program. Nefunguje-li dvojité kliknutí na soubor, zkuste na něj `kliknout pravým -> otevřít v programu... -> Java(TM) Platform SE binary a zaškrtněte "K otevírání souborů .jar vždycky používat tuto aplikaci" -> OK`.
+
+## Screenshoty
+
+![Stránka se známkami](github/screenshots/grades-subpage.png)
+_(Stránka se známkami)_
