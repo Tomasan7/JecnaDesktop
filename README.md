@@ -19,5 +19,5 @@ Nejnovější verze programu je ke stažení na [github releases](https://github
 
 ## Screenshoty
 
-![Stránka se známkami](github/screenshots/grades-subpage.png)
+![grades-subpage-screenshot](github/screenshots/grades-subpage.png)
 _(Stránka se známkami)_
