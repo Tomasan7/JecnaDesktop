@@ -70,6 +70,12 @@ public class ICanteenWebClient extends AuthWebClient
 		return httpClient.sendAsync(newRequest(path).GET().build(), HttpResponse.BodyHandlers.ofString()).thenApply(HttpResponse::body);
 	}
 
+	@NotNull
+	public CompletableFuture<HttpResponse<String>> queryResponse (String path)
+	{
+		return httpClient.sendAsync(newRequest(path).GET().build(), HttpResponse.BodyHandlers.ofString());
+	}
+
 
 	/**
 	 * Returns a new request to the path relative to {@link #ENDPOINT}.
