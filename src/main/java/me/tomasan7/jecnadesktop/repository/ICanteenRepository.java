@@ -1,19 +1,23 @@
 package me.tomasan7.jecnadesktop.repository;
 
-import me.tomasan7.jecnadesktop.data.DayMenu;
+import me.tomasan7.jecnadesktop.data.Menu;
+import me.tomasan7.jecnadesktop.data.MenuItem;
 
-import java.time.LocalDate;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
-// https://objednavky.jidelnasokolska.cz/faces/secured/main.jsp?terminal=false&keyboard=false&printer=false&day=2022-05-07
 
 public interface ICanteenRepository
 {
-	Optional<DayMenu> queryDay (LocalDate date);
+	Menu queryMenu ();
 
-	default CompletableFuture<Optional<DayMenu>> queryDayAsync (LocalDate date)
+	default CompletableFuture<Menu> queryMenuAsync ()
 	{
-		return CompletableFuture.supplyAsync(() -> queryDay(date));
+		return CompletableFuture.supplyAsync(this::queryMenu);
+	}
+
+	boolean orderMenuItem (MenuItem menuItem);
+
+	default CompletableFuture<Boolean> orderMenuItemAsync (MenuItem menuItem)
+	{
+		return CompletableFuture.supplyAsync(() -> orderMenuItem(menuItem));
 	}
 }
