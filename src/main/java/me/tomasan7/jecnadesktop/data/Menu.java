@@ -5,7 +5,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Menu
 {
@@ -26,6 +28,12 @@ public class Menu
 	public DayMenu getMenuForDay (LocalDate day)
 	{
 		return menu.get(day);
+	}
+
+	public Set<LocalDate> getDays ()
+	{
+		/* Encapsulation. */
+		return new HashSet<>(menu.keySet());
 	}
 
 	@NotNull
