@@ -14,7 +14,7 @@ public record Auth(@NotNull String username, @NotNull String password)
 	 * All passwords are checked with this regex.
 	 * If the password (trimmed) doesn't match this regex, it's invalid and construction will fail.
 	 */
-	private static final String VALID_PASSWORD_REGEX = "[\\w\\-@$!%*#?&]+";
+	private static final String VALID_PASSWORD_REGEX = "[\\w\\-@$!%*#?&.]+";
 
 	public Auth (@NotNull String username, @NotNull String password)
 	{
