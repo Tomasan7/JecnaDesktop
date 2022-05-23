@@ -64,7 +64,7 @@ class JecnaDesktop : App()
 
     fun initDataAccess(jecnaWebClient: JecnaWebClient?)
     {
-        checkNotNull(this.jecnaWebClient) { "Data access has already been initialized." }
+        checkNotNull(jecnaWebClient) { "Data access has already been initialized." }
 
         this.jecnaWebClient = jecnaWebClient
         gradesRepository = WebGradesRepository(jecnaWebClient)
