@@ -48,8 +48,7 @@ dependencies {
 
     implementation("org.jetbrains:annotations:23.0.0")
     implementation("org.jsoup:jsoup:1.14.3")
-    implementation("org.openjfx:javafx-fxml:17.0.2")
-    implementation("org.openjfx:javafx-controls:17.0.2")
+    implementation("no.tornado:tornadofx:1.7.20")
     implementation("io.github.palexdev:materialfx:11.13.5")
 }
 
