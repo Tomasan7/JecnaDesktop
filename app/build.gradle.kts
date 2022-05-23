@@ -6,6 +6,7 @@
  * User Manual available at https://docs.gradle.org/7.4.2/userguide/building_java_projects.html
  */
 
+group = "me.tomasan7"
 version = "1.5-SNAPSHOT"
 
 plugins {
