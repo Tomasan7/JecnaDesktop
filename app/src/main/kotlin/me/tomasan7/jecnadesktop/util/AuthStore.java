@@ -48,7 +48,7 @@ public class AuthStore
 
 		try (FileInputStream inputStream = new FileInputStream(FILE))
 		{
-			return Auth.decrypt(inputStream.readAllBytes());
+			return Auth.Companion.decrypt(inputStream.readAllBytes());
 		}
 		catch (IOException e)
 		{

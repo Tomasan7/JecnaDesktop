@@ -28,7 +28,7 @@ public class JecnaWebClient extends AuthWebClient
 	{
 		/* The user login request. */
 		HttpRequest request = newRequest("/user/login")
-				.POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", auth.username(), "pass", auth.password())))
+				.POST(HttpRequest.BodyPublishers.ofString(encodeParams("user", auth.getUsername(), "pass", auth.getPassword())))
 				.header("Content-Type", "application/x-www-form-urlencoded")
 				.build();
 
