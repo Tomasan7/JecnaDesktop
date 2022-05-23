@@ -6,7 +6,7 @@
 
     <groupId>me.tomasan7</groupId>
     <artifactId>jecna-desktop</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.4.1</version>
     <name>JecnaDesktop</name>
 
     <properties>
