@@ -12,6 +12,7 @@ import me.tomasan7.jecnadesktop.ui.scene.LoginScene
 import me.tomasan7.jecnadesktop.ui.scene.MainScene
 import me.tomasan7.jecnadesktop.web.JecnaWebClient
 import tornadofx.App
+import kotlin.system.exitProcess
 
 /**
  * Main class of the application.
@@ -45,7 +46,7 @@ class JecnaDesktop : App()
         /* For some reason the process doesn't exit by itself, so I kill it when the stage is closed. */
         stage.onCloseRequest = EventHandler {
             Platform.exit()
-            System.exit(0)
+            exitProcess(0)
         }
 
         sceneManager = SceneManager(stage)
