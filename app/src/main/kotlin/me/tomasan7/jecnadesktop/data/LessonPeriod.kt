@@ -27,9 +27,6 @@ data class LessonPeriod(val from: LocalTime, val to: LocalTime)
          */
         fun fromString(string: String): LessonPeriod
         {
-            val from: LocalTime
-            val to: LocalTime
-
             val split = string.split(" - ")
 
             try
