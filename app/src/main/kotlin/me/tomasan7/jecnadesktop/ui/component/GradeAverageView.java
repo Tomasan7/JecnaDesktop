@@ -50,12 +50,12 @@ public class GradeAverageView extends AnchorPane
 
 		for (Grade grade : grades)
 		{
-			if (grade.value() == 0)
+			if (grade.getValue() == 0)
 				continue;
 
-			int weight = grade.small() ? 1 : 2;
+			int weight = grade.getSmall() ? 1 : 2;
 
-			weightedSum += grade.value() * weight;
+			weightedSum += grade.getValue() * weight;
 			weightSum += weight;
 		}
 

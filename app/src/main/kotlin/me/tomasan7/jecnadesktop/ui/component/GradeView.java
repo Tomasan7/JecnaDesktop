@@ -19,11 +19,11 @@ public class GradeView extends AnchorPane
 		this.grade = grade;
 
 		MFXTooltip tooltip = new MFXTooltip(this, String.format("%s (%s)",
-																grade.description() != null
-																		? grade.description()
+																grade.getDescription() != null
+																		? grade.getDescription()
 																		: "",
-																grade.receiveDate() != null
-																		? grade.receiveDate().format(DateTimeFormatter.ofPattern("d.M.yyyy"))
+																grade.getReceiveDate() != null
+																		? grade.getReceiveDate().format(DateTimeFormatter.ofPattern("d.M.yyyy"))
 																		: ""));
 		tooltip.getStyleSheets().add("/ui/ToolTip.css");
 		tooltip.setShowDelay(Duration.millis(500));
@@ -43,7 +43,7 @@ public class GradeView extends AnchorPane
 		getStyleClass().add("grade-view");
 		getStylesheets().add("/ui/component/GradeView.css");
 
-		if (grade.small())
+		if (grade.getSmall())
 			pseudoClassStateChanged(PseudoClass.getPseudoClass("small"), true);
 
 		pseudoClassStateChanged(PseudoClass.getPseudoClass("value" + grade.valueChar()), true);

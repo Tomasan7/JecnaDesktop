@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -58,14 +59,12 @@ public class HTMLGradesParser implements GradesParser
 					/* The title attribute of the grade element, which contains all the details. (description, date and teacher) */
 					String titleAttr = gradeEle.attr("title");
 
-					Grade.Builder gradeBuilder = Grade.builder(value, small);
+					String subject = subjectEle.text();
+					String teacher = RegexUtils.findFirst(titleAttr, TEACHER_REGEX).orElse(null);
+					String description = RegexUtils.findFirst(titleAttr, DESCRIPTION_REGEX).orElse(null);
+					LocalDate receiveDate = RegexUtils.findFirst(titleAttr, DATE_REGEX).map(s -> LocalDate.parse(s, DateTimeFormatter.ofPattern("dd.MM.yyyy"))).orElse(null);
 
-					gradeBuilder.subject(subjectEle.text());
-					RegexUtils.findFirst(titleAttr, DESCRIPTION_REGEX).ifPresent(gradeBuilder::description);
-					RegexUtils.findFirst(titleAttr, DATE_REGEX).ifPresent(dateStr -> gradeBuilder.receiveDate(LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
-					RegexUtils.findFirst(titleAttr, TEACHER_REGEX).ifPresent(gradeBuilder::teacher);
-
-					gradesBuilder.addGrade(subjectEle.text(), gradeBuilder.build());
+					gradesBuilder.addGrade(subjectEle.text(), new Grade(value, small, subject, teacher, description, receiveDate));
 				}
 			}
 
