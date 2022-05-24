@@ -47,10 +47,15 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
+    val ktor_version = "2.0.1"
+
     implementation("org.jetbrains:annotations:23.0.0")
     implementation("org.jsoup:jsoup:1.14.3")
     implementation("no.tornado:tornadofx:1.7.20")
     implementation("io.github.palexdev:materialfx:11.13.5")
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 }
 
 application {
