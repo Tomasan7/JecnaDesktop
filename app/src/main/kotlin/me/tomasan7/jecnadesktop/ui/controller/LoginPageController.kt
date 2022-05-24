@@ -19,15 +19,15 @@ import java.util.*
 class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializable
 {
     @FXML
-    private val userInput: MFXTextField? = null
+    private lateinit var userInput: MFXTextField
 
     @FXML
-    private val passwordInput: MFXPasswordField? = null
+    private lateinit var passwordInput: MFXPasswordField
 
     @FXML
-    private val loginBtn: Button? = null
+    private lateinit var loginBtn: Button
 
-    override fun initialize(location: URL, resources: ResourceBundle)
+    override fun initialize(location: URL, resources: ResourceBundle?)
     {
         if (AuthStore.isSaved)
         {
@@ -54,13 +54,13 @@ class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializabl
         }
 
         /* Disables/enables the login button based on whether both the fields are filled or not.  */
-        val changeListener = ChangeListener<String> { _, _, _ -> loginBtn!!.isDisable = !canLogin() }
+        val changeListener = ChangeListener<String> { _, _, _ -> loginBtn.isDisable = !canLogin() }
 
-        passwordInput!!.textProperty().addListener(changeListener)
-        userInput!!.textProperty().addListener(changeListener)
+        passwordInput.textProperty().addListener(changeListener)
+        userInput.textProperty().addListener(changeListener)
 
         passwordInput.onAction = EventHandler { if (canLogin()) onLogin() }
-        loginBtn!!.onMouseClicked = EventHandler { if (canLogin()) onLogin() }
+        loginBtn.onMouseClicked = EventHandler { if (canLogin()) onLogin() }
     }
 
     /**
@@ -69,7 +69,7 @@ class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializabl
     private fun canLogin(): Boolean
     {
         /* If neither is blank. */
-        return passwordInput!!.text.isNotBlank() && userInput!!.text.isNotBlank()
+        return passwordInput.text.isNotBlank() && userInput.text.isNotBlank()
     }
 
     /**
@@ -79,7 +79,7 @@ class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializabl
     {
         val auth = try
         {
-            Auth(userInput!!.text, passwordInput!!.text)
+            Auth(userInput.text, passwordInput.text)
         }
         catch (e: IllegalArgumentException)
         {
@@ -110,8 +110,8 @@ class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializabl
 
     private fun clearFields()
     {
-        userInput!!.clear()
-        passwordInput!!.clear()
+        userInput.clear()
+        passwordInput.clear()
     }
 
     private fun continueToMain(jecnaWebClient: JecnaWebClient)
