@@ -43,25 +43,4 @@ abstract class AuthWebClient
      * @return The HTTP response's body as [String].
      */
     abstract fun queryStringBody(path: String): CompletableFuture<String>
-
-    companion object
-    {
-        protected fun encodeParams(params: Map<String, String>): String
-        {
-            return params.entries.joinToString(separator = "&") { (key, value) -> key + "=" + URLEncoder.encode(value, StandardCharsets.UTF_8) }
-        }
-
-        protected fun encodeParams(vararg params: String): String
-        {
-            if (params.size % 2 != 0) throw RuntimeException("Received even number of parameters - cannot assign their values.")
-            val paramsMap: MutableMap<String, String> = HashMap()
-            var i = 0
-            while (i < params.size)
-            {
-                paramsMap[params[i]] = params[i + 1]
-                i += 2
-            }
-            return encodeParams(paramsMap)
-        }
-    }
 }
