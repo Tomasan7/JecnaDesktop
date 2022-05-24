@@ -27,7 +27,7 @@ public class WebTimetableRepository implements TimetableRepository
 	{
 		try
 		{
-			return timetableParser.parse(webClient.query(WEB_PATH).get());
+			return timetableParser.parse(webClient.queryStringBody(WEB_PATH).get());
 		}
 		catch (ExecutionException | InterruptedException e)
 		{
@@ -38,7 +38,7 @@ public class WebTimetableRepository implements TimetableRepository
 	@Override
 	public CompletableFuture<Timetable> queryTimetableAsync ()
 	{
-		return webClient.query(WEB_PATH)
+		return webClient.queryStringBody(WEB_PATH)
 						.thenApply(timetableParser::parse);
 	}
 }

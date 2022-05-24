@@ -27,7 +27,7 @@ public class WebGradesRepository implements GradesRepository
 	{
 		try
 		{
-			return gradesParser.parse(webClient.query(WEB_PATH).get());
+			return gradesParser.parse(webClient.queryStringBody(WEB_PATH).get());
 		}
 		catch (ExecutionException | InterruptedException e)
 		{
@@ -38,7 +38,7 @@ public class WebGradesRepository implements GradesRepository
 	@Override
 	public CompletableFuture<Grades> queryGradesAsync ()
 	{
-		return webClient.query(WEB_PATH)
+		return webClient.queryStringBody(WEB_PATH)
 						.thenApply(gradesParser::parse);
 	}
 }

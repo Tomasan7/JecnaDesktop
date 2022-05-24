@@ -27,7 +27,7 @@ public class WebAttendancesRepository implements AttendancesRepository
 	{
 		try
 		{
-			return attendancesParser.parse(webClient.query(WEB_PATH).get());
+			return attendancesParser.parse(webClient.queryStringBody(WEB_PATH).get());
 		}
 		catch (ExecutionException | InterruptedException e)
 		{
@@ -38,7 +38,7 @@ public class WebAttendancesRepository implements AttendancesRepository
 	@Override
 	public CompletableFuture<Attendances> queryAttendancesAsync ()
 	{
-		return webClient.query(WEB_PATH)
+		return webClient.queryStringBody(WEB_PATH)
 						.thenApply(attendancesParser::parse);
 	}
 }
