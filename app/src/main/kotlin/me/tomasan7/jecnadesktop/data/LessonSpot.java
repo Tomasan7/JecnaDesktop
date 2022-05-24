@@ -28,7 +28,7 @@ public class LessonSpot implements Iterable<Lesson>
 
 		/* Encapsulation.  */
 		this.lessons = new ArrayList<>(lessons);
-		this.lessons.sort(Comparator.comparingInt(Lesson::group));
+		this.lessons.sort(Comparator.comparingInt(Lesson::getGroup));
 	}
 
 	public LessonSpot (@NotNull Lesson lesson)
@@ -46,7 +46,7 @@ public class LessonSpot implements Iterable<Lesson>
 
 		for (Lesson lesson : lessons)
 		{
-			if (!groups.add(lesson.group()))
+			if (!groups.add(lesson.getGroup()))
 				return true;
 		}
 

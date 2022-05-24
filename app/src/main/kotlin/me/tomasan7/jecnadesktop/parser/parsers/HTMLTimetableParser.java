@@ -42,7 +42,7 @@ public class HTMLTimetableParser implements TimetableParser
 			Elements lessonPeriodEles = lessonPeriodsEle.select("th.period");
 
 			/* Add all the LessonPeriods to the timetable. */
-			lessonPeriodEles.forEach(lessonHourEle -> timetableBuilder.addLessonPeriod(LessonPeriod.fromString(lessonHourEle.selectFirst(".time").text())));
+			lessonPeriodEles.forEach(lessonHourEle -> timetableBuilder.addLessonPeriod(LessonPeriod.Companion.fromString(lessonHourEle.selectFirst(".time").text())));
 
 			/* Removes the row with the LessonPeriods, so it leaves all the subjects. */
 			rowEles.remove(0);

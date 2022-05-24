@@ -22,7 +22,7 @@ public class LessonView extends AnchorPane
 							 createTeacherLabel(),
 							 createClassroomLabel());
 
-		if (lesson.group() != 0)
+		if (lesson.getGroup() != 0)
 			getChildren().add(createGroupLabel());
 
 		getStyleClass().add("lesson-view");
@@ -31,7 +31,7 @@ public class LessonView extends AnchorPane
 
 	private StackPane createSubjectLabel ()
 	{
-		Label subjectLabel = new Label(lesson.subjectShort());
+		Label subjectLabel = new Label(lesson.getSubjectShort());
 		subjectLabel.getStyleClass().add("subject-label");
 
 		StackPane subjectLabelContainer = new StackPane();
@@ -45,7 +45,7 @@ public class LessonView extends AnchorPane
 
 	private Label createTeacherLabel ()
 	{
-		Label teacherLabel = new Label(lesson.teacherShort());
+		Label teacherLabel = new Label(lesson.getTeacherShort());
 		teacherLabel.getStyleClass().add("teacher-label");
 
 		AnchorPane.setLeftAnchor(teacherLabel, CORNER_DISTANCE);
@@ -56,7 +56,7 @@ public class LessonView extends AnchorPane
 
 	private Label createClassroomLabel ()
 	{
-		Label classroomLabel = new Label(lesson.classroom());
+		Label classroomLabel = new Label(lesson.getClassroom());
 		classroomLabel.getStyleClass().add("classroom-label");
 
 		AnchorPane.setRightAnchor(classroomLabel, CORNER_DISTANCE);
@@ -67,7 +67,7 @@ public class LessonView extends AnchorPane
 
 	private Label createGroupLabel ()
 	{
-		Label groupLabel = new Label(String.valueOf(lesson.group()));
+		Label groupLabel = new Label(String.valueOf(lesson.getGroup()));
 		groupLabel.getStyleClass().add("group-label");
 
 		AnchorPane.setRightAnchor(groupLabel, CORNER_DISTANCE);
