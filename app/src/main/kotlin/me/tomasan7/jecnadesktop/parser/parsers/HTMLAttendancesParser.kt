@@ -49,8 +49,7 @@ class HTMLAttendancesParser : AttendancesParser
                     /* If the attendance matches regex, then it is an exit. */
                     val exit = LEAVE_REGEX.containsMatchIn(dayAttendanceStr)
                     /* Find the time and parse it to the LocalTime object. */
-                    val time =
-                        LocalTime.parse(TIME_REGEX.find(dayAttendanceStr)!!.value, DateTimeFormatter.ofPattern("H:mm"))
+                    val time = LocalTime.parse(TIME_REGEX.find(dayAttendanceStr)!!.value, DateTimeFormatter.ofPattern("H:mm"))
 
                     attendancesBuilder.addAttendance(day, Attendance(exit, time))
                 }
