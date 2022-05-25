@@ -3,7 +3,6 @@ package me.tomasan7.jecnadesktop.parser.parsers
 import me.tomasan7.jecnadesktop.data.Attendance
 import me.tomasan7.jecnadesktop.data.Attendances
 import me.tomasan7.jecnadesktop.parser.ParseException
-import me.tomasan7.jecnadesktop.util.RegexUtils.findFirst
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.time.LocalDate
@@ -11,7 +10,6 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatterBuilder
 import java.time.temporal.ChronoField
-import java.util.regex.Pattern
 
 /**
  * Parses correct HTML to [Attendances] instance.
