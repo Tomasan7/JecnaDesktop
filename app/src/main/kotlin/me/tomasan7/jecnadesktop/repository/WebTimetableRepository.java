@@ -1,7 +1,7 @@
 package me.tomasan7.jecnadesktop.repository;
 
 import me.tomasan7.jecnadesktop.data.Timetable;
-import me.tomasan7.jecnadesktop.parser.parsers.HTMLTimetableParser;
+import me.tomasan7.jecnadesktop.parser.parsers.HtmlTimetableParser;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
 import java.util.concurrent.CompletableFuture;
@@ -15,7 +15,7 @@ public class WebTimetableRepository implements TimetableRepository
 	private static final String WEB_PATH = "/timetable/class";
 
 	private final JecnaWebClient webClient;
-	private final HTMLTimetableParser timetableParser = new HTMLTimetableParser();
+	private final HtmlTimetableParser timetableParser = new HtmlTimetableParser();
 
 	public WebTimetableRepository (JecnaWebClient webClient)
 	{
