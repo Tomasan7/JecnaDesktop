@@ -59,7 +59,7 @@ class JecnaDesktop : App()
     private fun registerPages()
     {
         sceneManager!!.addScene(JDScene.LOGIN, LoginScene(this))
-        sceneManager!!.addScene(JDScene.LOADING, LoadingScene(this))
+        sceneManager!!.addScene(JDScene.LOADING, LoadingScene())
         sceneManager!!.addScene(JDScene.MAIN, MainScene(this))
     }
 
