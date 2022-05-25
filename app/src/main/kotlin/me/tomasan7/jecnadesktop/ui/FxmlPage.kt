@@ -1,7 +1,7 @@
 package me.tomasan7.jecnadesktop.ui
 
 import javafx.scene.Parent
-import me.tomasan7.jecnadesktop.util.FXMLUtils
+import me.tomasan7.jecnadesktop.util.FxmlUtils
 
 /**
  * Extends [CachedPage].
@@ -18,7 +18,7 @@ abstract class FxmlPage : CachedPage()
     override fun createContent(): Parent
     {
         /* Uses the getters, so the class can be extended and the getters overridden. */
-        return FXMLUtils.loadFromResources(fxmlLocation, controller)
+        return FxmlUtils.loadFromResources(fxmlLocation, controller)
     }
 
     abstract val fxmlLocation: String
