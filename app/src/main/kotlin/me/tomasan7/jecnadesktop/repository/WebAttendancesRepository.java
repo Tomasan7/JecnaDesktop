@@ -1,7 +1,7 @@
 package me.tomasan7.jecnadesktop.repository;
 
 import me.tomasan7.jecnadesktop.data.Attendances;
-import me.tomasan7.jecnadesktop.parser.parsers.HTMLAttendancesParser;
+import me.tomasan7.jecnadesktop.parser.parsers.HtmlAttendancesParser;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
 import java.util.concurrent.CompletableFuture;
@@ -15,7 +15,7 @@ public class WebAttendancesRepository implements AttendancesRepository
 	private static final String WEB_PATH = "/absence/passing-student";
 
 	private final JecnaWebClient webClient;
-	private final HTMLAttendancesParser attendancesParser = new HTMLAttendancesParser();
+	private final HtmlAttendancesParser attendancesParser = new HtmlAttendancesParser();
 
 	public WebAttendancesRepository (JecnaWebClient webClient)
 	{

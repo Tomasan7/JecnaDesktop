@@ -14,7 +14,7 @@ import java.time.temporal.ChronoField
 /**
  * Parses correct HTML to [Attendances] instance.
  */
-class HTMLAttendancesParser : AttendancesParser
+class HtmlAttendancesParser : AttendancesParser
 {
     override fun parse(source: String): Attendances
     {
