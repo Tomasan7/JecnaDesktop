@@ -45,7 +45,7 @@ class JecnaWebClient : AuthWebClient
 
         coroutineScope.launch(Dispatchers.IO) {
 
-            future.complete(httpClient.request(newRequestBuilder(path)).body())
+            future.complete(httpClient.get(newRequestBuilder(path)).body())
         }
 
         return future
