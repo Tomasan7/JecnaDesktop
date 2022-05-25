@@ -1,7 +1,7 @@
 package me.tomasan7.jecnadesktop.repository;
 
 import me.tomasan7.jecnadesktop.data.Grades;
-import me.tomasan7.jecnadesktop.parser.parsers.HTMLGradesParser;
+import me.tomasan7.jecnadesktop.parser.parsers.HtmlGradesParser;
 import me.tomasan7.jecnadesktop.web.JecnaWebClient;
 
 import java.util.concurrent.CompletableFuture;
@@ -15,7 +15,7 @@ public class WebGradesRepository implements GradesRepository
 	private static final String WEB_PATH = "/score/student";
 
 	private final JecnaWebClient webClient;
-	private final HTMLGradesParser gradesParser = new HTMLGradesParser();
+	private final HtmlGradesParser gradesParser = new HtmlGradesParser();
 
 	public WebGradesRepository (JecnaWebClient webClient)
 	{
