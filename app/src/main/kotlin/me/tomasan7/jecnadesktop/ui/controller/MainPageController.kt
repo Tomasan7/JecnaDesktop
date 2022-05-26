@@ -32,12 +32,11 @@ class MainPageController(private val jecnaDesktop: JecnaDesktop) : Initializable
         subPageManager = SubPageManager(subPageContainer)
 
         /* Making the container's left anchor equal (+ a little space) to the sidebar's width all the time. */
-        sidebar.widthProperty()
-            .addListener { _, _, newValue -> AnchorPane.setLeftAnchor(subPageContainer, newValue as Double + 10) }
+        sidebar.widthProperty().addListener { _, _, newValue -> AnchorPane.setLeftAnchor(subPageContainer, newValue as Double + 10) }
 
-        subPageManager.addSubPage(SubPage.GRADES, GradesSubPage(jecnaDesktop.gradesRepository))
-        subPageManager.addSubPage(SubPage.ATTENDANCES, AttendancesSubPage(jecnaDesktop.attendancesRepository))
-        subPageManager.addSubPage(SubPage.TIMETABLE, TimetableSubPage(jecnaDesktop.timetableRepository))
+        subPageManager.addSubPage(SubPage.GRADES, GradesSubPage(jecnaDesktop.gradesRepository!!))
+        subPageManager.addSubPage(SubPage.ATTENDANCES, AttendancesSubPage(jecnaDesktop.attendancesRepository!!))
+        subPageManager.addSubPage(SubPage.TIMETABLE, TimetableSubPage(jecnaDesktop.timetableRepository!!))
 
         initSideBarElements()
     }

@@ -34,7 +34,7 @@ abstract class AuthWebClient
      *
      * @return True if login was successful, false otherwise.
      */
-    abstract fun login(): CompletableFuture<Boolean>
+    abstract suspend fun login(): Boolean
 
     /**
      * Makes a request to the provided path. May vary depending on whether user is logged in or not.
@@ -42,5 +42,5 @@ abstract class AuthWebClient
      * @param path Relative path from the domain. Must include first slash.
      * @return The HTTP response's body as [String].
      */
-    abstract fun queryStringBody(path: String): CompletableFuture<String>
+    abstract suspend fun queryStringBody(path: String): String
 }

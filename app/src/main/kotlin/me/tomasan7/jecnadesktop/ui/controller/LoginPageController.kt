@@ -8,6 +8,9 @@ import javafx.event.EventHandler
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.Button
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.tomasan7.jecnadesktop.JecnaDesktop
 import me.tomasan7.jecnadesktop.ui.JDScene
 import me.tomasan7.jecnadesktop.util.AuthStore
@@ -18,6 +21,8 @@ import java.util.*
 
 class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializable
 {
+    private val coroutineScope = CoroutineScope(Dispatchers.Default)
+
     @FXML
     private lateinit var userInput: MFXTextField
 
@@ -38,14 +43,15 @@ class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializabl
                 val jecnaWebClient = JecnaWebClient(auth)
 
                 jecnaDesktop.sceneManager!!.switchToScene(JDScene.LOADING)
-                jecnaWebClient.login().thenAccept { successful ->
 
-                    if (successful)
+                coroutineScope.launch {
+
+                    if (jecnaWebClient.login())
                         continueToMain(jecnaWebClient)
                     else
                     {
                         AuthStore.delete()
-                        Platform.runLater { jecnaDesktop.sceneManager!!.switchToScene(JDScene.LOGIN) }
+                        Platform.runLater{ jecnaDesktop.sceneManager!!.switchToScene(JDScene.LOGIN) }
                     }
                 }
             }
@@ -91,9 +97,9 @@ class LoginPageController(private val jecnaDesktop: JecnaDesktop) : Initializabl
 
         val jecnaWebClient = JecnaWebClient(auth)
 
-        jecnaWebClient.login().thenAccept { successful: Boolean ->
+        coroutineScope.launch {
 
-            if (successful)
+            if (jecnaWebClient.login())
             {
                 if (!AuthStore.isSaved)
                     AuthStore.save(auth)
