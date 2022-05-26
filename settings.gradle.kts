@@ -8,5 +8,3 @@
  */
 
 rootProject.name = "JecnaDesktop"
-rootProject.buildFileName = "JecnaDesktop"
-include("app")

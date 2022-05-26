@@ -2,7 +2,6 @@ package me.tomasan7.jecnadesktop.ui.component;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.ImageView;
 
 import java.awt.*;
 import java.io.IOException;

@@ -3,9 +3,6 @@ package me.tomasan7.jecnadesktop.web
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.cookies.*
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
-import java.util.concurrent.CompletableFuture
 
 abstract class AuthWebClient
 {

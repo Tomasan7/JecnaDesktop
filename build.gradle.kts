@@ -11,7 +11,7 @@ version = "1.5-SNAPSHOT"
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    kotlin("jvm") version "1.5.31"
 
     id("org.openjfx.javafxplugin") version "0.0.10"
 
@@ -59,19 +59,23 @@ dependencies {
 }
 
 application {
-    // Define the main class for the application.
-    mainClass.set("me.tomasan7.jecnadesktop.Main")
+    /* Define the main class for the application. */
+    /* The Kt suffix is needed, or else it will not be found. This is due to some interoperability with Java. */
+    mainClass.set("me.tomasan7.jecnadesktop.MainKt")
 }
 
 /* Required for Java code to be compiled inside the kotlin folder.  */
-configure<SourceSetContainer> {
-    named("main") {
-        java.srcDir("src/main/kotlin")
-    }
+sourceSets.main {
+    java.srcDirs("src/main/kotlin")
 }
 
 tasks {
     compileJava {
         options.encoding = "UTF-8"
+    }
+
+    shadowJar {
+        /* Sets the result shadowed jar's suffix. */
+        archiveClassifier.set("complete")
     }
 }
