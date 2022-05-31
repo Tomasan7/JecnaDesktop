@@ -12,8 +12,5 @@ import java.time.format.DateTimeFormatter
  */
 class Attendance(val exit: Boolean, val time: LocalTime)
 {
-    override fun toString(): String
-    {
-        return (if (exit) "Odchod" else "Příchod") + " " + time.format(DateTimeFormatter.ofPattern("HH:mm"))
-    }
+    override fun toString() = (if (exit) "Odchod" else "Příchod") + " " + time.format(DateTimeFormatter.ofPattern("HH:mm"))
 }
