@@ -41,10 +41,7 @@ data class Grade(val value: Int,
     /**
      * @return This grade's [.value] as char. Returns `'N'` for value `0`.
      */
-    fun valueChar(): Char
-    {
-        return if (value == 0) 'N' else value.toString()[0]
-    }
+    fun valueChar() = if (value == 0) 'N' else value.toString()[0]
 
     companion object
     {
