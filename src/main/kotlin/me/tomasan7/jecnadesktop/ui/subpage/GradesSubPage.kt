@@ -75,7 +75,7 @@ class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage
 
     private fun populateData(grades: Grades)
     {
-        val gradesMap = grades.asMap()
+        val gradesMap = grades.asMap
 
         var i = 0
 
