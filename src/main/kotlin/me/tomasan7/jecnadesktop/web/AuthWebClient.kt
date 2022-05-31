@@ -1,8 +1,11 @@
 package me.tomasan7.jecnadesktop.web
 
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.cookies.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 
 abstract class AuthWebClient
 {
@@ -37,7 +40,17 @@ abstract class AuthWebClient
      * Makes a request to the provided path. May vary depending on whether user is logged in or not.
      *
      * @param path Relative path from the domain. Must include first slash.
+     * @param parameters HTTP parameters, which will be sent URL encoded.
      * @return The HTTP response's body as [String].
      */
-    abstract suspend fun queryStringBody(path: String): String
+    suspend fun queryStringBody(path: String, parameters: Parameters? = null) = query(path, parameters).body<String>()
+
+    /**
+     * Makes a request to the provided path. May vary depending on whether user is logged in or not.
+     *
+     * @param path Relative path from the domain. Must include first slash.
+     * @param parameters HTTP parameters, which will be sent URL encoded.
+     * @return The [HttpResponse].
+     */
+    abstract suspend fun query(path: String, parameters: Parameters? = null): HttpResponse
 }
