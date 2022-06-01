@@ -38,7 +38,7 @@ data class SchoolYear(val firstCalendarYear: Int)
          * @throws IllegalArgumentException When the [string] [String] is not in the correct format.
          * @see [SchoolYear.toString]
          */
-        fun fromString (string: String): SchoolYear
+        fun fromString(string: String): SchoolYear
         {
             val split = string.split("/")
 
