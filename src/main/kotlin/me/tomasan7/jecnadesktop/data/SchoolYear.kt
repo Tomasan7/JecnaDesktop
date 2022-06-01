@@ -23,6 +23,19 @@ data class SchoolYear(val firstCalendarYear: Int)
                 && date.monthValue <= SCHOOL_YEAR_LAST_MONTH)
     }
 
+    operator fun compareTo(other: SchoolYear) = firstCalendarYear.compareTo(other.firstCalendarYear)
+
+    operator fun rangeTo(other: SchoolYear) = (firstCalendarYear..other.firstCalendarYear).map { SchoolYear(it) }
+
+    override fun equals(other: Any?): Boolean
+    {
+        other ?: return false
+
+        if (other !is SchoolYear) return false
+
+        return firstCalendarYear == other.firstCalendarYear
+    }
+
     override fun toString() = "$firstCalendarYear/$secondCalendarYear"
 
     companion object
