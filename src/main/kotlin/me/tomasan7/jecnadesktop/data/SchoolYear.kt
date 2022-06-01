@@ -62,3 +62,9 @@ data class SchoolYear(val firstCalendarYear: Int)
         }
     }
 }
+
+/**
+ * Creates [SchoolYear] from receiver [Int] as the first calendar year.
+ * @receiver The first calendar year of the resulting [SchoolYear].
+ */
+fun Int.schoolYear() = SchoolYear(this)
