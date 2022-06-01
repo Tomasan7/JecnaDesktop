@@ -14,7 +14,7 @@ data class SchoolYear(val firstCalendarYear: Int)
     /**
      * @return Whether the passed date is inside this [SchoolYear]. Considers the summer holidays as a new year.
      */
-    fun contains(date: LocalDate): Boolean
+    operator fun contains(date: LocalDate): Boolean
     {
         return (date.year == firstCalendarYear
                 && SCHOOL_YEAR_LAST_MONTH <= date.monthValue)
