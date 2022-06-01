@@ -36,7 +36,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 
-    val ktorVersion = "2.0.1"
+    val ktorVersion = "2.0.2"
 
     /* Kotlin Coroutines - for asynchronous programming. */
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
