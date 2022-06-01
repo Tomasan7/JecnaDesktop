@@ -54,3 +54,8 @@ abstract class AuthWebClient
      */
     abstract suspend fun query(path: String, parameters: Parameters? = null): HttpResponse
 }
+
+/**
+ * [append] extension function on [ParametersBuilder], that takes [Pair] as a parameter.
+ */
+fun ParametersBuilder.append(pair: Pair<String, Any>) = append(pair.first, pair.second.toString())
