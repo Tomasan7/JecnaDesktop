@@ -14,6 +14,7 @@ import me.tomasan7.jecnadesktop.repository.GradesRepository;
 import me.tomasan7.jecnadesktop.ui.CachedPage;
 import me.tomasan7.jecnadesktop.ui.component.GradeAverageView;
 import me.tomasan7.jecnadesktop.ui.component.GradeView;
+import me.tomasan7.jecnadesktop.ui.component.IconView;
 
 import java.util.List;
 import java.util.Map;
@@ -99,5 +100,30 @@ public class GradesSubPage extends CachedPage
 		grid.add(new Separator(Orientation.VERTICAL), 1, 0, 1, grid.getRowCount());
 		/* Vertical line between grades and grades average column. */
 		grid.add(new Separator(Orientation.VERTICAL), 3, 0, 1, grid.getRowCount());
+
+		addDisclaimer();
+	}
+
+	private void addDisclaimer ()
+	{
+		HBox disclaimerContainer = new HBox();
+		disclaimerContainer.getStyleClass().add("disclaimer-container");
+		GridPane.setMargin(disclaimerContainer, new Insets(10, 0, 0, 0));
+
+		IconView exclamationMarkIcon = new IconView("/ui/icon/exclamation-mark-icon.png");
+		exclamationMarkIcon.getStyleClass().add("exclamation-mark-icon");
+		/* Setting the fitHeight property in stylesheets doesn't work. */
+		exclamationMarkIcon.setFitHeight(32);
+		exclamationMarkIcon.setPreserveRatio(true);
+
+		Label disclaimer = new Label("""
+									Každý vyučující si váhy známek určuje dle sebe.
+									Průměry známek jsou pouze orintační.""");
+		disclaimer.getStyleClass().add("disclaimer");
+		HBox.setMargin(disclaimer, new Insets(0, 0, 0, 10));
+
+		disclaimerContainer.getChildren().addAll(exclamationMarkIcon, disclaimer);
+
+		grid.add(disclaimerContainer, 0, grid.getRowCount());
 	}
 }
