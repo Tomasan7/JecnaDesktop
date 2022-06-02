@@ -36,6 +36,8 @@ data class SchoolYear(val firstCalendarYear: Int)
         return firstCalendarYear == other.firstCalendarYear
     }
 
+    override fun hashCode() = firstCalendarYear
+
     override fun toString() = "$firstCalendarYear/$secondCalendarYear"
 
     companion object
