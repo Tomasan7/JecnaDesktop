@@ -1,6 +1,8 @@
 package me.tomasan7.jecnadesktop.util
 
 import me.tomasan7.jecnadesktop.data.SchoolYear
+import me.tomasan7.jecnadesktop.util.JecnaPeriodEncoder.jecnaDecode
+import me.tomasan7.jecnadesktop.util.JecnaPeriodEncoder.jecnaEncode
 import org.junit.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
@@ -10,8 +12,8 @@ internal class JecnaPeriodEncoderTest
     @Test
     fun testEncodeSchoolYear()
     {
-        assertEquals(JecnaPeriodEncoder.SCHOOL_YEAR_ID_KEY to 13, JecnaPeriodEncoder.encodeSchoolYear(SchoolYear(2021)))
-        assertEquals(JecnaPeriodEncoder.SCHOOL_YEAR_ID_KEY to 11, JecnaPeriodEncoder.encodeSchoolYear(SchoolYear(2019)))
+        assertEquals(JecnaPeriodEncoder.SCHOOL_YEAR_ID_KEY to 13, SchoolYear(2021).jecnaEncode())
+        assertEquals(JecnaPeriodEncoder.SCHOOL_YEAR_ID_KEY to 11, SchoolYear(2019).jecnaEncode())
 
         val schoolYear = SchoolYear(2007)
         assertThrows<IllegalArgumentException>("Lowest supported school year is 2008/2009. (got $schoolYear)") {
@@ -22,8 +24,8 @@ internal class JecnaPeriodEncoderTest
     @Test
     fun testDecodeSchoolYear()
     {
-        assertEquals(SchoolYear(2021), JecnaPeriodEncoder.decodeSchoolYear(13))
-        assertEquals(SchoolYear(2019), JecnaPeriodEncoder.decodeSchoolYear(11))
+        assertEquals(SchoolYear(2021), SchoolYear.jecnaDecode(13))
+        assertEquals(SchoolYear(2019), SchoolYear.jecnaDecode(11))
 
         val id = -1
         assertThrows<IllegalArgumentException>("Id cannot be less than 0. (got $id)") {
