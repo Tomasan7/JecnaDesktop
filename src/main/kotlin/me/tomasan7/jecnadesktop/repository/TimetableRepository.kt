@@ -1,5 +1,6 @@
 package me.tomasan7.jecnadesktop.repository
 
+import me.tomasan7.jecnadesktop.data.SchoolYear
 import me.tomasan7.jecnadesktop.data.Timetable
 
 /**
@@ -8,4 +9,9 @@ import me.tomasan7.jecnadesktop.data.Timetable
 interface TimetableRepository
 {
     suspend fun queryTimetable(): Timetable
+
+    /**
+     * @param schoolYear The [SchoolYear] to get the [Timetable] for.
+     */
+    suspend fun queryTimetable(schoolYear: SchoolYear): Timetable
 }
