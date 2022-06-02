@@ -2,6 +2,9 @@ package me.tomasan7.jecnadesktop.util
 
 import me.tomasan7.jecnadesktop.data.SchoolYear
 
+/**
+ * Converts periods/times from Kotlin objects to a Jecna URL query parameters.
+ */
 object JecnaPeriodEncoder
 {
     /**
