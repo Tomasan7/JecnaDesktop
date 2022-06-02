@@ -27,6 +27,10 @@ object JecnaPeriodEncoder
      * URL query parameter key for the school year half.
      */
     const val SCHOOL_YEAR_HALF_ID_KEY = "schoolYearHalfId"
+    /**
+     * URL query parameter key for the month.
+     */
+    const val MONTH_ID_KEY = "schoolYearPartMonthId"
 
     /**
      * @param schoolYear The [SchoolYear] to encode.
@@ -84,5 +88,16 @@ object JecnaPeriodEncoder
         FIRST_HALF_ID  -> true
         SECOND_HALF_ID -> false
         else           -> throw IllegalArgumentException("Id doesn't correspond to any year half. (got $id)")
+    }
+
+    /**
+     * @return Month URL query parameter as [Pair] of a key and a value.
+     * @throws IllegalArgumentException when the [monthValue] isn't a valid month.
+     */
+    fun encodeMonth(monthValue: Int): Pair<String, Int>
+    {
+        require(monthValue in 1..12) { "Month must be between 1 and 12. (got $monthValue)" }
+
+        return MONTH_ID_KEY to monthValue
     }
 }

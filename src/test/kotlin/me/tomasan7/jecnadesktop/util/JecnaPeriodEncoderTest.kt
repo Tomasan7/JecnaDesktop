@@ -51,4 +51,16 @@ internal class JecnaPeriodEncoderTest
             JecnaPeriodEncoder.decodeSchoolYearHalf(id)
         }
     }
+
+    @Test
+    fun testEncodeMonth()
+    {
+        assertEquals(JecnaPeriodEncoder.MONTH_ID_KEY to 1, JecnaPeriodEncoder.encodeMonth(1))
+        assertEquals(JecnaPeriodEncoder.MONTH_ID_KEY to 12, JecnaPeriodEncoder.encodeMonth(12))
+
+        val monthValue = 13
+        assertThrows<IllegalArgumentException>("Month must be between 1 and 12. (got $monthValue)") {
+            JecnaPeriodEncoder.encodeMonth(13)
+        }
+    }
 }
