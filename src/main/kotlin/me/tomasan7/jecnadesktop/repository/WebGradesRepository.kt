@@ -18,10 +18,11 @@ class WebGradesRepository(private val webClient: JecnaWebClient) : GradesReposit
 
     override suspend fun queryGrades() = gradesParser.parse(webClient.queryStringBody(WEB_PATH))
 
-    override suspend fun queryGrades(schoolYear: SchoolYear, firstHalf: Boolean) = gradesParser.parse(webClient.queryStringBody(WEB_PATH, Parameters.build {
-        append(schoolYear.jecnaEncode())
-        append(JecnaPeriodEncoder.encodeSchoolYearHalf(firstHalf))
-    }))
+    override suspend fun queryGrades(schoolYear: SchoolYear, firstHalf: Boolean) =
+        gradesParser.parse(webClient.queryStringBody(WEB_PATH, Parameters.build {
+            append(schoolYear.jecnaEncode())
+            append(JecnaPeriodEncoder.encodeSchoolYearHalf(firstHalf))
+        }))
 
     companion object
     {
