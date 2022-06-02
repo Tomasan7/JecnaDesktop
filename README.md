@@ -1,13 +1,14 @@
 ![latest-release](https://badgen.net/github/release/Tomasan7/JecnaDesktop) ![downloads](https://badgen.net/github/assets-dl/Tomasan7/JecnaDesktop) ![commits](https://badgen.net/github/commits/Tomasan7/JecnaDesktop/main)
 # JečnáDesktop
 
-JečnáDesktop je program, který vám usnadní studium na škole SPŠE Ječná. Můžete si pomocí něj rychle a pohodlně zobrazovat známky a průměr známek u každého předmětu, příchody a odchody a rozvrh hodin.
+JečnáDesktop je **neoficiální** program, který vám usnadní studium na škole SPŠE Ječná. Můžete si pomocí něj rychle a pohodlně zobrazovat známky a průměr známek u každého předmětu, příchody a odchody a rozvrh hodin.
 
 ## Funkce
 
 - Ukladování přihlašovacích údajů
   - Díky ukládání přihlašovacích údajů, vám k zobrazení známek stačí pouze otevření programu.
 - Zobrazování všech známek u všech předmětů
+  - Průměry známek jsou pouze orintační. Každý vyučující si váhy známek určuje dle sebe.
 - Zobrazování průměrů známek u všech předmětů
 - Zobrazování příchodů a odchodů do školy a ze školy
 - Zobrazování rozvrhu hodin
