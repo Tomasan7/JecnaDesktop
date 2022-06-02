@@ -25,6 +25,17 @@
     -fx-alignment: center-left;
 }
 
+.exclamation-mark-icon
+{
+    -jd-icon-color: #888888;
+}
+
+.disclaimer
+{
+    -fx-text-alignment: center;
+    -fx-text-fill: #888888;
+}
+
 .scroll-bar .thumb,
 .scroll-bar .decrement-button:hover,
 .scroll-bar .increment-button:hover

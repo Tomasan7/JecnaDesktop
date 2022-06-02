@@ -7,10 +7,7 @@ import javafx.scene.Parent
 import javafx.scene.control.Label
 import javafx.scene.control.ScrollPane
 import javafx.scene.control.Separator
-import javafx.scene.layout.ColumnConstraints
-import javafx.scene.layout.FlowPane
-import javafx.scene.layout.GridPane
-import javafx.scene.layout.Priority
+import javafx.scene.layout.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +16,8 @@ import me.tomasan7.jecnadesktop.repository.GradesRepository
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import me.tomasan7.jecnadesktop.ui.component.GradeAverageView
 import me.tomasan7.jecnadesktop.ui.component.GradeView
+import me.tomasan7.jecnadesktop.ui.component.IconView
+
 
 class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage()
 {
@@ -95,22 +94,43 @@ class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage
             val gradeAvgView = GradeAverageView(subjectGrades)
             grid.add(gradeAvgView, 4, i)
 
-            grid.add(Separator(Orientation.HORIZONTAL), 0, i + 1, grid!!.columnCount, 1)
+            grid.add(Separator(Orientation.HORIZONTAL), 0, i + 1, grid.columnCount, 1)
 
             i += 2
         }
 
         /* Vertical line between labels and grades column. */
-        grid.add(Separator(Orientation.VERTICAL),
-                 1,
-                 0,
-                 1,
-                 grid.rowCount)
+        grid.add(Separator(Orientation.VERTICAL), 1, 0, 1, grid.rowCount)
         /* Vertical line between grades and grades average column. */
-        grid.add(Separator(Orientation.VERTICAL),
-                 3,
-                 0,
-                 1,
-                 grid.rowCount)
+        grid.add(Separator(Orientation.VERTICAL), 3, 0, 1, grid.rowCount)
+
+        addDisclaimer()
+    }
+
+    private fun addDisclaimer()
+    {
+        val disclaimerContainer = HBox().apply {
+            styleClass.add("disclaimer-container")
+            GridPane.setMargin(this, Insets(10.0, 0.0, 0.0, 0.0))
+        }
+
+        val exclamationMarkIcon = IconView("/ui/icon/exclamation-mark-icon.png").apply {
+            styleClass.add("exclamation-mark-icon")
+            /* Setting the fitHeight property in stylesheets doesn't work. */
+            fitHeight = 32.0
+            isPreserveRatio = true
+        }
+
+        val disclaimer = Label("""
+            Každý vyučující si váhy známek určuje dle sebe.
+            Průměry známek jsou pouze orintační.
+            """.trimIndent()).apply {
+            styleClass.add("disclaimer")
+            HBox.setMargin(this, Insets(0.0, 0.0, 0.0, 10.0))
+        }
+
+        disclaimerContainer.children.addAll(exclamationMarkIcon, disclaimer)
+
+        grid.add(disclaimerContainer, 0, grid.rowCount)
     }
 }
