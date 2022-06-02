@@ -32,8 +32,7 @@ object JecnaPeriodEncoder
      */
     fun encodeSchoolYear(schoolYear: SchoolYear): Pair<String, Int>
     {
-        if (schoolYear.firstCalendarYear < 2008)
-            throw IllegalArgumentException("Lowest supported school year is 2008/2009. (got $schoolYear)")
+        require(schoolYear.firstCalendarYear >= 2008) { "Lowest supported school year is 2008/2009. (got $schoolYear)" }
 
         return SCHOOL_YEAR_ID_KEY to schoolYear.firstCalendarYear - ID_ZERO_YEAR
     }
@@ -53,8 +52,7 @@ object JecnaPeriodEncoder
      */
     fun decodeSchoolYear(id: Int): SchoolYear
     {
-        if (id < 0)
-            throw IllegalArgumentException("Id cannot be less than 0. (got $id)")
+        require(id >= 0) { "Id cannot be less than 0. (got $id)" }
 
         return SchoolYear(ID_ZERO_YEAR + id)
     }
