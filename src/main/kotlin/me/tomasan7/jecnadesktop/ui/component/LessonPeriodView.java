@@ -2,7 +2,7 @@ package me.tomasan7.jecnadesktop.ui.component;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import me.tomasan7.jecnadesktop.data.LessonPeriod;
+import me.tomasan7.jecnaapi.data.LessonPeriod;
 
 public class LessonPeriodView extends AnchorPane
 {

@@ -18,9 +18,12 @@ plugins {
 repositories {
     /* Use Maven Central for resolving dependencies. */
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
+    val ktorVersion = "2.0.2"
+
     /* Configuring JavaFX modules. */
     javafx {
         modules("javafx.controls", "javafx.fxml")
@@ -36,8 +39,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 
-    val ktorVersion = "2.0.2"
-
+    /* JecnaAPI - Main JecnaAPI. */
+    implementation("me.tomasan7:jecna-api:1.0-SNAPSHOT")
     /* Kotlin Coroutines - for asynchronous programming. */
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     /* Jetbrains Annotations */

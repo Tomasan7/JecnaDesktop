@@ -7,8 +7,8 @@ import javafx.scene.layout.GridPane
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.tomasan7.jecnadesktop.data.Timetable
-import me.tomasan7.jecnadesktop.repository.TimetableRepository
+import me.tomasan7.jecnaapi.data.Timetable
+import me.tomasan7.jecnaapi.repository.TimetableRepository
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import me.tomasan7.jecnadesktop.ui.component.LessonPeriodView
 import me.tomasan7.jecnadesktop.ui.component.LessonSpotView

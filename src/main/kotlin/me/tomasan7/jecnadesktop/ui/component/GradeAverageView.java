@@ -4,7 +4,7 @@ import javafx.css.PseudoClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import me.tomasan7.jecnadesktop.data.Grade;
+import me.tomasan7.jecnaapi.data.Grade;
 
 import java.text.DecimalFormat;
 

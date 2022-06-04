@@ -1,7 +1,6 @@
 package me.tomasan7.jecnadesktop.util
 
-import me.tomasan7.jecnadesktop.web.Auth
-import me.tomasan7.jecnadesktop.web.Auth.Companion.decrypt
+import me.tomasan7.jecnaapi.web.Auth
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -44,7 +43,7 @@ object AuthStore
 
         try
         {
-            FileInputStream(FILE).use { inputStream -> return decrypt(inputStream.readAllBytes()) }
+            FileInputStream(FILE).use { inputStream -> return Auth.decrypt(inputStream.readAllBytes()) }
         }
         catch (e: IOException)
         {

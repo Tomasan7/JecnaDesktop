@@ -4,13 +4,13 @@ import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.scene.image.Image
 import javafx.stage.Stage
-import me.tomasan7.jecnadesktop.repository.*
+import me.tomasan7.jecnaapi.repository.*
+import me.tomasan7.jecnaapi.web.JecnaWebClient
 import me.tomasan7.jecnadesktop.ui.JDScene
 import me.tomasan7.jecnadesktop.ui.SceneManager
 import me.tomasan7.jecnadesktop.ui.scene.LoadingScene
 import me.tomasan7.jecnadesktop.ui.scene.LoginScene
 import me.tomasan7.jecnadesktop.ui.scene.MainScene
-import me.tomasan7.jecnadesktop.web.JecnaWebClient
 import tornadofx.App
 import kotlin.system.exitProcess
 

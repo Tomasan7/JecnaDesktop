@@ -5,7 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import me.tomasan7.jecnadesktop.data.Lesson;
+import me.tomasan7.jecnaapi.data.Lesson;
 
 public class LessonView extends AnchorPane
 {

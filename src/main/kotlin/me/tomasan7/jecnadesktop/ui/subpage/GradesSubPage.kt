@@ -11,8 +11,9 @@ import javafx.scene.layout.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.tomasan7.jecnadesktop.data.Grades
-import me.tomasan7.jecnadesktop.repository.GradesRepository
+import me.tomasan7.jecnaapi.repository.GradesRepository
+import me.tomasan7.jecnaapi.data.Grade
+import me.tomasan7.jecnaapi.data.Grades
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import me.tomasan7.jecnadesktop.ui.component.GradeAverageView
 import me.tomasan7.jecnadesktop.ui.component.GradeView

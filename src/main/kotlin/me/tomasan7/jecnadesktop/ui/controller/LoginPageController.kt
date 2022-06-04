@@ -11,11 +11,11 @@ import javafx.scene.control.Button
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import me.tomasan7.jecnaapi.web.Auth
+import me.tomasan7.jecnaapi.web.JecnaWebClient
 import me.tomasan7.jecnadesktop.JecnaDesktop
 import me.tomasan7.jecnadesktop.ui.JDScene
 import me.tomasan7.jecnadesktop.util.AuthStore
-import me.tomasan7.jecnadesktop.web.Auth
-import me.tomasan7.jecnadesktop.web.JecnaWebClient
 import java.net.URL
 import java.util.*
 

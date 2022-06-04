@@ -1,7 +1,7 @@
 package me.tomasan7.jecnadesktop.ui.component;
 
 import javafx.scene.layout.VBox;
-import me.tomasan7.jecnadesktop.data.LessonSpot;
+import me.tomasan7.jecnaapi.data.LessonSpot;
 
 public class LessonSpotView extends VBox
 {

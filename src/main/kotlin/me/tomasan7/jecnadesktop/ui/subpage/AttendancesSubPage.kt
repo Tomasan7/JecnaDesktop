@@ -10,9 +10,9 @@ import javafx.scene.Parent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.tomasan7.jecnadesktop.data.Attendance
-import me.tomasan7.jecnadesktop.data.Attendances
-import me.tomasan7.jecnadesktop.repository.AttendancesRepository
+import me.tomasan7.jecnaapi.data.Attendance
+import me.tomasan7.jecnaapi.data.Attendances
+import me.tomasan7.jecnaapi.repository.AttendancesRepository
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
