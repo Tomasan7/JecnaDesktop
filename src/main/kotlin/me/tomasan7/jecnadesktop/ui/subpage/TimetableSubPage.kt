@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.tomasan7.jecnaapi.data.Timetable
+import me.tomasan7.jecnaapi.data.TimetablePage
 import me.tomasan7.jecnaapi.repository.TimetableRepository
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import me.tomasan7.jecnadesktop.ui.component.LessonPeriodView
@@ -23,7 +23,7 @@ class TimetableSubPage(private val timetableRepository: TimetableRepository) : C
 
         coroutineScope.launch {
 
-            val timetable = timetableRepository.queryTimetable()
+            val timetable = timetableRepository.queryTimetablePage()
             Platform.runLater { populateData(timetable, grid) }
         }
 
@@ -40,7 +40,7 @@ class TimetableSubPage(private val timetableRepository: TimetableRepository) : C
         return grid
     }
 
-    private fun populateData(timetable: Timetable, grid: GridPane)
+    private fun populateData(timetable: TimetablePage, grid: GridPane)
     {
         val lessonPeriods = timetable.lessonPeriods
 

@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.tomasan7.jecnaapi.data.Attendance
-import me.tomasan7.jecnaapi.data.Attendances
+import me.tomasan7.jecnaapi.data.AttendancesPage
 import me.tomasan7.jecnaapi.repository.AttendancesRepository
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import java.time.LocalDate
@@ -40,7 +40,7 @@ class AttendancesSubPage(private val attendancesRepository: AttendancesRepositor
 
         attendancesColumn.setRowCellFactory {
             MFXTableRowCell {
-                Attendances.attendanceListAsString(it.attendances)
+                AttendancesPage.attendanceListAsString(it.attendances)
             }
         }
 
@@ -48,7 +48,7 @@ class AttendancesSubPage(private val attendancesRepository: AttendancesRepositor
 
         coroutineScope.launch {
 
-            val attendances = attendancesRepository.queryAttendances()
+            val attendances = attendancesRepository.queryAttendancesPage()
             Platform.runLater { table.setItems(toRowList(attendances)) }
         }
 
@@ -58,7 +58,7 @@ class AttendancesSubPage(private val attendancesRepository: AttendancesRepositor
         return table
     }
 
-    private fun toRowList(attendances: Attendances): ObservableList<AttendancesRow>
+    private fun toRowList(attendances: AttendancesPage): ObservableList<AttendancesRow>
     {
         val rows = FXCollections.observableArrayList<AttendancesRow>()
 

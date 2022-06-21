@@ -11,9 +11,9 @@ import javafx.scene.layout.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import me.tomasan7.jecnaapi.data.grade.FinalGrade
 import me.tomasan7.jecnaapi.repository.GradesRepository
-import me.tomasan7.jecnaapi.data.Grade
-import me.tomasan7.jecnaapi.data.Grades
+import me.tomasan7.jecnaapi.data.grade.GradesPage
 import me.tomasan7.jecnadesktop.ui.CachedPage
 import me.tomasan7.jecnadesktop.ui.component.GradeAverageView
 import me.tomasan7.jecnadesktop.ui.component.GradeView
@@ -32,7 +32,7 @@ class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage
 
         coroutineScope.launch {
 
-            val grades = gradesRepository.queryGrades()
+            val grades = gradesRepository.queryGradesPage()
             Platform.runLater { populateData(grades) }
         }
 
@@ -73,17 +73,17 @@ class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage
         return scrollPane
     }
 
-    private fun populateData(grades: Grades)
+    private fun populateData(gradesPage: GradesPage)
     {
-        val gradesMap = grades.asMap
+        val gradesMap = gradesPage.asMap
 
         var i = 0
 
         for (subject in gradesMap.keys)
         {
-            val subjectGrades = gradesMap[subject]!!
+            val subjectGrades = gradesMap[subject]!!.grades
 
-            grid.add(Label(subject), 0, i)
+            grid.add(Label(subject.full), 0, i)
 
             val flowPane = FlowPane()
             flowPane.styleClass.add("flow-pane")
@@ -92,8 +92,12 @@ class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage
                 flowPane.children.add(GradeView(grade))
 
             grid.add(flowPane, 2, i)
-            val gradeAvgView = GradeAverageView(subjectGrades)
-            grid.add(gradeAvgView, 4, i)
+
+            if (subjectGrades.isNotEmpty())
+            {
+                val gradeAvgView = GradeAverageView(subjectGrades)
+                grid.add(gradeAvgView, 4, i)
+            }
 
             grid.add(Separator(Orientation.HORIZONTAL), 0, i + 1, grid.columnCount, 1)
 
