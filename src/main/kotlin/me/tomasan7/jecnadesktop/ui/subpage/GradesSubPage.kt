@@ -77,7 +77,7 @@ class GradesSubPage(private val gradesRepository: GradesRepository) : CachedPage
 
         var i = 0
 
-        for (subject in gradesMap.keys)
+        for (subject in gradesMap.keys.sortedBy { it.full })
         {
             val subjectGrades = gradesMap[subject]!!.grades
 
